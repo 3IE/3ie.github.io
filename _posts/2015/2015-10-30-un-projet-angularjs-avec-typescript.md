@@ -153,7 +153,7 @@ La première étape est de configurer son environnement pour ne voir uniquement 
 
 Rajoutez les extension js et js.map dans la liste des extensions à exclure. Afin d'être restrictif nous allons appliquer cette modification uniquement sur les répertoires app et app\_engine.
 
-\[caption id="attachment\_922" align="aligncenter" width="676"\][![settingsVsCode](/assets/images/settingsVsCode-1024x404.png)](https://blog.3ie.fr/wp-content/uploads/2015/10/settingsVsCode.png) Visual Studio Code settings\[/caption\]
+\[caption id="attachment\_922" align="aligncenter" width="676"\][![settingsVsCode](/assets/images/settingsVsCode-1024x404.png)](/assets/images/settingsVsCode.png) Visual Studio Code settings\[/caption\]
 
 Maintenant que l'environnement est prêt nous allons pouvoir entamer le développement du projet.
 
@@ -345,11 +345,11 @@ module app.directive {
 
 Etant donné que nous avons créé un gruntfile au début du projet nous allons pouvoir automatiser cette partie. Si vous êtes sous VS Code vous pouvez lancer une tache grunt avec la commande : crl + maj + p Sélectionnez launch task, puis le nom de la tache à lancer (dans notre cas Default).
 
-\[caption id="attachment\_924" align="aligncenter" width="676"\][![Lancement d'une task](/assets/images/taskRunner-1024x395.png)](https://blog.3ie.fr/wp-content/uploads/2015/10/taskRunner.png) Lancement d'une task\[/caption\]
+\[caption id="attachment\_924" align="aligncenter" width="676"\][![Lancement d'une task](/assets/images/taskRunner-1024x395.png)](/assets/images/taskRunner.png) Lancement d'une task\[/caption\]
 
 Si on souhaite gagner un peu de temps et lancer directement une tache de compilation nous pouvons configurer le task runner. Si le fichier tasks.json n'est pas encore créé vous pouvez faire une première fois ctrl + maj + b et VS Code va vous proposer de rajouter ce fichier.
 
-\[caption id="attachment\_925" align="aligncenter" width="676"\][![Configuration de la tache de build](/assets/images/configTaskRunner-1024x196.png)](https://blog.3ie.fr/wp-content/uploads/2015/10/configTaskRunner.png) Configuration de la tache de build\[/caption\]
+\[caption id="attachment\_925" align="aligncenter" width="676"\][![Configuration de la tache de build](/assets/images/configTaskRunner-1024x196.png)](/assets/images/configTaskRunner.png) Configuration de la tache de build\[/caption\]
 
 Il faut ensuite compléter le fichier avec le nom de la tache que l'on souhaite exécuter (dans notre cas default).
 

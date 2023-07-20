@@ -19,7 +19,7 @@ Dans cette partie, nous allons nous intéresser à une NUI (Natural User Interfa
 
 Pour interagir avec _Cortana_ il faut une application sous Windows10, et si on souhaite la diffuser également sous Windows Phone, une application universelle (UWP) est tout indiquée. Nous suivrons une logique de programmation de type MVVM tout au long de cet article. Pour raison de simplicité nous avons utilisé le framework [MVVM Light](http://www.mvvmlight.net/), mais tout le code peut être compatible avec d'autres frameworks tel que [PRISM](https://github.com/PrismLibrary/Prism). Il existe deux interactions avec _Cortana_ : la première est de lancer des ordres lorsque l'application est en cours d’exécution, et la seconde est d'inscrire des commandes auprès de _Cortana_ (sous forme de composant).
 
-[![Architecture Cortana](/assets/images/Architecture-300x178.png)](https://blog.3ie.fr/wp-content/uploads/2016/04/Architecture.png) Les commandes vocales sont décrites dans un fichier XML qui suit la norme [VCD](https://msdn.microsoft.com/fr-fr/library/windows/apps/dn722331). Ci dessous un exemple de fichier de définition (celui que nous utiliserons dans cet article est disponible sur notre [github](https://github.com/3IE/universal-manager-light/blob/v1.0.0/UniversalManagerLight/VoiceCommandDefinition.xml)) :
+[![Architecture Cortana](/assets/images/Architecture-300x178.png)](/assets/images/Architecture.png) Les commandes vocales sont décrites dans un fichier XML qui suit la norme [VCD](https://msdn.microsoft.com/fr-fr/library/windows/apps/dn722331). Ci dessous un exemple de fichier de définition (celui que nous utiliserons dans cet article est disponible sur notre [github](https://github.com/3IE/universal-manager-light/blob/v1.0.0/UniversalManagerLight/VoiceCommandDefinition.xml)) :
 
 <?xml version="1.0" encoding="utf-8"?>
 <VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
@@ -47,7 +47,7 @@ En prenant la grammaire définie ci dessus, nous pouvons donc éteindre la comma
 
 Pour réaliser cette application, nous n'allons pas avoir besoin d'une interface complexe. Nous aurons une simple zone d'interaction avec un label qui sera bindé sur notre ViewModel.
 
-[![ScreenShot](/assets/images/ScreenShot-1024x600.png)](https://blog.3ie.fr/wp-content/uploads/2016/04/ScreenShot.png)
+[![ScreenShot](/assets/images/ScreenShot-1024x600.png)](/assets/images/ScreenShot.png)
 
 Le fichier d'interface sera la vue [lamp.xaml](https://github.com/3IE/universal-manager-light/blob/v1.0.0/UniversalManagerLight/View/Lamp.xaml).
 
@@ -55,7 +55,7 @@ Le fichier d'interface sera la vue [lamp.xaml](https://github.com/3IE/universal-
 
 Afin de développer cette application nous allons créer un projet BlankApp (Windows Universel).
 
-[![Creations du projet sous visual studio 2015](/assets/images/CreateProject-1024x322.png)](https://blog.3ie.fr/wp-content/uploads/2016/04/CreateProject.png)
+[![Creations du projet sous visual studio 2015](/assets/images/CreateProject-1024x322.png)](/assets/images/CreateProject.png)
 
  
 
@@ -257,7 +257,7 @@ protected override void OnNavigatedTo(NavigationEventArgs e)
 
 Maintenant nous avons le chemin complet pour lancer une commande à travers Cortana et allumer notre lampe.
 
-[![OrdreDirectCortana](/assets/images/OrdreDirectCortana-1024x596.png)](https://blog.3ie.fr/wp-content/uploads/2016/04/OrdreDirectCortana.png)
+[![OrdreDirectCortana](/assets/images/OrdreDirectCortana-1024x596.png)](/assets/images/OrdreDirectCortana.png)
 
 # Intégration plus poussée dans Cortana
 
@@ -265,7 +265,7 @@ Jusqu'à présent nous devions lancer l'application pour interagir avec elle gr�
 
 Pour cela il faut rajouter un composant à notre solution, pour que celui-ci puisse s'inscrire dans la logique de _Cortana_. Quand l'assistant vocal détectera que notre interaction correspond à notre logiciel, il viendra utiliser notre composant pour interagir avec nous et nous guider dans le flux d’exécution.
 
-[![Add Runtime Component VS2015](/assets/images/AddComponent-1024x325.png)](https://blog.3ie.fr/wp-content/uploads/2016/04/AddComponent.png)
+[![Add Runtime Component VS2015](/assets/images/AddComponent-1024x325.png)](/assets/images/AddComponent.png)
 
  
 
@@ -362,7 +362,7 @@ Afin que le composant puisse s'enregistrer une première fois au lancement de l'
 
  
 
-[![AppManifest](/assets/images/AppManifest_2-300x164.png)](https://blog.3ie.fr/wp-content/uploads/2016/04/AppManifest_2.png)
+[![AppManifest](/assets/images/AppManifest_2-300x164.png)](/assets/images/AppManifest_2.png)
 
  
 
@@ -370,7 +370,7 @@ Pour tester notre code il faut donc démarrer une première fois l'application, 
 
 Pour lancer une commande, on peut maintenant s'adresser à _Cortana_ avec la phrase suivante : "Genie change d'ambiance"
 
-[![CortanaFlow](/assets/images/CortanaFlow.png)](https://blog.3ie.fr/wp-content/uploads/2016/04/CortanaFlow.png)
+[![CortanaFlow](/assets/images/CortanaFlow.png)](/assets/images/CortanaFlow.png)
 
 # Conclusion
 

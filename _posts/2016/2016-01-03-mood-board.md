@@ -43,7 +43,7 @@ Les planches tendances sont utilisées depuis longtemps par différents métiers
 
  
 
-\[caption id="attachment\_1428" align="aligncenter" width="676"\][![Mood board réalisé par 3iE](/assets/images/article-moodboard-1024x435.jpg)](https://blog.3ie.fr/wp-content/uploads/2016/01/article-moodboard.jpg) Mood board réalisé par 3iE\[/caption\]
+\[caption id="attachment\_1428" align="aligncenter" width="676"\][![Mood board réalisé par 3iE](/assets/images/article-moodboard-1024x435.jpg)](/assets/images/article-moodboard.jpg) Mood board réalisé par 3iE\[/caption\]
 
 ## **Quels outils utiliser?**
 

@@ -27,10 +27,10 @@ Toutes ces technologies participent donc au développement du m-commerce dont le
 - Possibilité de toucher des consommateurs dans de nouveaux contextes (déplacement en magasin)
 - Précision de ciblage (heure/zone) et contextuel
 - Fonctionnalités pratiques : click to call, carte, coupon
-- Possibilité de mesurer finement la transformation[](https://blog.3ie.fr/wp-content/uploads/2014/09/m-publicité-géolocalisé-stephan-minard-3.jpg)
+- Possibilité de mesurer finement la transformation[](/assets/images/m-publicité-géolocalisé-stephan-minard-3.jpg)
 
 De plus la marque bénéficie d'une proximité, d'une meilleure image auprès de sa cible et donc une augmentation de la fidélisation. À l'image de la marque Skol qui fait appel à cette méthode non pas pour une proposition commerciale mais dans l'objectif de se positionner comme une marque jeune, urbaine, et émotionnellement connectée à sa cible. En effet via l'application Soundspot l'utilisateur peut attribuer des titres musicaux aux lieux qu’il fréquente. https://www.youtube.com/watch?v=Lbfa7P-4Cjs Voici deux exemples de campagnes qui témoignent de l'avancée du phénomène outre Atlantique : [BeaconCrawl](http://beaconcrawl.com/) est une application Iphone qui permet aux inscrits de la tournée des bars de NY de recevoir des notifications concernant des instructions spéciales à réaliser pour gagner des bons de réductions. [Fabergé](http://thebigegghunt.org/) en reprenant le principe de gamification a organisé une chasse aux trésors dans les rues de NY avec pour récompense un pendentif de la marque.
 
-\[caption id="attachment\_417" align="alignnone" width="450"\][![m-publicité connectée 1](/assets/images/m-publicité-connectée-1.png)](https://blog.3ie.fr/wp-content/uploads/2014/09/m-publicité-connectée-1.png) Illustration Admoove\[/caption\]
+\[caption id="attachment\_417" align="alignnone" width="450"\][![m-publicité connectée 1](/assets/images/m-publicité-connectée-1.png)](/assets/images/m-publicité-connectée-1.png) Illustration Admoove\[/caption\]
 
 Le principal challenge pour les marques à présent est de mettre en place des outils afin de mesurer les ROI des campagnes lancées. En effet comme l'illustre cette représentation de Admoove, 30 % des annonceurs ne font rien, 30 % comptent manuellement en magasin, 40 % mesurent plus finement.

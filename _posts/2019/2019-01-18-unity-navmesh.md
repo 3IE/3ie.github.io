@@ -34,7 +34,7 @@ L'association de ces deux paramètres permet une configuration précise de l'env
 
 Cette composante va permettre à l'agent de se déplacer. Un agent ne peut se déplacer si l'environnement n'a pas été configuré grâce à la composante [NavMeshSurface](https://docs.unity3d.com/Manual/class-NavMeshSurface.html). Elle possède différents paramètres définis dans la [documentation](https://docs.unity3d.com/560/Documentation/Manual/class-NavMeshAgent.html) et est facilement manipulable à travers des scripts.
 
-[![](/assets/images/NavMeshAgent-236x300.png)](https://blog.3ie.fr/wp-content/uploads/2018/07/NavMeshAgent.png)
+[![](/assets/images/NavMeshAgent-236x300.png)](/assets/images/NavMeshAgent.png)
 
  
 

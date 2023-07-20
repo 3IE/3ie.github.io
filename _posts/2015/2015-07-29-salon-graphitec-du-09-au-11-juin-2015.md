@@ -54,11 +54,11 @@ Cette année, le salon a mis en place un nouvel espace, le **Creative lab**, qui
 
 Les **Master Class**, nous, proposent plusieurs ateliers avec la présence d’**[Adobe](http://www.adobe.com/fr/)**, **Wacom** et d’autres encore. Nous découvrons d’énormes nouveautés sur le Creative Cloud d’Adobe et les nouvelles gammes de tablettes Wacom, avec par exemple la présentation de la tablette **Companion** :
 
-[![wacom-cintiq-companion-3qtr](/assets/images/wacom-cintiq-companion-3qtr-300x229.jpg)](https://blog.3ie.fr/wp-content/uploads/2015/07/wacom-cintiq-companion-3qtr.jpg)
+[![wacom-cintiq-companion-3qtr](/assets/images/wacom-cintiq-companion-3qtr-300x229.jpg)](/assets/images/wacom-cintiq-companion-3qtr.jpg)
 
 dOu encore la **Cintiq HD24** :
 
-[![710x440_DTH2400HD_02](/assets/images/710x440_DTH2400HD_02-300x186.jpg)](https://blog.3ie.fr/wp-content/uploads/2015/07/710x440_DTH2400HD_02.jpg)
+[![710x440_DTH2400HD_02](/assets/images/710x440_DTH2400HD_02-300x186.jpg)](/assets/images/710x440_DTH2400HD_02.jpg)
 
 Ces nouvelles tablettes graphiques sont juste magiques pour ce qui est de la gestion des couleurs, son mode multi touch et son flux de production.
 

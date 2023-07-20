@@ -113,7 +113,7 @@ Nous intégrons un simple bouton dans notre vue XAML pour lancer l'action. Cette
 
 Au final nous obtenons une application qui est capable de réagir au double tap du bracelet MYO pour allumer une lampe à distance et sans aucune autre interaction avec l'ordinateur.
 
-[![UML-screen](/assets/images/UML-screen-1024x603.png)](https://blog.3ie.fr/wp-content/uploads/2016/04/UML-screen.png)
+[![UML-screen](/assets/images/UML-screen-1024x603.png)](/assets/images/UML-screen.png)
 
 # Conclusion
 

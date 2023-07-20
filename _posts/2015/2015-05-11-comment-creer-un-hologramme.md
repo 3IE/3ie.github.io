@@ -30,7 +30,7 @@ Commençons par la vidéo ! Vous pouvez utiliser une vidéo déjà existante (v
 
 Une fois celle-ci terminée, créez une nouvelle composition sous After Effects et placez-y l’image suivante au centre, elle nous servira de guide.
 
-[![guide_video](/assets/images/guide_video-300x167.jpg)](https://blog.3ie.fr/wp-content/uploads/2015/05/guide_video.jpg)
+[![guide_video](/assets/images/guide_video-300x167.jpg)](/assets/images/guide_video.jpg)
 
 Importez ensuite votre vidéo et placez là dans la partie supérieure du guide. Le haut de votre vidéo devra être vers le bas (à l’envers donc). Attention elle ne doit pas dépasser du triangle que forme le guide, donc n’hésitez pas à la réduire un peu si elle est trop grande. De plus, placez-la le plus haut possible, près du bord supérieur.
 
@@ -38,7 +38,7 @@ Ensuite dupliquez votre vidéo une première fois et faites la tourner de 90° d
 
 Votre vidéo devrait ressembler à quelque chose comme ça :
 
-[![exemple_video](/assets/images/exemple_video-300x165.jpg)](https://blog.3ie.fr/wp-content/uploads/2015/05/exemple_video.jpg)
+[![exemple_video](/assets/images/exemple_video-300x165.jpg)](/assets/images/exemple_video.jpg)
 
 Voilà la vidéo de votre hologramme est prête !
 
@@ -50,7 +50,7 @@ Passons maintenant à la pyramide qui va nous permettre de voir notre hologramm
 
 Pour faciliter la construction de la pyramide, nous allons tout d’abord créer un patron sur papier. Sur une feuille, tracer 4 triangles équilatéraux et dont les côtés font la même taille que la largeur de l’écran que vous allez utiliser pour lire la vidéo et reliés les uns aux autres par un côté puis tracez un trait à 1,5 cm de la pointe de chaque triangle. Vous devez obtenir quelque chose qui ressemble à cela :
 
-[![patron_papier](/assets/images/patron_papier-300x259.png)](https://blog.3ie.fr/wp-content/uploads/2015/05/patron_papier.png)
+[![patron_papier](/assets/images/patron_papier-300x259.png)](/assets/images/patron_papier.png)
 
 Placez ensuite une feuille en plastique transparente assez solide au dessus du patron et découpez y la forme obtenue à l’aide d’un cutter. Marquez bien les plis pour obtenir une pyramide à 4 côtés et refermez-la à l’aide d’un petit morceau de scotch transparent placé vers le sommet de la pyramide.
 

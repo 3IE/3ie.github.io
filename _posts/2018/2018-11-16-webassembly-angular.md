@@ -15,7 +15,7 @@ Pour répondre à cette demande, en 2015, Google et asm.js annoncèrent l’arri
 
 Le développeur écrit son sous-programme en C au lieu de l'écrire directement en Javascript, puis le compilateur va se charger de transformer directement son code C en bytecode WebAssembly et de générer le code Javascript permettant d'appeler l'API WebAssembly / JS.
 
-[![](/assets/images/emscripten-diagram.png)](https://blog.3ie.fr/wp-content/uploads/2018/07/emscripten-diagram.png)
+[![](/assets/images/emscripten-diagram.png)](/assets/images/emscripten-diagram.png)
 
 L'API WebAssembly de Javascript va permettre à Javascript de charger les modules WebAssembly et inversement. La machine virtuelle de votre application web qui exécutait auparavant seulement du code Javascript va aujourd'hui également pouvoir charger et exécuter du code WebAssembly.
 
@@ -224,7 +224,7 @@ export class AppComponent implements OnInit {
 
 _Architecture finale :_
 
-[![](/assets/images/architecture-article-wasm.png)](https://blog.3ie.fr/wp-content/uploads/2018/07/architecture-article-wasm.png)
+[![](/assets/images/architecture-article-wasm.png)](/assets/images/architecture-article-wasm.png)
 
 ## Et les performances dans tout ça ?
 
@@ -232,7 +232,7 @@ On aurait tendance à penser que toute cette couche ajoutée qui nous permet d'i
 
  
 
-\[caption id="attachment\_1595" align="aligncenter" width="1103"\][![](/assets/images/fibonacci-table-2.png)](https://blog.3ie.fr/wp-content/uploads/2018/07/fibonacci-table-2.png) Résultats pour fibonacci\[/caption\]
+\[caption id="attachment\_1595" align="aligncenter" width="1103"\][![](/assets/images/fibonacci-table-2.png)](/assets/images/fibonacci-table-2.png) Résultats pour fibonacci\[/caption\]
 
  
 
@@ -244,7 +244,7 @@ En revanche, si vos programmes demandent un temps d'exécution assez conséquent
 
  
 
-\[caption id="attachment\_1593" align="aligncenter" width="1111"\][![](/assets/images/play-with-memory-table.png)](https://blog.3ie.fr/wp-content/uploads/2018/07/play-with-memory-table.png) Résultats pour playWithMemory\[/caption\]
+\[caption id="attachment\_1593" align="aligncenter" width="1111"\][![](/assets/images/play-with-memory-table.png)](/assets/images/play-with-memory-table.png) Résultats pour playWithMemory\[/caption\]
 
 ## Conclusion
 

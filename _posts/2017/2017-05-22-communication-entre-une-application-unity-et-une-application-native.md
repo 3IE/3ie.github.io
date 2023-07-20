@@ -16,14 +16,14 @@ L'une des solutions pour contourner ce problème et améliorer notre processus d
 
 D'un point de vue architecture, la solution s'implémente de cette manière :
 
-# [![](/assets/images/ArchiTechnique-1024x380.png)](https://blog.3ie.fr/wp-content/uploads/2017/03/ArchiTechnique.png)
+# [![](/assets/images/ArchiTechnique-1024x380.png)](/assets/images/ArchiTechnique.png)
 
 # Création d'un plugin unity
 
 La première étape est de créer un plugin unity permettant d'avoir un Broadcast Receiver.
 
-1. Sous Android Studio, vous pouvez créer un projet avec une activity basic; nous reviendrons sur cette activity dans la prochaine partie. Elle correspondra à notre application de configuration. [![](/assets/images/1_CreateBasicActivity-1024x711.png)](https://blog.3ie.fr/wp-content/uploads/2017/03/1_CreateBasicActivity.png)
-2. Ouvre le menu module settings [![](/assets/images/2_OpenModuleSettings.png)](https://blog.3ie.fr/wp-content/uploads/2017/03/2_OpenModuleSettings.png)
+1. Sous Android Studio, vous pouvez créer un projet avec une activity basic; nous reviendrons sur cette activity dans la prochaine partie. Elle correspondra à notre application de configuration. [![](/assets/images/1_CreateBasicActivity-1024x711.png)](/assets/images/1_CreateBasicActivity.png)
+2. Ouvre le menu module settings [![](/assets/images/2_OpenModuleSettings.png)](/assets/images/2_OpenModuleSettings.png)
 3. Rajouter un module (le + en haut à gauche) de type Android Library nommé  "PluginCommunication"
 4. Puis créer une classe"ConfigurationReceiver" dérivant de BroadcastReceiver, il faudra implémenter la méthode OnReceive. C'est dans cette méthode que nous allons indiquer "le protocol" de communication, en fait il s'agit juste de dire dans quelle variable de l'intent nous allons rechercher l'information. Dans notre cas nous avons choisi la variable EXTRA\_TEXT de cette manière nous ferons véhiculer l'information dans une chaine Json que nous serons capables de traiter coté Unity.
     
@@ -83,7 +83,7 @@ La première étape est de créer un plugin unity permettant d'avoir un Broadcas
     
     CreateJar.dependsOn(build);
     
-8. Exécuter la task gradle et vous allez pouvoir récupérer votre plugin, dans le répertoire PluginCommunication/libs/[![](/assets/images/4_TaskGradle-1024x341.png)](https://blog.3ie.fr/wp-content/uploads/2017/03/4_TaskGradle.png)
+8. Exécuter la task gradle et vous allez pouvoir récupérer votre plugin, dans le répertoire PluginCommunication/libs/[![](/assets/images/4_TaskGradle-1024x341.png)](/assets/images/4_TaskGradle.png)
 
 # Installation du Plugin sous unity
 
@@ -114,7 +114,7 @@ Si vous souhaitez mettre en cache ces informations pour éviter de toujours lanc
 
 Nous allons maintenant nous servir de notre projet "app" que nous avions créer dans la première partie. Sur la vue de l'activity (app/res/layout/content\_main.xml) , vous pouvez ajouter un textbox et un bouton.
 
-[![](/assets/images/5_InterfaceContentMain-1024x516.png)](https://blog.3ie.fr/wp-content/uploads/2017/03/5_InterfaceContentMain.png)
+[![](/assets/images/5_InterfaceContentMain-1024x516.png)](/assets/images/5_InterfaceContentMain.png)
 
 L'essentiel du code se fera dans l'appel du bouton, où nous allons déclarer un intent et l'envoyer. Il faut faire attention dans la déclaration de l'intent car c'est ici que nous allons lui spécifier son type. Ce type devra être le même que celui auquel s'attend le broadcast receiver. Pour envoyer notre intent nous pouvons soit envoyer un sendBroadcast ou un sendOrderedBroadcast. la première méthode sera plus à considérer comme un fire and forget alors que pour la deuxième nous pourrons avoir un callback pour savoir si l'intent à bien été reçu par quelqu'un.
 

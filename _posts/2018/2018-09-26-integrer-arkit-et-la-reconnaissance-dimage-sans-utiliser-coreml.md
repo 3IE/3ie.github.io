@@ -58,7 +58,7 @@ La première étape consiste à importer des images qu’on souhaite détecter.
 
 Dans notre cas, on prendra comme exemple l’entrée d’un amphithéâtre dans la cour de l’école.
 
-[![](/assets/images/IMG_0861-min-300x225.jpg)](https://blog.3ie.fr/wp-content/uploads/2018/07/IMG_0861-min.jpg)
+[![](/assets/images/IMG_0861-min-300x225.jpg)](/assets/images/IMG_0861-min.jpg)
 
 On peut ensuite dans le code créer une instance de classe **ARReferenceImage** qui va venir charger une ou plusieurs images contenues dans notre catalogue d’assets
 
@@ -78,7 +78,7 @@ updateQueue.async {
 
 Ici, nous nous sommes amusés à afficher le nom de l’amphithéâtre en réalité augmentée une fois l’image détectée (nous reparlerons plus en détails de comment faire cela dans le prochain paragraphe).
 
-[![](/assets/images/Screen-Shot-2018-07-24-at-17.28.27-300x138.png)](https://blog.3ie.fr/wp-content/uploads/2018/07/Screen-Shot-2018-07-24-at-17.28.27.png)
+[![](/assets/images/Screen-Shot-2018-07-24-at-17.28.27-300x138.png)](/assets/images/Screen-Shot-2018-07-24-at-17.28.27.png)
 
 Pour optimiser le résultat, nous avons décidé de prendre de multiples photos de l'amphithéâtre, et d'afficher le titre en AR une fois une de ces images détéctées.
 
@@ -98,7 +98,7 @@ Une fois qu’on a détecté une surface qui nous intéresse, on peut ajouter to
 
 Ici nous allons nous intéresser à l’ajout d’un object 3D qui sera un XWing (vaisseau spatial présent dans Star Wars)
 
-[![](/assets/images/Screen-Shot-2018-07-12-at-12.24.43-212x300.png)](https://blog.3ie.fr/wp-content/uploads/2018/07/Screen-Shot-2018-07-12-at-12.24.43.png)
+[![](/assets/images/Screen-Shot-2018-07-12-at-12.24.43-212x300.png)](/assets/images/Screen-Shot-2018-07-12-at-12.24.43.png)
 
 Pour ce faire, nous allons créer une fonction **createSCObjectWithVector** qui prend en paramètre le nom de l’objet 3D, le node à afficher dans l’objet 3D, l’ARSCNView sur laquelle on affichera notre object 3D, et un vecteur pour orienter notre objet.
 
@@ -145,7 +145,7 @@ De plus, on peut créer des scripts à la volée à partir de la classe scénari
 
 Plus de détails sur les autres fichiers peuvent être trouvés directement sur le README du repo Github.
 
-[![](/assets/images/Screen-Shot-2018-07-24-at-17.47.04-206x300.png)](https://blog.3ie.fr/wp-content/uploads/2018/07/Screen-Shot-2018-07-24-at-17.47.04.png)
+[![](/assets/images/Screen-Shot-2018-07-24-at-17.47.04-206x300.png)](/assets/images/Screen-Shot-2018-07-24-at-17.47.04.png)
 
 ### Conclusion
 

@@ -25,11 +25,11 @@ Bien que la toute dernière version de BotFramework (v4) puisse fonctionner sous
 
 Il faut partir du template BotApplication.
 
-[![](/assets/images/BF-Template-1024x464.png)](https://blog.3ie.fr/wp-content/uploads/2018/11/BF-Template.png)
+[![](/assets/images/BF-Template-1024x464.png)](/assets/images/BF-Template.png)
 
 Ps : si vous n’avez pas le template d’installé, assurez-vous d’avoir installé l’extension « Bot Builder Template for Visual Studio ». Pour cela il faut utiliser « Extension et mise à jour » à partir du menu outils de visual studio et rajouter l’extension « Bot Builder Template for Visual Studio ». ([https://marketplace.visualstudio.com/items?itemName=BotBuilder.BotBuilderV3](https://marketplace.visualstudio.com/items?itemName=BotBuilder.BotBuilderV3))
 
-[![](/assets/images/BF-Extensions-1024x408.png)](https://blog.3ie.fr/wp-content/uploads/2018/11/BF-Extensions.png)
+[![](/assets/images/BF-Extensions-1024x408.png)](/assets/images/BF-Extensions.png)
 
 Cette extension va vous permettre d’utiliser les templates ainsi que l’émulateur bot Framework.
 
@@ -37,7 +37,7 @@ Cette extension va vous permettre d’utiliser les templates ainsi que l’émul
 
 Pour cet exemple nous allons réaliser le dialogue suivant :
 
-[![](/assets/images/BF-DialogFlow.png)](https://blog.3ie.fr/wp-content/uploads/2018/11/BF-DialogFlow.png)
+[![](/assets/images/BF-DialogFlow.png)](/assets/images/BF-DialogFlow.png)
 
 ## Initialisation de la classe
 

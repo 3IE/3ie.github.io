@@ -46,13 +46,13 @@ Le projet a ainsi plus de chances de répondre aux attentes utilisateurs tout au
 
 Alors, convaincu ?
 
-[![](/assets/images/tumblr_mk3fgePTW41rdg4nvo1_400.gif)](https://blog.3ie.fr/wp-content/uploads/2018/05/tumblr_mk3fgePTW41rdg4nvo1_400.gif)
+[![](/assets/images/tumblr_mk3fgePTW41rdg4nvo1_400.gif)](/assets/images/tumblr_mk3fgePTW41rdg4nvo1_400.gif)
 
 # Et donc, comment ça s’est passé au labo ?
 
 Nous allons voir comment se sont déroulées les différentes étapes.
 
-[![](/assets/images/Le-Lean-UX-au-sein-du-labo-3.jpg)](https://blog.3ie.fr/wp-content/uploads/2018/05/Le-Lean-UX-au-sein-du-labo-3.jpg)
+[![](/assets/images/Le-Lean-UX-au-sein-du-labo-3.jpg)](/assets/images/Le-Lean-UX-au-sein-du-labo-3.jpg)
 
 ## Jour 1 - Le recueil des besoins
 
@@ -99,7 +99,7 @@ Nous avons ensuite réfléchi à une **expérience map**, pour imaginer le parco
 
 ## Jour 3 - Les scénarios utilisateurs
 
-[![](/assets/images/Le-Lean-UX-au-sein-du-labo-5.jpg)](https://blog.3ie.fr/wp-content/uploads/2018/05/Le-Lean-UX-au-sein-du-labo-5.jpg)
+[![](/assets/images/Le-Lean-UX-au-sein-du-labo-5.jpg)](/assets/images/Le-Lean-UX-au-sein-du-labo-5.jpg)
 
 Durant ce workshop, nous nous sommes intéressés aux scénarios utilisateurs.
 
@@ -139,7 +139,7 @@ Pour ce projet, il était important de mettre en avant les valeurs "bio" et "aut
 
 ## Jour 5 - Le prototype
 
-[![](/assets/images/Le-Lean-UX-au-sein-du-labo-7.jpg)](https://blog.3ie.fr/wp-content/uploads/2018/05/Le-Lean-UX-au-sein-du-labo-7.jpg)
+[![](/assets/images/Le-Lean-UX-au-sein-du-labo-7.jpg)](/assets/images/Le-Lean-UX-au-sein-du-labo-7.jpg)
 
 Enfin, the last but not the least, le dernier workshop (qui fut aussi le plus long) concernait le prototypage.
 

@@ -21,11 +21,11 @@ Avec des feuilles d'émargement pour 1600 candidats, on comprend facilement que 
 
 Ainsi, il a été décidé d'ajouter un QRCode sur la convocation de l'étudiant. Le jour du concours, un iPad scanne le QRCode du candidat afin de l'identifier. Le surveillant peut alors vérifier si les informations sont correctes. Si tel est le cas, le candidat peut alors signer directement sur l'iPad. Dans le cas d'un QRCode qui ne serait pas reconnu, le surveillant a toujours la possibilité de rechercher le candidat via son nom de famille.
 
-\[caption id="attachment\_881" align="aligncenter" width="827"\][![IMG_0083 - copie](/assets/images/IMG_0083-copie.jpg)](https://blog.3ie.fr/wp-content/uploads/2015/09/IMG_0083-copie.jpg) Interface en mode "reconnaissance de QRCode"\[/caption\]
+\[caption id="attachment\_881" align="aligncenter" width="827"\][![IMG_0083 - copie](/assets/images/IMG_0083-copie.jpg)](/assets/images/IMG_0083-copie.jpg) Interface en mode "reconnaissance de QRCode"\[/caption\]
 
  
 
-\[caption id="attachment\_882" align="aligncenter" width="738"\][![IMG_0081 - copie](/assets/images/IMG_0081-copie.png)](https://blog.3ie.fr/wp-content/uploads/2015/09/IMG_0081-copie.png) Interface d'émargement\[/caption\]
+\[caption id="attachment\_882" align="aligncenter" width="738"\][![IMG_0081 - copie](/assets/images/IMG_0081-copie.png)](/assets/images/IMG_0081-copie.png) Interface d'émargement\[/caption\]
 
 A la fin de l'émargement, les iPads sont regroupés dans une salle dans laquelle se trouve un serveur et envoient alors leurs informations de signature sur ce serveur grâce à un réseau local. Le serveur est alors capable de calculer des statistiques sur le taux de présence au concours.
 
@@ -35,7 +35,7 @@ Les candidats revenant l'après-midi pour la suite des épreuves (dans la même 
 
  
 
-\[caption id="attachment\_892" align="aligncenter" width="1279"\][![Scenario iPadConcours](/assets/images/Scenario-iPadConcours1.png)](https://blog.3ie.fr/wp-content/uploads/2015/09/Scenario-iPadConcours1.png) Scénario mis en place grâce à iPadConcours\[/caption\]
+\[caption id="attachment\_892" align="aligncenter" width="1279"\][![Scenario iPadConcours](/assets/images/Scenario-iPadConcours1.png)](/assets/images/Scenario-iPadConcours1.png) Scénario mis en place grâce à iPadConcours\[/caption\]
 
 Ainsi, cette application permet depuis la seconde édition du concours de gagner énormément de temps à l'émargement le matin, mais aussi l'après-midi. Elle permet de plus d'éviter un certain nombre d'erreurs de saisie si un candidat se trompe de case etc, ce qui peut s'avérer réellement problématique sur un concours comme le concours Advance puisqu'une erreur invaliderait le concours.
 

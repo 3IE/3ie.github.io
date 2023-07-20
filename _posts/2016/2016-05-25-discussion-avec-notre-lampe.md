@@ -29,7 +29,7 @@ Le BotFramework est constitué de :
 
 Avant toute chose il faut configurer votre environnement. Commencer par télécharger [l'émulateur Bot Framework](https://aka.ms/bf-bc-emulator). Lorsque celui est installé, il se lance comme une application de bureau.
 
-[![EmulatorBotFramework](/assets/images/EmulatorBotFramework-1024x673.png)](https://blog.3ie.fr/wp-content/uploads/2016/04/EmulatorBotFramework.png)
+[![EmulatorBotFramework](/assets/images/EmulatorBotFramework-1024x673.png)](/assets/images/EmulatorBotFramework.png)
 
  
 
@@ -39,7 +39,7 @@ Ensuite vous devez télécharger et installer [les templates pour visual studio 
 
 Pour la création de notre Bot, nous allons démarrer un nouveau projet, en sélectionnant le template Bot Framework.
 
-[![CreateProject](/assets/images/CreateProject-1-1024x654.png)](https://blog.3ie.fr/wp-content/uploads/2016/04/CreateProject-1.png)
+[![CreateProject](/assets/images/CreateProject-1-1024x654.png)](/assets/images/CreateProject-1.png)
 
  
 
@@ -74,7 +74,7 @@ Comme vous pouvez le voir la variable message comporte un champ _Type._ Nous pou
 
 Lorsque votre implémentation est terminée vous pouvez déployer votre Bot sur un serveur (par exemple azure) et l'enregistrer sur la plateforme de bot. Cet enregistrement permettra l'interaction avec les autres solutions grâce au bot connector.
 
-[![connectorDiagram](/assets/images/connectorDiagram-1024x576.png)](https://blog.3ie.fr/wp-content/uploads/2016/04/connectorDiagram.png)
+[![connectorDiagram](/assets/images/connectorDiagram-1024x576.png)](/assets/images/connectorDiagram.png)
 
 # Complément avec LUIS
 
@@ -82,27 +82,27 @@ Réaliser un bot qui répond à des questions prédéfinies reste assez simple c
 
 Lorsque vous vous êtes connecté, vous pouvez commencer à réaliser votre premier modèle d'apprentissage. Pour cela, créez votre application :
 
-[![CreateLUISApp](/assets/images/CreateLUISApp-1024x434.png)](https://blog.3ie.fr/wp-content/uploads/2016/04/CreateLUISApp.png)
+[![CreateLUISApp](/assets/images/CreateLUISApp-1024x434.png)](/assets/images/CreateLUISApp.png)
 
  
 
 Puis vous pouvez configurer votre application (Lui donner un nom, choisir la langue à reconnaître).
 
-[![CreateLUISAppConfig](/assets/images/CreateLUISAppConfig-300x273.png)](https://blog.3ie.fr/wp-content/uploads/2016/04/CreateLUISAppConfig.png)
+[![CreateLUISAppConfig](/assets/images/CreateLUISAppConfig-300x273.png)](/assets/images/CreateLUISAppConfig.png)
 
 Attention au choix de la langue, certaines fonctionnalités ne sont disponibles que pour l'anglais.
 
 Pour réaliser votre modèle d'apprentissage, vous devez dans un premier temps définir quelles vont être les entités dont vous allez avoir besoin. Une entité correspond à un morceau de phrase qui représente un concept dans votre phrase. Dans notre exemple nous allons avoir besoin de reconnaître une localisation et une couleur pour savoir comment et où allumer notre lampe. Il existe également des entités pré-entraînées  (localisation géographique, date, nombre, ...)
 
-[![AddEntities](/assets/images/AddEntities-1024x419.png)](https://blog.3ie.fr/wp-content/uploads/2016/04/AddEntities.png) Lorsque nous avons défini toutes nos entités, nous devons créer nos _intents_. Les _intents_ sont les actions qui vont être reconnues suivant le modèle de phrase que nous allons lui fournir. Pour cela il faut passer en mode preview (appuyer sur _Go To Preview_) afin d'avoir un peu plus d'options lors de la création de nos _intents._ Ajouter une nouvelle _intent :_
+[![AddEntities](/assets/images/AddEntities-1024x419.png)](/assets/images/AddEntities.png) Lorsque nous avons défini toutes nos entités, nous devons créer nos _intents_. Les _intents_ sont les actions qui vont être reconnues suivant le modèle de phrase que nous allons lui fournir. Pour cela il faut passer en mode preview (appuyer sur _Go To Preview_) afin d'avoir un peu plus d'options lors de la création de nos _intents._ Ajouter une nouvelle _intent :_
 
-[![AddIntent](/assets/images/AddIntent-1024x551.png)](https://blog.3ie.fr/wp-content/uploads/2016/04/AddIntent.png)
+[![AddIntent](/assets/images/AddIntent-1024x551.png)](/assets/images/AddIntent.png)
 
 Le premier paramètre permet de donner un nom à cette action. Ce nom nous sera transmis lorsque le service reconnaîtra cette action. Ensuite l'exemple de la phrase permet de donner un 1er élément pour l'apprentissage. Une action peut avoir besoin, ou non, de paramètres potentiellement obligatoires. C'est grâce à ces paramètres que nous allons indiquer quelle entité reconnaître dans la phrase. Lorsque que l'_intent_ a bien été reconnue, si un paramètre obligatoire est absent de la phrase, alors le service nous demandera l'entité manquante en indiquant la phrase présente dans le paramètre _Prompt._ Lorsque l'intent est créée, nous pouvons passer à la phase d'apprentissage.
 
 Pour cela il faut rentrer de nouvelles variantes de phrases grâces à l'onglet _New Utterance._ Lorsque vous validez cette variante, l'algorithme va tenter de déterminer de quelle action on parle et de trouver les paramètres correspondant à l'action. Si la prédiction est mauvaise, vous pouvez choisir de modifier l'action. Et si les paramètres ne sont pas trouvés, en cliquant sur un mot vous pouvez indiquer à quelle entité il appartient.
 
-[![NewUtterance](/assets/images/NewUtterance-1024x381.png)](https://blog.3ie.fr/wp-content/uploads/2016/04/NewUtterance.png)
+[![NewUtterance](/assets/images/NewUtterance-1024x381.png)](/assets/images/NewUtterance.png)
 
  
 
@@ -110,7 +110,7 @@ Réalisez cet apprentissage avec beaucoup de variante afin d'avoir un résultat 
 
 Maintenant que nous avons un modèle entraîné, cliquez sur le bouton _Publish_ pour le rendre accessible grâce au service de publication. En fonction de vos usages, vous pouvez directement le lier à un botFramework ou un autre service. Dans notre cas nous avons juste besoin des _IDs_ qui vont référencer notre modèle.
 
-[![Publish](/assets/images/Publish-1024x514.png)](https://blog.3ie.fr/wp-content/uploads/2016/04/Publish.png)
+[![Publish](/assets/images/Publish-1024x514.png)](/assets/images/Publish.png)
 
  
 

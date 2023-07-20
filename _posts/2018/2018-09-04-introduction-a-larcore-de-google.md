@@ -21,7 +21,7 @@ Avant de rentrer plus profondément dans les détails techniques, prenons le tem
 
 Souvent confondue avec la réalité virtuelle (Virtual Reality en anglais : **VR**) , qui consiste, elle, a créer un univers entièrement virtuel dans lequel l’utilisateur va évoluer (oculus, htc vive, google cardboard...), la réalité augmentée (Augmented Reality en anglais : **AR**) quant à elle, permet d'intégrer des éléments virtuels dans le monde réel. On ajoute des éléments, on augmente le réel, d’où son nom : la r_éalité augmentée_.
 
-[![](/assets/images/arvr.png)](https://blog.3ie.fr/wp-content/uploads/2018/07/arvr.png)
+[![](/assets/images/arvr.png)](/assets/images/arvr.png)
 
 * * *
 
@@ -31,11 +31,11 @@ Souvent confondue avec la réalité virtuelle (Virtual Reality en anglais : **V
 
 A l’heure actuelle, la réalité augmentée est encore **peu répandue**. Un des leaders du moment est Microsoft avec ses _Hololens (ci-dessous)_, sorte de lunettes de réalité augmentée.
 
-[![](/assets/images/hololens.jpg)](https://blog.3ie.fr/wp-content/uploads/2018/07/hololens.jpg)
+[![](/assets/images/hololens.jpg)](/assets/images/hololens.jpg)
 
-Du coté des applications mobile on a par exemple IKEA, qui propose une application permettant de visualiser des meubles chez sois grâce à L’AR, afin d’aider le client dans sa décision. [![](/assets/images/ikea.jpg)](https://blog.3ie.fr/wp-content/uploads/2018/07/ikea.jpg)
+Du coté des applications mobile on a par exemple IKEA, qui propose une application permettant de visualiser des meubles chez sois grâce à L’AR, afin d’aider le client dans sa décision. [![](/assets/images/ikea.jpg)](/assets/images/ikea.jpg)
 
-Dans le domaine médical on retrouve également quelques exemples d’opérations dans lesquelles la réalité augmentée est utilisée. Le chirurgien (munis d'Hololens pour les exemples actuels), opère son patient tout en profitant de nombreuses informations affichées en réalité augmentée.[![](/assets/images/31501281374_81b237b65b_b.jpg)](https://blog.3ie.fr/wp-content/uploads/2018/07/31501281374_81b237b65b_b.jpg)
+Dans le domaine médical on retrouve également quelques exemples d’opérations dans lesquelles la réalité augmentée est utilisée. Le chirurgien (munis d'Hololens pour les exemples actuels), opère son patient tout en profitant de nombreuses informations affichées en réalité augmentée.[![](/assets/images/31501281374_81b237b65b_b.jpg)](/assets/images/31501281374_81b237b65b_b.jpg)
 
 D’autres domaines commencent a intégrer cette technologie (automobile, publicité ...) , mais à l’heure actuelle, nous sommes plus dans une phase  d'**expérimentations** que dans une réelle phase adoption.
 
@@ -45,7 +45,7 @@ D’autres domaines commencent a intégrer cette technologie (automobile, public
 
 Afin d’être à même d’intégrer des éléments virtuels dans le monde réel, l'ARCore doit pouvoir au maximum "comprendre" son environnement. Il va notamment, repérer les surfaces planes (horizontales pour le moment) grâce à des "feature points" qui sont des points de l'environnement qui se différencient des autres points qui les entourent.
 
-[![](/assets/images/feature-points.jpg)](https://blog.3ie.fr/wp-content/uploads/2018/07/feature-points.jpg)
+[![](/assets/images/feature-points.jpg)](/assets/images/feature-points.jpg)
 
 Sur l'image ci-dessus, on peut voir les feature points en bleu et le plan détecté par L'ARCore en vert.
 
@@ -61,15 +61,15 @@ Afin d'aller un peu plus loin et de rentrer dans les détails techniques, voici 
 
 Commençons par créer un **nouveau projet** sur Android Studio :
 
-[![](/assets/images/create_project.png)](https://blog.3ie.fr/wp-content/uploads/2018/07/create_project.png)
+[![](/assets/images/create_project.png)](/assets/images/create_project.png)
 
 Choisissez l’**API** **26** comme API minimum :
 
-[![](/assets/images/api26.png)](https://blog.3ie.fr/wp-content/uploads/2018/07/api26.png)
+[![](/assets/images/api26.png)](/assets/images/api26.png)
 
 Sélectionnez l’**Empty Activity** et terminez la création du  nouveau projet :
 
-[![](/assets/images/empty_activity.png)](https://blog.3ie.fr/wp-content/uploads/2018/07/empty_activity.png)
+[![](/assets/images/empty_activity.png)](/assets/images/empty_activity.png)
 
 #### Paramétrage :
 
@@ -259,7 +259,7 @@ Tout d'abord il vous faut installer l'outil **Sceneform** de Google. Pour ce fai
 
 Cliquez ensuite sur **Browse Repositories** et installez **Google Sceneform Tools**.
 
-[![](/assets/images/sceneform-plugin.png)](https://blog.3ie.fr/wp-content/uploads/2018/07/sceneform-plugin.png)
+[![](/assets/images/sceneform-plugin.png)](/assets/images/sceneform-plugin.png)
 
 Après cette étape, un **redémarrage** du studio est nécessaire.
 
@@ -273,17 +273,17 @@ Tout d'abord, créez un dossier **sampledata** à la racine du projet en faisant
 
 Créons ensuite un **nouveau dossier** dans notre sample data et donnons lui un nom. C'est ici que l'on va stocker notre modèle 3D :
 
-[![](/assets/images/mon_modele_3d.png)](https://blog.3ie.fr/wp-content/uploads/2018/07/mon_modele_3d.png)
+[![](/assets/images/mon_modele_3d.png)](/assets/images/mon_modele_3d.png)
 
 Glissez-déposez votre objet dans ce dossier.
 
 Faites ensuite un clic droit sur votre objet et sélectionnez **"Import Sceneform Asset"** :
 
-[![](/assets/images/import-sceneform.png)](https://blog.3ie.fr/wp-content/uploads/2018/07/import-sceneform.png)
+[![](/assets/images/import-sceneform.png)](/assets/images/import-sceneform.png)
 
 Une nouvelle fenêtre s'ouvre  :
 
-[![](/assets/images/fenetre-import.png)](https://blog.3ie.fr/wp-content/uploads/2018/07/fenetre-import.png)
+[![](/assets/images/fenetre-import.png)](/assets/images/fenetre-import.png)
 
  
 

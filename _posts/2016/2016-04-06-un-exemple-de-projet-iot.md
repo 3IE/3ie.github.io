@@ -19,13 +19,13 @@ Vous pouvez trouver une version de ces lampes sur [Amazon](http://www.amazon.fr/
 
 Les lampes Philips HUE fonctionnent avec un bridge branché sur le réseau (afin d'avoir une adresse IP) et ce dernier communique avec le reste des lampes grâce à un protocole ZigBee.
 
-[![Architecture Philips HUE](/assets/images/Architecture-300x215.png)](https://blog.3ie.fr/wp-content/uploads/2016/03/Architecture.png)
+[![Architecture Philips HUE](/assets/images/Architecture-300x215.png)](/assets/images/Architecture.png)
 
 # Modification de l'architecture
 
 Pour contrôler nos lampes, nous devons soit utiliser l'application de base soit développer la nôtre. Ici nous irons un cran plus loin en développant notre propre serveur (afin de ne pas avoir à utiliser différent SDK pour piloter nos lampes en fonction des technologies). De plus le fait d'utiliser un serveur intermédiaire, nous permettra de piloter nos lampes à travers internet. Cette dernière fonctionnalité n'est pas disponible de base pour des raisons de sécurité bien entendu. (Nous n'aborderons pas ici cette problématique) Du coté matériel, notre serveur sera un Raspberry pi mais vous pouvez le remplacer par toute autre plateforme.
 
-[![Architecture avec le serveur](/assets/images/ArchitectureFinale-300x224.png)](https://blog.3ie.fr/wp-content/uploads/2016/03/ArchitectureFinale.png)
+[![Architecture avec le serveur](/assets/images/ArchitectureFinale-300x224.png)](/assets/images/ArchitectureFinale.png)
 
 Ce serveur s’appuie sur un package npm "[node-hue-api](https://www.npmjs.com/package/node-hue-api)": "^2.2.0". Il existe bien d'autres packages mais celui ci répond bien à notre problématique. Afin de gagner du temps, nous allons nous servir de notre framework TypeFx. Celui est basé sur le framework Express, mais apporte le support de Typescript. Vous pouvez avoir une introduction à ce framework [sur notre blog](https://blog.3ie.fr/nos-travaux-autour-de-typescript-sur-nodejs/).
 
@@ -53,7 +53,7 @@ L'affichage dans la console doit vous donner une sortie de ce type : Hue Bridges
 
 Une fois l'IP trouvée, vous pouvez vous connecter sur l'adresse http://192.168.2.17/debug/clip.html pour déclarer votre 'application' sur le bridge. Sur cette interface vous devez saisir la commande suivante en mode POST tout en appuyant sur le bouton de synchronisation du bridge  :
 
-[![enrollement d'une nouvelle application](/assets/images/RegisterServer-300x228.png)](https://blog.3ie.fr/wp-content/uploads/2016/03/RegisterServer.png)
+[![enrollement d'une nouvelle application](/assets/images/RegisterServer-300x228.png)](/assets/images/RegisterServer.png)
 
  
 
@@ -187,7 +187,7 @@ Listening on port: 3000
 
 Pour tester nos APIs, nous pouvons allumer/éteindre une lumière à l'aide de [Postman](https://www.getpostman.com/) par exemple :
 
-[![Postman Server Hue](/assets/images/Postman-1024x421.png)](https://blog.3ie.fr/wp-content/uploads/2016/04/Postman.png)
+[![Postman Server Hue](/assets/images/Postman-1024x421.png)](/assets/images/Postman.png)
 
 # Conclusion
 

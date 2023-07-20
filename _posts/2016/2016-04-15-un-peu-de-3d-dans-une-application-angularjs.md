@@ -22,13 +22,13 @@ Qu'est ce que BabylonJS ? BabylonJS est un framework WebGL initié notamment par
 
 Ci dessous le schéma de la solution que nous allons mettre en oeuvre :
 
-[![Architecture](/assets/images/Architecture-1-1024x532.png)](https://blog.3ie.fr/wp-content/uploads/2016/03/Architecture-1.png)
+[![Architecture](/assets/images/Architecture-1-1024x532.png)](/assets/images/Architecture-1.png)
 
 # Création de la scène
 
 Avant de commencer à utiliser BabylonJs, nous allons créer une scène sous 3ds max. Nous ne ferons pas un cours sur la modélisation dans cet exemple. En 3D, vous avez soit la possibilité de générer l'ensemble de votre scène en code (on appelle cela la génération procédurale) ou d'importer des modèles 3D directement dans votre scène (utiliser les deux méthodes en parallèle permet d'avoir un rendu travaillé sur les objets et d'avoir une scène infinie). La scène dans notre cas représente une lampe que nous allons exporter grâce au plugin d'export.
 
-[![Exemple de scène 3D](/assets/images/SceneSample-259x300.png)](https://blog.3ie.fr/wp-content/uploads/2016/03/SceneSample.png)
+[![Exemple de scène 3D](/assets/images/SceneSample-259x300.png)](/assets/images/SceneSample.png)
 
  
 
@@ -36,13 +36,13 @@ Avant toute chose il faut [installer le plugin](https://github.com/BabylonJS/Bab
 
 Sous 3dsMax, un menu Babylon apparaît lorsque le plugin a bien été installé.
 
-[![Menu Babylon dans 3dsMax](/assets/images/MenuExporterBabylon-300x70.png)](https://blog.3ie.fr/wp-content/uploads/2016/03/MenuExporterBabylon.png)
+[![Menu Babylon dans 3dsMax](/assets/images/MenuExporterBabylon-300x70.png)](/assets/images/MenuExporterBabylon.png)
 
  
 
 Vous pouvez maintenant exporter votre scène au format BabylonJs. Le fichier _.babylon.manifest,_ qui peut être généré en même temps, permet d'indiquer si vous souhaitez mettre en cache navigateur votre modèle une fois celui-ci chargé une première fois. Ce comportement peut être source de bug quand vous développez car si vous regénérez votre fichier _.babylon,_ il faudra bien penser à nettoyer votre cache navigateur pour voir apparaître vos modifications.
 
-[![Exporter Babylon](/assets/images/ExporterBabylon-1024x696.png)](https://blog.3ie.fr/wp-content/uploads/2016/03/ExporterBabylon.png)
+[![Exporter Babylon](/assets/images/ExporterBabylon-1024x696.png)](/assets/images/ExporterBabylon.png)
 
 # Création de la directive
 
@@ -302,7 +302,7 @@ this.businessLight.realData('stateLight', function(data: models.Light): void {
 
 Voici le rendu final de la scène
 
-[![rendu final](/assets/images/render-1024x633.png)](https://blog.3ie.fr/wp-content/uploads/2016/04/render.png)
+[![rendu final](/assets/images/render-1024x633.png)](/assets/images/render.png)
 
  
 

@@ -52,7 +52,7 @@ A l’aide d’une **grille d’observation**, nous avons recueilli et classé l
 - **Objets :** les objets et documents spécifiques utilisés pour accomplir ses tâches (pour notre utilisateur, il s’agissait de feuilles papiers, documents excel et word)
 - **Espace :** l’environnement dans lequel se trouve l’utilisateur
 
-[![](/assets/images/IMG_7148-1024x768.jpg)](https://blog.3ie.fr/wp-content/uploads/2018/06/IMG_7148.jpg)
+[![](/assets/images/IMG_7148-1024x768.jpg)](/assets/images/IMG_7148.jpg)
 
 Après la séance de shadowing, nous avons recueilli les réponses à notre questionnaire concernant les habitudes et les besoins de l’utilisateur sur la plateforme.
 
@@ -62,7 +62,7 @@ On vous recommande de filmer la séance de shadowing et d’enregistrer l’inte
 
 De retour au labo, nous avons commencé par définir les **principaux parcours utilisateurs**, pour lesquels nous avons spécifié les tâches accomplies. C'est ce qu'on appelle également la **User Journey** c’est à dire les étapes/interactions par lesquelles passe l’utilisateur pour arriver à son objectif. A ces parcours, nous avons mis en avant les points de satisfaction ainsi que **les points de blocage et les bugs** qui perturbent l’expérience utilisateur. Ces derniers sont des éléments clés : ils vont nous aiguiller pour la suite.
 
-\[caption id="attachment\_1522" align="aligncenter" width="676"\][![](/assets/images/img-userflow-blog-1024x766.jpg)](https://blog.3ie.fr/wp-content/uploads/2018/06/img-userflow-blog.jpg) Parcours utilisateur\[/caption\]
+\[caption id="attachment\_1522" align="aligncenter" width="676"\][![](/assets/images/img-userflow-blog-1024x766.jpg)](/assets/images/img-userflow-blog.jpg) Parcours utilisateur\[/caption\]
 
 Il est donc important de représenter les parcours de manière simple et parlante car ils vont nous servir durant toute la durée du projet.
 
@@ -70,11 +70,11 @@ Il est donc important de représenter les parcours de manière simple et parlant
 
 Notre phase de recherche utilisateur est maintenant terminée, il est temps de commencer la conception !
 
-[![](/assets/images/IMG_20180213_154631-1024x766.jpg)](https://blog.3ie.fr/wp-content/uploads/2018/06/IMG_20180213_154631.jpg)
+[![](/assets/images/IMG_20180213_154631-1024x766.jpg)](/assets/images/IMG_20180213_154631.jpg)
 
 On va donc organiser une série de workshops de co-création avec toute l’équipe : chef de projet, designers et développeurs (back et front).
 
-[![](/assets/images/IMG_20180213_162608-1024x766.jpg)](https://blog.3ie.fr/wp-content/uploads/2018/06/IMG_20180213_162608.jpg)
+[![](/assets/images/IMG_20180213_162608-1024x766.jpg)](/assets/images/IMG_20180213_162608.jpg)
 
 ## \# Le final
 

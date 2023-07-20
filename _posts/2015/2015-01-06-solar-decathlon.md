@@ -43,7 +43,7 @@ Lors de la réalisation de ce projet, avec un challenge de plus de 15 000 donné
 
 Le caractère événementiel du projet a incité les équipes à stocker les données dans le cloud Microsoft Azure. Par essence, le cloud fournit des capacités de haute disponibilité et d’évolutivité, particulièrement adaptées à ce type de manifestation.
 
-[![Solar Decathlon - image 1](/assets/images/app-solar.jpg)](https://blog.3ie.fr/wp-content/uploads/2014/08/app-solar.jpg)
+[![Solar Decathlon - image 1](/assets/images/app-solar.jpg)](/assets/images/app-solar.jpg)
 
 Ergonomie et Design : Skapa / Régularisation des données et développement serveur : 3ie
 

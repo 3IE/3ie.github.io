@@ -131,7 +131,7 @@ Une fois la vérification faite, vous n'aurez plus qu'à modifier le fichier de 
 
 Xcode 8 fraichement installé, j'ouvre mon projet quand l'IDE me propose de mettre à jour le code.
 
-[![converttocurrentsyntax](/assets/images/convertToCurrentSyntax.png)](https://blog.3ie.fr/wp-content/uploads/2016/11/convertToCurrentSyntax.png)
+[![converttocurrentsyntax](/assets/images/convertToCurrentSyntax.png)](/assets/images/convertToCurrentSyntax.png)
 
 J'ai le choix entre passer à Swift 3 ou bien utiliser la syntaxe Swift 2.3. Cette version est une mise à jour mineur de 2.2 qui permet au projet d'être compilé sous Xcode 8 sans avoir à tout changer comme Swift 3.
 
@@ -147,7 +147,7 @@ La modification qui revient le plus souvent est l'ajout de l'underscore avant le
 
  
 
-[![underscore](/assets/images/underscore.png)](https://blog.3ie.fr/wp-content/uploads/2016/11/underscore.png)
+[![underscore](/assets/images/underscore.png)](/assets/images/underscore.png)
 
 Comme on peut voir dans cette méthode saveObject , la logique Swift 3 veut qu'on renomme en  save et qu'on rajoute le label  object au premier argument.
 
@@ -157,7 +157,7 @@ Ce n'est pas la première fois que l'assistant de migration propose des modifica
 
 Comme cette fonction de comparaison templatées ajoutée en fileprivate (un nouveau niveau d'accessibilité, rendant une fonction accessible uniquement dans le fichier où elle est déclarée) au début de ce fichier ex nihilo, dont je cherche toujours l'origine et qui ne sera jamais utilisée.
 
-[![bizarre](/assets/images/bizarre-1024x202.png)](https://blog.3ie.fr/wp-content/uploads/2016/11/bizarre.png)
+[![bizarre](/assets/images/bizarre-1024x202.png)](/assets/images/bizarre.png)
 
  
 

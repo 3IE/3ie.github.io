@@ -17,7 +17,7 @@ tags:
 
 _Sogeprom, en collaboration avec Renault, Schneider Electric et Otis, développe un nouveau concept d’énergies positives sous le sigle « e+ ». L’objectif est de développer des moyens technologiques et sociétaux en faveur d’une philosophie du « mieux vivre la ville de demain ». La conception de l’immeuble POLARIS a été guidée par la recherche de la performance énergétique._
 
-_[![Polaris batiment](/assets/images/Polaris-batiment.jpg)](https://blog.3ie.fr/wp-content/uploads/2014/08/Polaris-batiment.jpg)_
+_[![Polaris batiment](/assets/images/Polaris-batiment.jpg)](/assets/images/Polaris-batiment.jpg)_
 
 Le projet est issu d'une collaboration entre **Sogeprom** et **Schneider** en faveur d’un bâtiment innovant. Imaginez un **bâtiment intelligent** et ultra connecté qui exploite les dernières technologies numériques. Pour ce faire les deux sociétés ont fait appel à **3ie** afin de créer une application qui a pour but de monitorer la vie du bâtiment selon 4 thèmes :
 
@@ -28,7 +28,7 @@ Le projet est issu d'une collaboration entre **Sogeprom** et **Schneider** en fa
 
 Le principal challenge de ce projet est ergonomique avec la traduction de l’ensemble des données techniques. Comment rendre attrayantes et compréhensibles ces données pour l’utilisateur ?
 
- [![Mockup_Polaris](/assets/images/Mockup_Polaris.png)](https://blog.3ie.fr/wp-content/uploads/2014/08/Mockup_Polaris.png)
+ [![Mockup_Polaris](/assets/images/Mockup_Polaris.png)](/assets/images/Mockup_Polaris.png)
 
 _Design et ergonomie conçus par 3ie._
 

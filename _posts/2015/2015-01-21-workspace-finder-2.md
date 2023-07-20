@@ -18,7 +18,7 @@ _Même si le bien-être en entreprise dépend surtout des relations humaines, l'
 
 À l’occasion du salon “Bureau Expo” plusieurs entreprises proposent des solutions innovantes dans le but de repenser les configurations des espaces de travail. Cet événement fut le point de départ de la collaboration entre trois acteurs afin de mettre en avant un nouveau concept de salle de réunion mobile : **Workspace Finder.** **Xolf**, cabinet d’architecture de mobilier de bureau mobile s’associe à **Schneider Electric**, fournisseur de matériel (lumière et automate serveur) et **3ie** qui fournit une application permettant de réserver en temps réel des espaces de travail et d’interagir avec ceux-ci.
 
-[![Mockup_SE-Workspace-Finder](/assets/images/Mockup_SE-Workspace-Finder.png)](https://blog.3ie.fr/wp-content/uploads/2014/08/Mockup_SE-Workspace-Finder.png) ergonomie : Skapa agency / Design : 3ie
+[![Mockup_SE-Workspace-Finder](/assets/images/Mockup_SE-Workspace-Finder.png)](/assets/images/Mockup_SE-Workspace-Finder.png) ergonomie : Skapa agency / Design : 3ie
 
 En matière de réalisation, les trois acteurs du projet se sont réunis autour d’un workshop, permettant ainsi une interaction entre les différentes parties prenantes avec une grande réactivité. Nous avons utilisé la même technologie que sur le projet Polaris en reprenant le principe de micro et macro indicateurs traduisant des données complexes de manière compréhensible.
 

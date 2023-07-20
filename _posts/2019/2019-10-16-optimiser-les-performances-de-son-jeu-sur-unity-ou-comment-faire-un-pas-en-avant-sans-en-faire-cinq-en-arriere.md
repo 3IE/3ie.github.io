@@ -32,16 +32,16 @@ Il est pratique courante dans le développement de jeux vidéo de ne pas “rend
 
 Le rendering sert à afficher un élément du jeu. Par exemple, un monstre aura un mesh (sa forme) et une texture (sa couleur, détails, etc.), ainsi qu’une lumière qui agira sur lui. Le rendering récupère toutes ces informations et affiche cet élément pour le joueur. Mais cela a un coût, et sur des gros environnements avec de nombreux éléments de décor et PNJs, ça peut vite ralentir les performances.
 
-\[caption id="attachment\_2290" align="alignnone" width="480"\][![](/assets/images/HZD_Opti.gif)](https://blog.3ie.fr/wp-content/uploads/2019/07/HZD_Opti.gif) La méthode de rendering d'Horizon Zero Dawn  
+\[caption id="attachment\_2290" align="alignnone" width="480"\][![](/assets/images/HZD_Opti.gif)](/assets/images/HZD_Opti.gif) La méthode de rendering d'Horizon Zero Dawn  
 Source: shorturl.at/loDSW\[/caption\]
 
 Ici on peut voir le système de rendering du jeu Horizon Zero Dawn. On se rend compte que tout ce qui n’est pas dans le champ de vision du joueur (avec un peu de marge) n’est pas affiché pour améliorer la vitesse de calcul.
 
 Il est important de préciser que bien que les éléments ne soient pas affichés, cela ne veut pas pour autant dire qu’ils ne peuvent plus interagir entre eux. Après tout, si on pouvait échapper à une créature simplement en ne la regardant plus, le jeu serait bien simple…
 
-\[caption id="attachment\_2282" align="alignnone" width="850"\][![](/assets/images/OcclusionCullingOverdrawNoCulling.jpg)](https://blog.3ie.fr/wp-content/uploads/2019/07/OcclusionCullingOverdrawNoCulling.jpg) Tout est render.\[/caption\]
+\[caption id="attachment\_2282" align="alignnone" width="850"\][![](/assets/images/OcclusionCullingOverdrawNoCulling.jpg)](/assets/images/OcclusionCullingOverdrawNoCulling.jpg) Tout est render.\[/caption\]
 
-\[caption id="attachment\_2283" align="alignnone" width="850"\][![](/assets/images/OcclusionCullingOverdrawReducedNew.jpg)](https://blog.3ie.fr/wp-content/uploads/2019/07/OcclusionCullingOverdrawReducedNew.jpg) Seulement les éléments visibles sont render.  
+\[caption id="attachment\_2283" align="alignnone" width="850"\][![](/assets/images/OcclusionCullingOverdrawReducedNew.jpg)](/assets/images/OcclusionCullingOverdrawReducedNew.jpg) Seulement les éléments visibles sont render.  
 Source: shorturl.at/eCET5\[/caption\]
 
 Comme on peut le voir, en ajoutant de l'Occlusion Culling (le nom de la technique qui ne render que ce qui est visible par la caméra), on observe une nette réduction des triangles ainsi que du nombre de batches.
@@ -50,14 +50,14 @@ Comme on peut le voir, en ajoutant de l'Occlusion Culling (le nom de la techniqu
 
 De nombreux jeux AAA (l’équivalent d’un blockbuster dans le monde du développement de jeux vidéo) se targuent d’avoir un niveau de détail jamais vu auparavant.
 
-\[caption id="attachment\_2284" align="alignnone" width="1038"\][![](/assets/images/GOW_Details_Captain_Eggcellent.jpg)](https://blog.3ie.fr/wp-content/uploads/2019/07/GOW_Details_Captain_Eggcellent.jpg) On pourrait presque sentir le musc de Kratos™  
+\[caption id="attachment\_2284" align="alignnone" width="1038"\][![](/assets/images/GOW_Details_Captain_Eggcellent.jpg)](/assets/images/GOW_Details_Captain_Eggcellent.jpg) On pourrait presque sentir le musc de Kratos™  
 Source: shorturl.at/nDQS5\[/caption\]
 
 Et en effet, lorsqu’un joueur décide de s’attarder sur un élément du décor, on veut que le joueur puisse avoir la version la plus attirante (oserai-je dire “sexy”) de cet élément. Cependant lorsque le joueur regarde un arbre se situant à 50 mètres, il est peu probable qu’il puisse apprécier tous les détails les plus fins de son écorce (à ma connaissance, les hybrides humains/aigles n’ont pas encore étés créés). Il est donc malin de faire en sorte d’afficher une version moins détaillée de cet arbre.
 
 C’est à ce moment-là que la technique des LODs entre en jeu.
 
-\[caption id="attachment\_2285" align="alignnone" width="1046"\][![](/assets/images/LOD_Brackeys.jpg)](https://blog.3ie.fr/wp-content/uploads/2019/07/LOD_Brackeys.jpg) Les singes de la sagesse ont bien changés...  
+\[caption id="attachment\_2285" align="alignnone" width="1046"\][![](/assets/images/LOD_Brackeys.jpg)](/assets/images/LOD_Brackeys.jpg) Les singes de la sagesse ont bien changés...  
 Source: shorturl.at/lEPWZ\[/caption\]
 
 LOD veut dire Level Of Detail. Cette technique prend en compte la distance du joueur (la caméra principale) par rapport aux éléments autour de lui. Plus l’élément est loin, moins il a besoin d’être détaillé, moins le modèle contiendra de triangles (l’unité de mesure du niveau de détail d’un objet 3d). Cette technique est largement utilisée dans n’importe quel jeu comprenant des graphismes en 3d ainsi que des environnements ouverts.
@@ -90,13 +90,13 @@ En conclusion, ces méthodes ne sont pas à interdire à proprement parler. Mais
 
 On va maintenant passer à un côté assez sous-estimé du jeu vidéo : la lumière. Lorsqu’on leur demande de citer les éléments les plus importants d’un jeu, une grande majorité des joueurs oublient de mentionner la lumière. Et pourtant une bonne gestion de la lumière dans un jeu peut faire la différence entre un bon jeu et un chef-d’oeuvre.
 
-\[video width="640" height="360" mp4="https://blog.3ie.fr/wp-content/uploads/2019/07/FluffyAlienatedDodobird-mobile-1.mp4" loop="true"\]\[/video\]
+\[video width="640" height="360" mp4="/assets/images/FluffyAlienatedDodobird-mobile-1.mp4" loop="true"\]\[/video\]
 
 [Source: Vicious Attack Llama Apocalypse](https://gfycat.com/fluffyalienateddodobird-unity3d-gaming)
 
 Prenons par exemple un jeu qui a particulièrement marqué les joueurs par sa direction artistique : Ori and the Blind Forest.
 
-\[caption id="attachment\_2286" align="alignnone" width="1031"\][![](/assets/images/Ori_Lighting_Steam.jpg)](https://blog.3ie.fr/wp-content/uploads/2019/07/Ori_Lighting_Steam.jpg) C'est beauuuu...  
+\[caption id="attachment\_2286" align="alignnone" width="1031"\][![](/assets/images/Ori_Lighting_Steam.jpg)](/assets/images/Ori_Lighting_Steam.jpg) C'est beauuuu...  
 Source: shorturl.at/nCVY5\[/caption\]
 
 Sur cette image, on peut voir Ori devant un autel entouré de flammes. Maintenant imaginez cette scène avec une lumière assez moyenne, c’est moins attirant tout de suite. Peu importe si vous avez les meilleurs modèles 3D pour vos personnages. Peu importe si vos textures sont le travail de littéraux dieux. Si votre lumière est mal foutue voire carrément incohérente, votre jeu semblera laid.
@@ -121,7 +121,7 @@ Un autre moyen de résoudre le problème des objets dynamiques sur une lumière 
 
 Mais mettre ses lumières en Baked n’est pas pour autant la solution miracle. Si la performance sera meilleure pour le joueur car elle aura été calculée en amont, il faut tout de même générer les Lightmaps. Ce calcul peut prendre beaucoup de temps suivant la taille de votre scène (un bake de 20-30 minutes est courant dans les scènes les plus grandes). C’est donc à vous de décider si cette méthode vous convient.
 
-\[caption id="attachment\_2293" align="alignnone" width="660"\][![](/assets/images/Bake_Opti.png)](https://blog.3ie.fr/wp-content/uploads/2019/07/Bake_Opti.png) En haut: Le temps de précalcul d'une scène sans optimisation de bake  
+\[caption id="attachment\_2293" align="alignnone" width="660"\][![](/assets/images/Bake_Opti.png)](/assets/images/Bake_Opti.png) En haut: Le temps de précalcul d'une scène sans optimisation de bake  
 En bas: Le temps de précalcul avec optimisation de bake  
 Source: shorturl.at/hBJYZ\[/caption\]
 
@@ -133,7 +133,7 @@ La lumière est un outil puissant pour la fidélité graphique ainsi que l’imm
 
 Plus que les jeux classiques, la VR demande que les jeux et expériences qu’elle propose soient très bien optimisés. En effet, pour arriver à faire croire au cerveau que ce qu’il expérience est réel, il faut que la framerate soit haute et assez constante (90 FPS est considéré comme le standard). Si elle est trop faible, alors les joueurs risquent d’être dérangés, voire d’avoir des maux de tête.
 
-\[caption id="attachment\_2288" align="alignnone" width="800"\][![](/assets/images/headache-man-senior-002.jpg)](https://blog.3ie.fr/wp-content/uploads/2019/07/headache-man-senior-002.jpg) Quelqu'un jouant à un jeu VR à 30 FPS  
+\[caption id="attachment\_2288" align="alignnone" width="800"\][![](/assets/images/headache-man-senior-002.jpg)](/assets/images/headache-man-senior-002.jpg) Quelqu'un jouant à un jeu VR à 30 FPS  
 Source: Harvard Health Publishing\[/caption\]
 
 C’est donc pourquoi les développeurs VR tiennent tout particulièrement à bien optimiser leurs jeux. Car la seule chose plus triste que de créer un mauvais jeu, est que ce jeu donne envie de rendre son petit-déjeuner.
@@ -162,10 +162,10 @@ Il est aussi important de préciser qu’un jeu mal optimisé pourra tout de mê
 
 #### Optimisation : The Good, The Bad, and The Ugly
 
-\[caption id="attachment\_2297" align="alignnone" width="960"\][![](/assets/images/Doom-2016.jpg)](https://blog.3ie.fr/wp-content/uploads/2019/07/Doom-2016.jpg) Good boy  
+\[caption id="attachment\_2297" align="alignnone" width="960"\][![](/assets/images/Doom-2016.jpg)](/assets/images/Doom-2016.jpg) Good boy  
 Source: shorturl.at/fFVZ9\[/caption\]
 
-\[caption id="attachment\_2296" align="alignnone" width="963"\][![](/assets/images/ARK.jpg)](https://blog.3ie.fr/wp-content/uploads/2019/07/ARK.jpg) Bad boy  
+\[caption id="attachment\_2296" align="alignnone" width="963"\][![](/assets/images/ARK.jpg)](/assets/images/ARK.jpg) Bad boy  
 Source: shorturl.at/exFGY\[/caption\]
 
 Voici quelques exemples de jeux dont l’optimisation pouvait laisser à désirer :

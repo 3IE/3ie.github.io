@@ -19,7 +19,7 @@ Vu que nous allons couvrir beaucoup de sujets, l'article ne détaillera pas tout
 
 Apple utilise ARKit pour ses Animoji malheureusement ça ne fonctionne que sur iPhone X. L'analyse se fait environ 60 fois par secondes. Apple retourne une liste de [_blend shapes_](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) correspondant aux traits du visage, avec un coefficient variant entre 0 (pour un trait ne s'exprimant pas du tout) et 1(pour un trait s'exprimant complètement). Ex : la mâchoire ouverte ([jawOpen](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/2928236-jawopen))
 
-[![](/assets/images/ed3838e6-65fa-4be2-8e86-638d97a3b2b2-300x215.png)](https://blog.3ie.fr/wp-content/uploads/2018/09/ed3838e6-65fa-4be2-8e86-638d97a3b2b2.png)
+[![](/assets/images/ed3838e6-65fa-4be2-8e86-638d97a3b2b2-300x215.png)](/assets/images/ed3838e6-65fa-4be2-8e86-638d97a3b2b2.png)
 
  
 
@@ -27,7 +27,7 @@ Pour mieux visualiser les variations de valeurs et comprendre ce qu'il est inté
 
 Voilà le type de vue que l'on veut obtenir :
 
-[![](/assets/images/facestats-473x1024.png)](https://blog.3ie.fr/wp-content/uploads/2018/09/facestats.png)
+[![](/assets/images/facestats-473x1024.png)](/assets/images/facestats.png)
 
 ### Initialisation du face tracking
 
@@ -179,7 +179,7 @@ Le plus simple est d'activer le partage de fichiers avec iTunes. Pour cela il fa
 
 Le formalisme de données choisi est semblable à un tableau de données dans un tableur. Notre json contient un tableau d'objets. Chacun de ces objets correspond à une ligne du tableau. Les attributs des objets (les traits de notre visage) correspondent aux colonnes du tableau, à l'exception de la 'vowel' qui sera ce que notre modèle doit prédire.
 
-[![](/assets/images/f94a686b-8ea3-460d-a1b2-224d6481e2bd-1024x351.png)](https://blog.3ie.fr/wp-content/uploads/2018/09/f94a686b-8ea3-460d-a1b2-224d6481e2bd.png)
+[![](/assets/images/f94a686b-8ea3-460d-a1b2-224d6481e2bd-1024x351.png)](/assets/images/f94a686b-8ea3-460d-a1b2-224d6481e2bd.png)
 
 De cette manière nous allons pouvoir utiliser un [MLDataTable](https://developer.apple.com/documentation/createml/mldatatable) pour importer les données et les découper en "données d'apprentissage" (pour entraîner le modèle) et "données de test" (pour tester le modèle sur un jeu de données complètement indépendant).
 
@@ -275,7 +275,7 @@ J'ai créé une classe [HistorizedProbabilities](https://github.com/3IE/WordReco
 
 Je calcule un coefficient compris entre 0 et 1 qui me donne une importance proportionnelle à l'âge : coeff = (1 + pos) / N Ensuite j'élève ce coefficient à la puissance 0.3 ce qui a pour effet de donner plus d'importance aux valeurs récentes, comme on peut le voir sur le graphique de 'x^0.3' :
 
-\[caption id="attachment\_2077" align="aligncenter" width="300"\][![](/assets/images/Screenshot-2018-09-06-at-18.41.17-300x279.png)](https://blog.3ie.fr/wp-content/uploads/2018/09/Screenshot-2018-09-06-at-18.41.17.png) x^0.3\[/caption\]
+\[caption id="attachment\_2077" align="aligncenter" width="300"\][![](/assets/images/Screenshot-2018-09-06-at-18.41.17-300x279.png)](/assets/images/Screenshot-2018-09-06-at-18.41.17.png) x^0.3\[/caption\]
 
 Vous pouvez mettre à jour votre méthode DetectVowel en ajouter le code suivant après calcul des probabilités :
 
@@ -330,7 +330,7 @@ La dernière approche, qui est celle que nous allons ensuite détailler, est de 
 
 Pour le mot "maison", on obtient l'image suivante (qui a été grossie pour l'affichage, elle fait en réalité 15x29 pixel) :
 
-[![](/assets/images/maison-spectro-155x300.png)](https://blog.3ie.fr/wp-content/uploads/2018/09/maison-spectro.png)
+[![](/assets/images/maison-spectro-155x300.png)](/assets/images/maison-spectro.png)
 
 ### Quand enregistrer ?
 
@@ -346,7 +346,7 @@ Comme on n'est lié à aucun son en particulier, on peut nommer nos 2 catégorie
 
 Créez un controller dans votre storyboard et un [RecordWordVC](https://github.com/3IE/WordRecognition-iOS/blob/v1.0/faceextract/Controller/RecordWordVC.swift) dans votre code puis connectez un SCNView, comme précédemment. Cette fois ci, le pickerView nous permettra de choisir le mot à apprendre. J'ai décidé d'ajouter un 2ème pickerView pour sélectionner l'orateur, une imageView pour afficher mon 'wordImage' (le spectrogramme de mon mot), un label que j'affiche quand je détecte que l'utilisateur parle, un "performance counter", un switch pour désactiver l'enregistrement, un switch pour activer une alertView.
 
-Voila le controller que j'ai dans mon storyboard :[![](/assets/images/Screenshot-2018-09-07-at-16.10.04-453x1024.png)](https://blog.3ie.fr/wp-content/uploads/2018/09/Screenshot-2018-09-07-at-16.10.04.png)
+Voila le controller que j'ai dans mon storyboard :[![](/assets/images/Screenshot-2018-09-07-at-16.10.04-453x1024.png)](/assets/images/Screenshot-2018-09-07-at-16.10.04.png)
 
 ##### Détection de la parole
 
@@ -445,11 +445,11 @@ J'ai choisi d'étirer mon spectrogramme au maximum, ce qui me donne une méthode
 
 Comme nous avons des images très petites, une mise à l'échelle standard à tendance à flouter énormément l'image car presque tous les logiciels fonctionnent en [bilinear filtering](https://fr.wikipedia.org/wiki/Filtrage_bilin%C3%A9aire). J'ai donc décidé d'utiliser un redimensionnement en "nearest pixel" qui conserve le très fort contraste entre chaque pixel initial. En pratique j'ai pu constater que j'avais de meilleurs apprentissages avec les spectrogrammes traités de cette manière. Voila une comparaison entre les 2 méthodes de filtrage sur le mot "maison":
 
-\[caption id="attachment\_2094" align="aligncenter" width="300"\][![](/assets/images/Benoit-maison-20180817-134016-300x145.png)](https://blog.3ie.fr/wp-content/uploads/2018/09/Benoit-maison-20180817-134016.png) nearest pixel VS bilinear filtering\[/caption\]
+\[caption id="attachment\_2094" align="aligncenter" width="300"\][![](/assets/images/Benoit-maison-20180817-134016-300x145.png)](/assets/images/Benoit-maison-20180817-134016.png) nearest pixel VS bilinear filtering\[/caption\]
 
 Par exemple les 4 spectrogrammes ci dessous proviennent de 4 enregistrements différents du mot "maison". Même si la la durée d'enregistrement varie de 29 à 34 échantillons, on peut constater que cela ne se voit plus une fois l'image redimensionnée :
 
- [](https://blog.3ie.fr/wp-content/uploads/2018/09/bateau1.png)[![](/assets/images/bateau1-150x150.png)](https://blog.3ie.fr/wp-content/uploads/2018/09/bateau1.png)  [](https://blog.3ie.fr/wp-content/uploads/2018/09/bateau2.png)[![](/assets/images/bateau2-150x150.png)](https://blog.3ie.fr/wp-content/uploads/2018/09/bateau2.png)  [](https://blog.3ie.fr/wp-content/uploads/2018/09/bateau3.png)  [![](/assets/images/bateau3-150x150.png)](https://blog.3ie.fr/wp-content/uploads/2018/09/bateau3.png)[![](/assets/images/bateau4-150x150.png)](https://blog.3ie.fr/wp-content/uploads/2018/09/bateau4.png)
+ [](/assets/images/bateau1.png)[![](/assets/images/bateau1-150x150.png)](/assets/images/bateau1.png)  [](/assets/images/bateau2.png)[![](/assets/images/bateau2-150x150.png)](/assets/images/bateau2.png)  [](/assets/images/bateau3.png)  [![](/assets/images/bateau3-150x150.png)](/assets/images/bateau3.png)[![](/assets/images/bateau4-150x150.png)](/assets/images/bateau4.png)
 
 Pour traiter vos images, vous pouvez par exemple utiliser le traitement par lot de Photoshop ou bien faire du scripting avec ImageMagick.
 
@@ -457,7 +457,7 @@ Pour traiter vos images, vous pouvez par exemple utiliser le traitement par lot 
 
 Cette fois-ci, au lieu de taper plusieurs lignes de code dans notre playground, on va utiliser l'assistant graphique que propose Apple : le [MLImageClassifierBuilder](https://developer.apple.com/documentation/createml/mlimageclassifierbuilder). Il a l'avantage de laisser le développeur sélectionner très facilement son jeu de données, il permet de configurer les paramètres principaux depuis l'interface graphique, et il affiche les images au fur et à mesure qu'il les traite.
 
-[![](/assets/images/5b286036-05a0-45ec-bbbf-8dfda5abf35b-249x300.png)](https://blog.3ie.fr/wp-content/uploads/2018/09/5b286036-05a0-45ec-bbbf-8dfda5abf35b.png)
+[![](/assets/images/5b286036-05a0-45ec-bbbf-8dfda5abf35b-249x300.png)](/assets/images/5b286036-05a0-45ec-bbbf-8dfda5abf35b.png)
 
  
 

@@ -22,7 +22,7 @@ En quelques semaines, beaucoup de développeurs se sont intéressés à SwiftUI 
 
 Nous vous proposons dans cet article de voir quelques unes des possibilités offertes par SwiftUI en implémentant la page d'accueil d'Instagram.
 
-[![](/assets/images/Instagram-UI-2018-iPhone-X.png)](https://blog.3ie.fr/wp-content/uploads/2019/07/Instagram-UI-2018-iPhone-X.png)
+[![](/assets/images/Instagram-UI-2018-iPhone-X.png)](/assets/images/Instagram-UI-2018-iPhone-X.png)
 
 # Pré-requis :
 
@@ -41,7 +41,7 @@ Vous pouvez également télécharger l'ensemble des Assets utilisés dans ce tut
 
 Commençons par créer un projet Xcode. Assurez vous que la case "**_Use SwiftUI_**" est bien cochée.
 
-[![](/assets/images/Capture-d’écran-2019-07-22-à-10.04.55.png)](https://blog.3ie.fr/wp-content/uploads/2019/07/Capture-d’écran-2019-07-22-à-10.04.55.png)
+[![](/assets/images/Capture-d’écran-2019-07-22-à-10.04.55.png)](/assets/images/Capture-d’écran-2019-07-22-à-10.04.55.png)
 
 Une fois votre projet créé, vous devez avoir 3 fichiers Swift :
 
@@ -71,7 +71,7 @@ struct ContentView\_Previews: PreviewProvider {
 
 C'est ce qui permet d'avoir un live preview de votre code sur Xcode (_si vous utilisez MacOS Catalina_).
 
-[![](/assets/images/Capture-d’écran-2019-07-22-à-10.29.34-522x1024.png)](https://blog.3ie.fr/wp-content/uploads/2019/07/Capture-d’écran-2019-07-22-à-10.29.34.png)
+[![](/assets/images/Capture-d’écran-2019-07-22-à-10.29.34-522x1024.png)](/assets/images/Capture-d’écran-2019-07-22-à-10.29.34.png)
 
 Commençons par créer une TableView. En SwiftUI cela se fait en une ligne :
 
@@ -91,7 +91,7 @@ Construisons notre **_PostCell_** qui contiendra un _post._ La _cell_ peut êtr
 - **Le nombre de Likes.**
 - **La description.**
 
-Si on décompose le **Header** on aura : [![](/assets/images/Capture-d’écran-2019-07-22-à-10.48.17.png)](https://blog.3ie.fr/wp-content/uploads/2019/07/Capture-d’écran-2019-07-22-à-10.48.17.png)
+Si on décompose le **Header** on aura : [![](/assets/images/Capture-d’écran-2019-07-22-à-10.48.17.png)](/assets/images/Capture-d’écran-2019-07-22-à-10.48.17.png)
 
 Avec en vert une **HStack** (Horizontal Stack) et en bleu une **VStack** (Vertical Stack)
 
@@ -113,7 +113,7 @@ struct PostCell: View {
 
 (N'oubliez pas de mettre à jour votre **ContentView** en remplaçant _Text("Hello World")_ par une instance _PostCell()_ )
 
-[![](/assets/images/Capture-d’écran-2019-07-22-à-11.01.49.png)](https://blog.3ie.fr/wp-content/uploads/2019/07/Capture-d’écran-2019-07-22-à-11.01.49.png)
+[![](/assets/images/Capture-d’écran-2019-07-22-à-11.01.49.png)](/assets/images/Capture-d’écran-2019-07-22-à-11.01.49.png)
 
 On ajustera la taille du texte :
 
@@ -137,7 +137,7 @@ struct PostCell: View {
 
 Passons à la suite de la **PostCell.** Le concept reste le même,  subdiviser la view en **HStack** et en **VStack**.
 
-[![](/assets/images/Capture-d’écran-2019-07-22-à-11.09.24-757x1024.png)](https://blog.3ie.fr/wp-content/uploads/2019/07/Capture-d’écran-2019-07-22-à-11.09.24.png)
+[![](/assets/images/Capture-d’écran-2019-07-22-à-11.09.24-757x1024.png)](/assets/images/Capture-d’écran-2019-07-22-à-11.09.24.png)
 
 Ce qui donne en SwiftUI:
 
@@ -185,7 +185,7 @@ struct PostCell: View {
 
 _**NB :**_ .lineLimit( Int? ) : permet de préciser le nombre maximal de lignes pour un Text. (nil pour un nombre illimité de lignes)
 
-[![](/assets/images/Capture-d’écran-2019-07-22-à-11.26.51-860x1024.png)](https://blog.3ie.fr/wp-content/uploads/2019/07/Capture-d’écran-2019-07-22-à-11.26.51.png)
+[![](/assets/images/Capture-d’écran-2019-07-22-à-11.26.51-860x1024.png)](/assets/images/Capture-d’écran-2019-07-22-à-11.26.51.png)
 
 On s'approche du résultat souhaité mais on a encore quelques petits problèmes :
 
@@ -206,7 +206,7 @@ VStack(alignment: .leading){
   // code
 }
 
-[![](/assets/images/Capture-d’écran-2019-07-22-à-11.55.14-784x1024.png)](https://blog.3ie.fr/wp-content/uploads/2019/07/Capture-d’écran-2019-07-22-à-11.55.14.png)
+[![](/assets/images/Capture-d’écran-2019-07-22-à-11.55.14-784x1024.png)](/assets/images/Capture-d’écran-2019-07-22-à-11.55.14.png)
 
 Ajoutons maintenant une barre de navigation et quelques cellules :
 
@@ -222,13 +222,13 @@ struct ContentView: View {
     }
 }
 
-[![](/assets/images/Capture-d’écran-2019-07-22-à-12.01.14-512x1024.png)](https://blog.3ie.fr/wp-content/uploads/2019/07/Capture-d’écran-2019-07-22-à-12.01.14.png)
+[![](/assets/images/Capture-d’écran-2019-07-22-à-12.01.14-512x1024.png)](/assets/images/Capture-d’écran-2019-07-22-à-12.01.14.png)
 
 Passons aux Stories. Il s'agit tout simplement d'une **ScrollView** horizontale contenant une **HStack.**
 
 On garde la même notation :  **HStack** en vert et **VStack** en bleu, avec une **ScrollView** en rouge :
 
-[![](/assets/images/Capture-d’écran-2019-07-22-à-12.10.53.png)](https://blog.3ie.fr/wp-content/uploads/2019/07/Capture-d’écran-2019-07-22-à-12.10.53.png)
+[![](/assets/images/Capture-d’écran-2019-07-22-à-12.10.53.png)](/assets/images/Capture-d’écran-2019-07-22-à-12.10.53.png)
 
 On crée une nouvelle struct dédiée au Stories :
 
@@ -260,7 +260,7 @@ Les Stories sont désormais **_Scrollable_** horizontalement.
 
 (N'oubliez pas d'ajouter une instance _StoriesView()_ dans _List_ de votre _ContentView_)
 
-['](https://blog.3ie.fr/wp-content/uploads/2019/07/Capture-d’écran-2019-07-22-à-12.35.47.png)[![](/assets/images/Capture-d’écran-2019-07-22-à-12.35.47.png)](https://blog.3ie.fr/wp-content/uploads/2019/07/Capture-d’écran-2019-07-22-à-12.35.47.png)
+['](/assets/images/Capture-d’écran-2019-07-22-à-12.35.47.png)[![](/assets/images/Capture-d’écran-2019-07-22-à-12.35.47.png)](/assets/images/Capture-d’écran-2019-07-22-à-12.35.47.png)
 
 On veut maintenant ajouter l'image de bordure en arrière plan. On utilisera donc une **ZStack** :
 
@@ -282,7 +282,7 @@ VStack {
          .font(Font.system(size: 13.5))
 }
 
-[![](/assets/images/Capture-d’écran-2019-07-22-à-13.39.45-273x300.png)](https://blog.3ie.fr/wp-content/uploads/2019/07/Capture-d’écran-2019-07-22-à-13.39.45.png)
+[![](/assets/images/Capture-d’écran-2019-07-22-à-13.39.45-273x300.png)](/assets/images/Capture-d’écran-2019-07-22-à-13.39.45.png)
 
 On s'approche du résultat final. Toutefois, à cause de la **SafeArea**, la ScrollView ne prend pas toute la largeur de l'écran (comme on a vu précédemment pour l'image de la **PostCell**). On ajoute donc un **leading** et un **trailing** **padding** avec des valeurs négatives à la **ScrollView** et un petit **padding** à la **HStack** pour compenser.
 
@@ -299,13 +299,13 @@ ScrollView {
  .padding(.trailing, -14)
  // prendre toute la largeur de l'écran
 
-[![](/assets/images/Capture-d’écran-2019-07-22-à-14.02.22-268x300.png)](https://blog.3ie.fr/wp-content/uploads/2019/07/Capture-d’écran-2019-07-22-à-14.02.22.png)
+[![](/assets/images/Capture-d’écran-2019-07-22-à-14.02.22-268x300.png)](/assets/images/Capture-d’écran-2019-07-22-à-14.02.22.png)
 
  
 
 Pour finir la partie Stories, il ne manque plus que le "_Your Story_" avec le petit plus bleu. Il ne s'agit que d'une **ZStack** avec **bottomTrailing** comme **Alignment**.
 
-[![](/assets/images/Capture-d’écran-2019-07-22-à-16.05.11.png)](https://blog.3ie.fr/wp-content/uploads/2019/07/Capture-d’écran-2019-07-22-à-16.05.11.png)
+[![](/assets/images/Capture-d’écran-2019-07-22-à-16.05.11.png)](/assets/images/Capture-d’écran-2019-07-22-à-16.05.11.png)
 
 On ajoute donc au début de notre **HStack** qui contient les cellules de nos Stories :
 
@@ -320,7 +320,7 @@ VStack {
 
 Et on obtient :
 
-[![](/assets/images/Capture-d’écran-2019-07-22-à-17.00.09-255x300.png)](https://blog.3ie.fr/wp-content/uploads/2019/07/Capture-d’écran-2019-07-22-à-17.00.09.png)
+[![](/assets/images/Capture-d’écran-2019-07-22-à-17.00.09-255x300.png)](/assets/images/Capture-d’écran-2019-07-22-à-17.00.09.png)
 
  
 
@@ -334,7 +334,7 @@ List {
 }.navigationBarTitle("InstaUI", displayMode: .inline)
  .navigationBarItems(leading: Image("Camera"), trailing: Image("Direct"))
 
-[![](/assets/images/Capture-d’écran-2019-07-22-à-17.26.45-500x1024.png)](https://blog.3ie.fr/wp-content/uploads/2019/07/Capture-d’écran-2019-07-22-à-17.26.45.png)
+[![](/assets/images/Capture-d’écran-2019-07-22-à-17.26.45-500x1024.png)](/assets/images/Capture-d’écran-2019-07-22-à-17.26.45.png)
 
 L'application est disponible en Open Source sur [ce dépôt](https://github.com/3IE/InstaUI) GitHub et pourra évoluer.
 

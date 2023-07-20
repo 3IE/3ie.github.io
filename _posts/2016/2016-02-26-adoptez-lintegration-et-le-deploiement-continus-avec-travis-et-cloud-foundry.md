@@ -16,7 +16,7 @@ Nous allons voir comment ajouter facilement à un projet web de l'intégration c
 
 Tout d'abord, pourquoi vouloir mettre en place ce type de process ?
 
-[![](/assets/images/GithubTravisCF-300x250.png)](https://blog.3ie.fr/wp-content/uploads/2016/02/GithubTravisCF.png)
+[![](/assets/images/GithubTravisCF-300x250.png)](/assets/images/GithubTravisCF.png)
 
 #### L'intégration continue
 
