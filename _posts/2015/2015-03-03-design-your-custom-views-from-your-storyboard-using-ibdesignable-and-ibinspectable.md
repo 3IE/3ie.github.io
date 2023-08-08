@@ -18,6 +18,7 @@ We'll see how to create a basic custom view with rounded corners and a specific 
 
 Start by creating a new Cocoa Touch class inheriting from UIView, and add the keyword **@IBDesignable** right before the declaration to tell the storyboard to update all instances in real-time. Create three properties to adjust the border width, color and the corner radius, with the keyboard **didSet** to trigger a specific action once the property value changed.
 
+```swift
 @IBDesignable class CustomView: UIView {
 
     @IBInspectable var borderColor: UIColor = UIColor.clearColor() {
@@ -46,6 +47,7 @@ Start by creating a new Cocoa Touch class inheriting from UIView, and add the ke
         self.layer.masksToBounds = true
     }
 }
+```
 
 Notice that once a property is changed, the method _updateUI()_ is called to update the instance. You can call different methods depending on the kind of property changed, I mixed the whole together to avoid getting complexity.
 

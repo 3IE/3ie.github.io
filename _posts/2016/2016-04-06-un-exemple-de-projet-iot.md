@@ -39,6 +39,7 @@ Avant de commencer le développement à proprement parler, il nous faut identifi
 
 Pour le dernier point,  vous pouvez utiliser le package npm cité plus haut avec le code suivant :
 
+```js
 var hue = require("node-hue-api");
 
 var displayBridges = function(bridge) {
@@ -48,6 +49,7 @@ var displayBridges = function(bridge) {
 // --------------------------
 // Using a promise
 hue.nupnpSearch().then(displayBridges).done();
+```
 
 L'affichage dans la console doit vous donner une sortie de ce type : Hue Bridges Found: 192.168.2.17
 
@@ -63,20 +65,24 @@ Maintenant que nous sommes capables d'appeler notre bridge, nous allons pouvoir 
 
 La première étape est d'établir une connexion avec le bridge, pour cela nous allons créer un controller dans notre cas [_LightController_](https://github.com/3IE/demo-server-hue/blob/v1.0/app/controllers/LightController.ts) dans lequel nous rajouterons le code suivant :
 
+```js
 private bridgeConnection(): any {
 	var HueApi = require("node-hue-api").HueApi;
 
 	return new HueApi(this.hostname, this.username);
 }
+```
 
  
 
 Afin de simplifier la lecture de notre code nous créons une fonction qui construit un _state_.
 
+```js
 private createState(): any {
 	var lightState = require("node-hue-api").lightState;
 	return lightState.create();
 }
+```
 
  
 
@@ -84,6 +90,7 @@ Les states permettrons de changer la couleur ou d'allumer / éteindre nos lampes
 
 Notre méthode On() sera une méthode en POST qui prendra en paramètre une structure d'objet représentant l'état d'une lampe avec son Id. Cette structure d'objet sera créée dans le répertoire model de notre solution, dans les fichiers [Light.ts](https://github.com/3IE/demo-server-hue/blob/v1.0/app/models/light.ts) et [Color.ts](https://github.com/3IE/demo-server-hue/blob/v1.0/app/models/color.ts).
 
+```js
  class Light{
 	public lightId : number;
 	public color : Color;
@@ -94,11 +101,13 @@ class Color{
 	public g:number;
 	public b:number;
 }
+```
 
  
 
 L'implémentation de la méthode dans le controller _[LightController](https://github.com/3IE/demo-server-hue/blob/v1.0/app/controllers/LightController.ts)_ sera donc la suivante :
 
+```js
 on() {
 	var api = this.bridgeConnection();
 	var light : Light = <Light> this.request.body;
@@ -112,6 +121,7 @@ on() {
 		})
 		.done();
 }
+```
 
 # Pour aller plus loin
 
@@ -119,6 +129,7 @@ Notre serveur va être le point central d'une constellation de clients. Afin que
 
 Il faut initier la communication bidirectionnelle dans le fichier [app.ts](https://github.com/3IE/demo-server-hue/blob/v1.0/app.ts) :
 
+```js
 var io = require('socket.io')(app.serverInstance);
 // event généré dès qu'un client se connecte
 io.on('connection', function(client) {
@@ -127,11 +138,13 @@ io.on('connection', function(client) {
     // a changer lors du prochaine update de typefx
     app.clientSocket = client;
 });
+```
 
  
 
 On stocke dans app la webSocket. Ensuite sur chacune des méthodes où on souhaite notifier un autre client il faut appeler une méthode 'emit'. Dans cet exemple nous compléterons le controller _[LightController](https://github.com/3IE/demo-server-hue/blob/v1.0/app/controllers/LightController.ts)_ :
 
+```js
 on() {
     var api = this.bridgeConnection();
     var light: Light = <Light>this.request.body;
@@ -153,6 +166,7 @@ on() {
         })
         .done();
 }
+```
 
 Maintenant chaque client qui souhaite être notifié doit s'abonner sur l'event 'StateLight'. Nous verrons cela dans les prochains articles.
 
@@ -160,6 +174,7 @@ Maintenant chaque client qui souhaite être notifié doit s'abonner sur l'event 
 
 Pour tester notre solution, nous devons compiler notre serveur. Nous pouvons nous servir de la commande _grunt_ (relié au fichier [Gruntfile.js](https://github.com/3IE/demo-server-hue/blob/v1.0/Gruntfile.js)). Cette action aura pour but de générer un fichier app.js dans le répertoire _.build_ de la solution.
 
+```swift
 PS C:\\Github\\demo-server-hue> grunt
 Running "ts:build" (ts) task
 Compiling...
@@ -175,13 +190,16 @@ Running "file\_append:app" (file\_append) task
 
 Done, without errors.
 PS C:\\Github\\demo-server-hue>
+```
 
  
 
 Pour lancer notre serveur, nous utiliserons donc le binaire node, par défaut le serveur écoutera sur le port 3000 :
 
+```swift
 PS C:\\Github\\demo-server-hue> node .\\.build\\app.js
 Listening on port: 3000
+```
 
  
 

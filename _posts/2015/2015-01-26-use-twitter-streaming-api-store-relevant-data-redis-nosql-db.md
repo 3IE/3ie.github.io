@@ -19,6 +19,7 @@ I'll use IntellijIdea as IDE through this tutorial ; it's also possible to use E
 
 The important file you'll need is _pom.xml_, which acts as the dependency manager reference for Maven. Indeed, that's were you'll tell your program to integrate new dependencies. We'll use several third-party libraries, for both Twitter client and Redis management. Start by adding the following dependencies:
 
+```swift
 <!-- https://github.com/twitter/hbc -->
 <dependency>
     <groupId>com.twitter</groupId>
@@ -54,9 +55,11 @@ The important file you'll need is _pom.xml_, which acts as the dependency manag
     <type>jar</type>
     <scope>compile</scope>
 </dependency>
+```
 
 You may also specify a specific build configuration:
 
+```swift
 <build>
     <plugins>
         <plugin>
@@ -69,6 +72,7 @@ You may also specify a specific build configuration:
         </plugin>
     </plugins>
 </build>
+```
 
 Last thing is to setup a run configuration using _Run > Edit Configurations_. Add a new one of type _Application_ ; enter your MainClass and check _Single instance only_ to avoid stopping and starting server manually each time your re-deploy.
 
@@ -86,6 +90,7 @@ Prerequisites: you have create a new application on Twitter dev portal [from h
 
 Here is the code snippet that listen for a new tweets (or retweets) containing the hashtag _#nscurious_:
 
+```java
 BlockingQueue<String> queue = new LinkedBlockingQueue<String>(10000);
 StatusesFilterEndpoint endpoint = new StatusesFilterEndpoint();
 endpoint.trackTerms(Lists.newArrayList("#nscurious"));
@@ -108,6 +113,7 @@ for (int msgRead = 0; msgRead < 1000; msgRead++) {
 }
 
 client.stop();
+```
 
 Run this code, try posting a new tweet containing the hashtag _#nscurious_ and have a look at your console log. A massive string will be printed ; in fact, this is the complet Json object of your tweet, with its unique Id, its content, the hashtag and mentions contained and so on. You can have a deeper look at a basic tweet structure on the Twitter dev portal, we'll simply use its unique Id in this tutorial as it's for demonstration purpose only.
 
@@ -121,13 +127,16 @@ To access your Redis db from your Java application, we'll use [Jedis](https://gi
 
 We'll first create a Jedis pool, in charge of managing Redis instances, to get an instance of our Redis server.
 
+```java
 JedisPool pool = new JedisPool(new JedisPoolConfig(), "localhost", 6379, 90, "password");
 Jedis jedis = pool.getResource();
+```
 
 Good practices encourage you to set a password to access the master instance. If you did it in a config file, set the password as the last argument when creating your JedisPool instance.
 
 Now modify your previous implementation to, instead of logging our tweet, converting it to a JsonObject instance using Gson and inserting it into your Redis instance:
 
+```java
 Gson gson = new Gson();
 
 for (int msgRead = 0; msgRead < 1000; msgRead++) {
@@ -137,6 +146,7 @@ for (int msgRead = 0; msgRead < 1000; msgRead++) {
     jedis.set(o.get("id").getAsInt(), msg);
     System.out.println("Tweet with Id " + o.get("id").getAsInt() + " inserted");
 }
+```
 
 Run your program and post a tweet containing the hashtag #NSCurious, then open your GUI Redis Manager and see the result. You may see several instances like this:
 

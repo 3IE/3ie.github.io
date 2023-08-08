@@ -21,7 +21,7 @@ Disparition de certaines notations jugées antiques, simplification de la syntax
 
 ### La fin de l'héritage C++/Objective C
 
-Swift 2.1 avait déjà préparé le terrain en indiquant des Warnings lors de l'utilisation de boucles "à l'ancienne" de style C   **for (int i = 0; i < taille; i++)**.
+Swift 2.1 avait déjà préparé le terrain en indiquant des Warnings lors de l'utilisation de boucles "à l'ancienne" de style C   **for (int i = 0; i < taille; i++)**.
 
 Swift possède suffisamment de types de boucles pour pouvoir se passer de ces notations, et rendre ainsi le langage moins obscur au débutant. On peut aimer ou pas, mais Chris Lattner, le créateur du Swift [explique pourquoi il est sage](https://github.com/apple/swift-evolution/blob/master/proposals/0004-remove-pre-post-inc-decrement.md) de retirer les opérateurs \--  et ++  du lexique du Swift. Leur utilisation en pre-incrémentation ou post-incrémentation n'est pas toujours très claire, leur intérêt est minime par rapport à utiliser += 1  ou -= 1 , et enfin, leur utilisation était assez limitée car le langage propose de nombreuses notations permettant de s'en passer.
 
@@ -29,9 +29,11 @@ Encore une fois, Apple fait tout pour faire disparaître les fonctions statiques
 
  
 
+```swift
 dispatch\_async(dispatch\_get\_main\_queue()) {
 // Code à exécuter dans le main thread
 }
+```
 
  
 
@@ -39,9 +41,11 @@ Elles sont remplacées par les méthodes statiques d'un nouvel objet, la  Disp
 
  
 
+```swift
 DispatchQueue.main.async {
 // Code à exécuter dans le main thread
 }
+```
 
  
 
@@ -53,21 +57,25 @@ DispatchQueue.main.async {
 
 Depuis l'Objective C, le premier paramètre d'une méthode était contenu dans le nom de cette dernière. Lors du passage à Swift, Apple a conservé cette habitude.
 
+```swift
 // Swift 2
 
 override func numberOfSectionsInTableView(tableView: UITableView) -> Int
 
 names.indexOf("3ie")
+```
 
  
 
 Les nouvelles méthodes voient leur nom se raccourcir et le label du premier argument devenir obligatoire, et les fonctions ci-dessus sont renommées ainsi :
 
+```swift
 // Swift 3
 
 override func numberOfSections(in tableView: UITableView) -> Int
 
 names.index(of: "3ie")
+```
 
  
 
@@ -75,11 +83,13 @@ Et c'est bien plus lisible !
 
 #### Vous avez dit redondance?
 
+```swift
 // Swift 2
 
 pantalon.color = UIColor.blueColor()
 tshirt.color = UIColor.whiteColor()
 chapeau.color = UIColor.redColor()
+```
 
  
 
@@ -89,11 +99,13 @@ Pourquoi répeter "Color" après chaque couleur alors que c'est une fonction de 
 
 Et cette fois-ci, Apple y a répondu :
 
+```swift
 // Swift 3
 
 pantalon.color = UIColor.blue()
 tshirt.color = UIColor.white()
 chapeau.color = UIColor.red()
+```
 
  
 
@@ -103,11 +115,17 @@ Lors de la WWDC 2016, les développeurs de chez Apple ont particulièrement insi
 
 Par exemple, les méthodes avec [effet de bord](https://fr.wikipedia.org/wiki/Effet_de_bord_(informatique)) (c'est à dire qui modifient l'objet) ont un nom différent de celle qui ne modifie pas l'objet.
 
+```swift
 x.reverse()
 
-Ici la méthode  reverse désigne l'action qu'elle aura sur  **x** . Elle modifie l'objet. Si on veut avoir un nouvel objet à partir de  x sans modifier , il faut conjuguer le nom de la méthode en fonction. Elle devient alors:
+```
 
+Ici la méthode  reverse désigne l'action qu'elle aura sur  **x** . Elle modifie l'objet. Si on veut avoir un nouvel objet à partir de  x sans modifier , il faut conjuguer le nom de la méthode en fonction. Elle devient alors:
+
+```swift
 let y = x.reversed()
+
+```
 
  
 

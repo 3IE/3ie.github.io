@@ -62,19 +62,23 @@ Dans notre cas, on prendra comme exemple l’entrée d’un amphithéâtre dans 
 
 On peut ensuite dans le code créer une instance de classe **ARReferenceImage** qui va venir charger une ou plusieurs images contenues dans notre catalogue d’assets
 
+```swift
 guard let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: ressourceFolder, bundle: nil)
 else {
             fatalError("Missing expected asset catalog resources")
      }
+```
 
 Une fois cette image créée, on peut exploiter la fonction renderer qui est appelée à chaque fois qu’une image de référence est détectée.
 
+```swift
 func renderer(\_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
 guard let imageAnchor = anchor as? ARImageAnchor else { return }
 let ref = imageAnchor.referenceImage
 updateQueue.async {
 	//Action à faire lorsqu'une image de référence a été détéctée
 }
+```
 
 Ici, nous nous sommes amusés à afficher le nom de l’amphithéâtre en réalité augmentée une fois l’image détectée (nous reparlerons plus en détails de comment faire cela dans le prochain paragraphe).
 
@@ -90,7 +94,7 @@ Ici, cette technique atypique est parfaitement adaptée, toutefois, tout dépend
 
 Il est conseillé d'adopter cette méthode uniquement dans un cadre restreint, comme ici, l'enceinte d'une école, ou pour une salle de musée par exemple.
 
-On peux retrouver un tutoriel complet mis en place par Apple qui détaille la conception d’un système de reconnaissance d’images [ici.](https://developer.apple.com/documentation/arkit/recognizing_images_in_an_ar_experience)
+On peux retrouver un tutoriel complet mis en place par Apple qui détaille la conception d’un système de reconnaissance d’images [ici.](https://developer.apple.com/documentation/arkit/recognizing_images_in_an_ar_experience)
 
 ### Ajouter du contenu en réalité augmentée
 
@@ -102,6 +106,7 @@ Ici nous allons nous intéresser à l’ajout d’un object 3D qui sera un XWing
 
 Pour ce faire, nous allons créer une fonction **createSCObjectWithVector** qui prend en paramètre le nom de l’objet 3D, le node à afficher dans l’objet 3D, l’ARSCNView sur laquelle on affichera notre object 3D, et un vecteur pour orienter notre objet.
 
+```swift
 func createSCObjectWithVector(name: String, rootname: String, sceneView: ARSCNView, vect: SCNVector3) {
         //Ici, nous créons une SCNScene à partir de notre objet 3D.
         guard let paperPlaneScene = SCNScene(named: name),
@@ -118,6 +123,7 @@ func createSCObjectWithVector(name: String, rootname: String, sceneView: ARSCNVi
         //Finalement, on ajoute notre node à notre SceneView passé en paramètre !
         sceneView.scene.rootNode.addChildNode(paperPlaneNode)
     }
+```
 
  
 

@@ -75,20 +75,23 @@ Pour rappel, cela peut se faire directement dans le fichier 'package.json' (suiv
 
 Il nous faut tout d'abord ajouter les variables que l'on va utiliser dans le reste du Gruntfile :
 
+```js
 var globalCfg = {
 	src: {
-		tsFiles: \['{app,app\_engine,models,test}/\*\*/\*.ts','reference.ts'\],
-		generatedJSFiles: \['{app,app\_engine,models,test}/\*\*/\*.{js,js.map}', 'reference.{js,js.map}'\],
-		staticMiscFiles: \['index.html', 'app/\*\*/\*.{html,json}', 'app/img/\*\*'\],
-		staticFontFiles: \['bower\_components/bootstrap/dist/fonts/\*\*'\]
+		tsFiles: \['{app,app\_engine,models,test}/**/*.ts','reference.ts'\],
+		generatedJSFiles: \['{app,app\_engine,models,test}/**/*.{js,js.map}', 'reference.{js,js.map}'\],
+		staticMiscFiles: \['index.html', 'app/**/*.{html,json}', 'app/img/*\*'\],
+		staticFontFiles: \['bower\_components/bootstrap/dist/fonts/*\*'\]
 	},
 	distDir: 'dist/'
 };
+```
 
 ##### Modification de la tâche 'build'
 
 Modifiez votre tâche _build_ de la façon suivante :
 
+```js
 grunt.registerTask('build', \[
 	'testing',
 	'copy',
@@ -100,6 +103,7 @@ grunt.registerTask('build', \[
 	'filerev',
 	'usemin'
 \]);
+```
 
 Nous avons maintenant le déroulé suivant :
 
@@ -116,6 +120,7 @@ Cette tâche est simple. Nous voulons copier nos fichiers statiques vers le rép
 
 Ajoutez la tâche suivante dans votre Gruntfile.
 
+```js
 copy: {
 	main: {
 		files: \[
@@ -124,11 +129,13 @@ copy: {
 		\],
 	},
 }
+```
 
 ## Tache 'useminPrepare'
 
 Voila le code à ajouter dans votre _Gruntfile_, nous allons l'expliquer juste après.
 
+```js
 useminPrepare: {
 	//html file that usemin is going to analyse to find the files to process
 	html: 'app/index.html',
@@ -149,6 +156,7 @@ useminPrepare: {
 		},
 	}
 }
+```
 
 ##### Détection des fichiers à traiter
 
@@ -156,23 +164,29 @@ On peut spécifier soit même le nom des fichiers _css_ et _js_ à traiter par _
 
 Pour que usemin sache quelles références traiter dans votre html, il faut définir ce qu'on appelle des _Blocks à l'aide_ de commentaires dans votre fichier html. Le format est le suivant :
 
+```xhtml
 <!-- build:<type> <path> -->
 ... HTML Markup, list of script / link tags.
 <!-- endbuild -->
+```
 
 Le _type_ correspond au type de fichier configuré dans le flux de traitement de usemin (nous en parlerons plus en détail juste après). Le _path_ correspond au fichier de destination.
 
 A titre d'exemple, voila 2 _blocks_ tirés de notre fichier index.html
 
+```xhtml
 <!-- build:css css/globals.css -->
 <link rel="stylesheet" href="../bower\_components/bootstrap/dist/css/bootstrap.css">
 <link href="css/4-col-portfolio.css" rel="stylesheet">
 <!-- endbuild -->
+```
 
+```xhtml
 <!-- build:js js/app.js -->
 <script src="../bower\_components/angular/angular.js"></script>
 <script src="app.startup.js"></script>
 <!-- endbuild -->
+```
 
 ##### Répertoire de destination
 
@@ -184,6 +198,7 @@ Par défaut, _Usemin_ sait traiter les _JS_ et les _CSS_. Pour gérer les fichi
 
 Pour cela, la première étape est de redéfinir le _flow_ de _Usemin_ (on ne peut pas simplement étendre le flux existant). Les étapes 'js' et 'css' peuvent référencer les tâches pré-existantes, 'concat', 'uglify' et 'cssmin', par contre pour l'étape 'less' il nous faut expliquer à _Usemin_ quoi faire. C'est ce que nous avons fait avec l'option 'flow'.
 
+```js
 flow: {
 	steps: {
 		'js': \['concat', 'uglify'\],
@@ -195,11 +210,13 @@ flow: {
 	},
 	post: {}
 }
+```
 
 Le paramètre 'name' permet de spécifier quelle tâche Grunt exécuter et le paramètre 'createConfig' est une fonction qui va s'occuper de créer la configuration de la tâche Grunt (ici la tache 'less'). Pour une question de lisibilité,nous vous recommandons de sortir cette fonction du 'flow' de usemin.
 
 Déclarez cette fonction en haut de votre Gruntfile, à coté de votre variable globale 'globalCfg' :
 
+```js
 //less config function for usemin
 var lessCreateConfig = function (context, block) {
 	var cfg = { files: \[\] },
@@ -218,6 +235,7 @@ var lessCreateConfig = function (context, block) {
 	context.outFiles = \[block.dest\];
 	return cfg;
 };
+```
 
 Cette fonction utilise 2 paramètres fournis par _usemin._
 
@@ -257,22 +275,27 @@ Autoprefixer s'occupe d'ajouter les préfixes des différents vendor pour vos r�
 
 Par exemple, pour le code suivant :
 
+```css
 .example {
     display: flex;
 }
+```
 
 on obtient cette adaptation :
 
+```css
 .example {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
 }
+```
 
 ##### Configuration Grunt
 
 Créez la tâche suivante votre Gruntfile:
 
+```js
 less: {
 	options: {
 		plugins: \[
@@ -283,6 +306,7 @@ less: {
 		\]
 	}
 }
+```
 
 ## Tache filerev
 
@@ -294,23 +318,26 @@ Quand _filerev_ s'exécute, il génère un dictionnaire de tous les fichiers qu
 
 Ajoutez la tâche suivante dans votre Gruntfile :
 
+```js
 filerev: {
 	options: {
 		algorithm: 'md5',
 		length: 8
 	},
-	images: { src: '<%= globalCfg.distDir %>/app/img/\*\*/\*' },
-	js: { src: '<%= globalCfg.distDir %>/app/js/\*\*/\*' },
-	css: { src: '<%= globalCfg.distDir %>/app/css/\*\*/\*' }
+	images: { src: '<%= globalCfg.distDir %>/app/img/**/*' },
+	js: { src: '<%= globalCfg.distDir %>/app/js/**/*' },
+	css: { src: '<%= globalCfg.distDir %>/app/css/**/*' }
 },
+```
 
 ## Tâche usemin
 
 C'est la tâche finale pour packager notre release. Usemin va parcourir votre html présent dans le répertoire de distrib pour remplacer les différentes références aux ressources.
 
+```js
 usemin: {
 	//html file within which usemin is going to replace the resource references  
-	html: \['<%= globalCfg.distDir %>/app/\*\*/\*.html'\],
+	html: \['<%= globalCfg.distDir %>/app/**/*.html'\],
 	options: {
 		assetsDirs: '<%= globalCfg.distDir %>/app',
 		blockReplacements: {
@@ -320,6 +347,7 @@ usemin: {
 		}
 	}
 }
+```
 
 Pour les fichiers _css_ et _jss_, _usemin_ va remplacer tout le _Block_ par sa version concaténée et minifiée. Pour les fichiers _Less_, qui ne sont pas gérés nativement par _Usemin_, nous devons préciser comment remplacer les _Blocks_. Vous devez fournir une fonction de traitement par l'option 'blockReplacements'. Pour les autres ressources, _Usemin_ va vérifier dans l'objet 'grunt.filerev.summary' si cette dernière n'a pas été renommée. Si c'est le cas, _Usemin_ vérifie dans la liste de dossiers de ressources (configuré par l'option 'assetsDirs') si le fichier existe.
 

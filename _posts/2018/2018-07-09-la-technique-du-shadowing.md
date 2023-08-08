@@ -60,7 +60,7 @@ On vous recommande de filmer la séance de shadowing et d’enregistrer l’inte
 
 ## #4 Parcours utilisateurs
 
-De retour au labo, nous avons commencé par définir les **principaux parcours utilisateurs**, pour lesquels nous avons spécifié les tâches accomplies. C'est ce qu'on appelle également la **User Journey** c’est à dire les étapes/interactions par lesquelles passe l’utilisateur pour arriver à son objectif. A ces parcours, nous avons mis en avant les points de satisfaction ainsi que **les points de blocage et les bugs** qui perturbent l’expérience utilisateur. Ces derniers sont des éléments clés : ils vont nous aiguiller pour la suite.
+De retour au labo, nous avons commencé par définir les **principaux parcours utilisateurs**, pour lesquels nous avons spécifié les tâches accomplies. C'est ce qu'on appelle également la **User Journey** c’est à dire les étapes/interactions par lesquelles passe l’utilisateur pour arriver à son objectif. A ces parcours, nous avons mis en avant les points de satisfaction ainsi que **les points de blocage et les bugs** qui perturbent l’expérience utilisateur. Ces derniers sont des éléments clés : ils vont nous aiguiller pour la suite.
 
 \[caption id="attachment\_1522" align="aligncenter" width="676"\][![](/assets/images/img-userflow-blog-1024x766.jpg)](/assets/images/img-userflow-blog.jpg) Parcours utilisateur\[/caption\]
 

@@ -15,17 +15,21 @@ Par exemple pour encapsuler une requête qui recherche certains produits, vous p
 
 De cette manière plutôt que d’écrire :
 
+```c#
 public IReadOnlyList<Order> GetOrderById(int id) { ... }
 public IReadOnlyList<Order> GetOrderByDate(DateTime date) { ... }
 public IReadOnlyList<Order> GetOrderBetweenDate(DateTime startDate, DateTime endDate) { ... }
+
+```
 
 Votre code devient :
 
 public IReadOnlyList<Order> GetOrder(Specification<Order> specification) { ... }
 
-Ce qui permet d’avoir des couches d’accès aux données beaucoup plus simples et surtout moins de code à écrire. L’autre avantage permet d’offrir plus de souplesse sur la récupération des données en permettant de mixer les Specifications, tout en gardant une lisibilité sur la condition. Si nous prenons, par exemple, le corps d’une méthode permettant de remonter une collection de données filtrées :
+```c# Ce qui permet d’avoir des couches d’accès aux données beaucoup plus simples et surtout moins de code à écrire. L’autre avantage permet d’offrir plus de souplesse sur la récupération des données en permettant de mixer les Specifications, tout en gardant une lisibilité sur la condition. Si nous prenons, par exemple, le corps d’une méthode permettant de remonter une collection de données filtrées :
 
 var tv = products.Where(x => x.Category == 1 && x.Brand == "samsung");
+```
 
 Dans une architecture en couche, on peut créer une fonction qui prendrait en paramètre Category et Brand afin de mutualiser le code, mais que se passe-t’il quand on souhaite rajouter une condition ou que l’on souhaite retirer une clause sur notre filtre ? Nous sommes obligés de réécrire la méthode ou de faire une surcharge.
 
@@ -35,6 +39,7 @@ Pour pallier à ce problème, nous allons utiliser le pattern Specification.
 
 Ce pattern est assez simple à comprendre puisqu’il se compose d’une seule méthode IsSatisfiedBy qui prend en paramètre l’objet à vérifier. Afin d’éviter la duplication du code, nous allons créer une classe générique.
 
+```c#
 public abstract class Specification<T>
 {
     public abstract Expression<Func<T, bool>> ToExpression();
@@ -46,10 +51,13 @@ public abstract class Specification<T>
     }
 }
 
+```
+
 Le type de retour de ToExpression() est Expression<Func<T, bool>>, celui-ci  pourrait être simplement Func<T, bool> mais comme nous souhaitons appliquer l’expression sur une collection IQueryable l’utilisation d’Expression<T> est _donc_ obligatoire. Avec seulement Func<,> nous pourrions l’appliquer que sur une liste de type IEnumerable, nous devrions donc récupérer l’ensemble des données en mémoire plutôt que de pouvoir filtrer directement sur la base de données.
 
 Pour utiliser cette classe, nous devons implémenter une spécification typée :
 
+```c#
 public class CitySpecification : Specification<Order>
 {
     private string \_city;
@@ -63,10 +71,13 @@ public class CitySpecification : Specification<Order>
     }
 }
 
+```
+
 Lors du développement, un besoin peut apparaître lorsque nous allons vouloir combiner plusieurs spécifications. Bien entendu, on pourrait recréer une nouvelle Specification combinant les deux conditions, mais nous ne respecterions pas le principe DRY.
 
 Afin de respecter ce dernier, nous allons modifier légèrement notre classe de base en ajoutant deux méthodes And() et Or()
 
+```c#
 public abstract class Specification<T>
 {
 
@@ -86,8 +97,11 @@ public abstract class Specification<T>
     }
 }
 
+```
+
 Pour l’implémentation d’un AndSpecification :
 
+```c#
 public class AndSpecification<T> : Specification<T>
    {
        private readonly Specification<T> \_left;
@@ -114,16 +128,21 @@ public class AndSpecification<T> : Specification<T>
        }
    }
 
+```
+
 Pour voir l’implémentation de la partie Or() je vous invite à voir les sources sur [Github](https://github.com/3IE/SpecificationPattern/blob/master/Domain/Specifications/OrSpecification.cs).
 
 Avec les dernières modifications, nous pouvons utiliser les classes de cette manière :
 
+```c#
 var limitDateSpec = new LimitDateSpecification(DateTime.Now);
 var citySpec = new CitySpecification(city);
 var res = await \_query.FindOrderAsync(citySpec.And(limitDateSpec));
 
 // ou encore
 bool isInCity = citySpec.IsSatisfiedBy(myOrder);
+
+```
 
 # Conclusion
 

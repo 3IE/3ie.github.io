@@ -9,7 +9,7 @@ Le web gagne de plus en plus en complexité, en effet aujourd’hui la plupart d
 
 ## Genèse
 
-Pour répondre à cette demande, en 2015, Google et asm.js annoncèrent l’arrivée prochaine d’une technologie innovante capable de s’allier à _Javascript_ pour optimiser la vitesse d’exécution de certains processus coûteux, je parle bien entendu de WebAssembly. WebAssembly est un nouveau langage de bas niveau de type assembleur, formaté en bytecode (instructions proches du langage machine), exécutable dans les navigateurs modernes le supportant (Chrome, Edge, Mozilla Firefox and Safari) et se voulant aussi performants que des langages de bas niveaux tels que C, C++ ou Rust. 
+Pour répondre à cette demande, en 2015, Google et asm.js annoncèrent l’arrivée prochaine d’une technologie innovante capable de s’allier à _Javascript_ pour optimiser la vitesse d’exécution de certains processus coûteux, je parle bien entendu de WebAssembly. WebAssembly est un nouveau langage de bas niveau de type assembleur, formaté en bytecode (instructions proches du langage machine), exécutable dans les navigateurs modernes le supportant (Chrome, Edge, Mozilla Firefox and Safari) et se voulant aussi performants que des langages de bas niveaux tels que C, C++ ou Rust. 
 
 ## En quoi ça consiste ?
 
@@ -33,9 +33,10 @@ Ici nous créons un nouveau projet Angular grâce à CLI
 
 ng new angular-wasm
 
-Nous avons envie que TypeScript puisse reconnaître des modules provenant de WebAssembly
+```ps Nous avons envie que TypeScript puisse reconnaître des modules provenant de WebAssembly
 
 npm install @types/webassembly-js-api --dev --save
+```
 
 Vous devez maintenant installer **emsdk**, **emcc**, et **emscripten**, voici quelques liens qui devraient vous être utiles :
 
@@ -47,6 +48,8 @@ L'installation terminée, nous allons pouvoir créer nos programmes en _C_ qui s
 Créez un dossier wasm dans app/
 
 mkdir src/app/wasm
+
+```ps
 
 #include <emscripten.h>
 #include <string.h>
@@ -83,24 +86,30 @@ char\* EMSCRIPTEN\_KEEPALIVE play\_with\_memory()
 	}
 	return str;
 }
+```
 
 Dans ce fichier, nous avons deux fonctions qui sont là pour tester les performances de WebAssembly. Ces fonctions seront réécrites en TypeScript par la suite afin d'évaluer les différences de performances entre les deux technologies.
 
 Nous allons à présent devoir compiler séparément _evaluator.c,_ en effet je n'ai pas trouvé le moyen d'automatiser cette étape et elle est nécessaire pour obtenir notre .wasm et notre .js
 
+```ps
 cd app/src/wasm
 emcc ./evaluator.c -Os -s WASM=1 -s MODULARIZE=1 -o ./evaluator.js
+```
 
-Nous obtenons ainsi notre fichier binaire _evaluator.wasm_ et notre fichier Javascript _evaluator.js._
+Nous obtenons ainsi notre fichier binaire _evaluator.wasm_ et notre fichier Javascript _evaluator.js._
 
 _On remarquera l'utilisation de l'option MODULARIZE qui permet de rendre nos fonctions modulaires, ce qui facilite leur intégration dans Angular._
 
 Maintenant que tout est fin prêt, créons un dossier service dans lequel nous allons demander à CLI de nous générer un nouveau service qui nous permettra de nous servir de nos toutes nouvelles fonctions.
 
+```swift
 mkdir src/app/services
 cd src/app/services
 ng generate service wasm
+```
 
+```js
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -175,9 +184,11 @@ export class WasmService {
     );
   }
 }
+```
 
 Il faut également l'ajouter aux providers de l'app
 
+```js
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -198,8 +209,11 @@ import { WasmService } from './services/wasm.service';
 })
 export class AppModule { }
 
+```
+
 Il ne vous reste qu'une chose à faire, appeler ce service qui appellera pour vous les fonctions Web Assembly. Pour ce faire vous pouvez, dans n'importe quel component de votre app, instancier une instance WasmService et appeler l'une de ses méthodes.
 
+```js
 import { Component, OnInit } from '@angular/core';
 import { WasmService } from './services/wasm.service';
 
@@ -221,6 +235,7 @@ export class AppComponent implements OnInit {
     });
   }
 }
+```
 
 _Architecture finale :_
 

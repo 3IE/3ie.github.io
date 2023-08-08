@@ -47,6 +47,7 @@ De base vous pouvez compiler le projet et effectuer une interaction avec l'émul
 
 Afin d'interagir avec eux vous pouvez également leur répondre grâce à la méthode _message.CreateReplyMessage._ Après à vous d'implémenter votre logique d'interaction avec votre interlocuteur.
 
+```c#
 public async Task<Message> Post(\[FromBody\]Message message)
 {
     if (message.Type == "Message")
@@ -58,6 +59,8 @@ public async Task<Message> Post(\[FromBody\]Message message)
         return HandleSystemMessage(message);
     }
 }
+
+```
 
  
 
@@ -78,7 +81,7 @@ Lorsque votre implémentation est terminée vous pouvez déployer votre Bot sur 
 
 # Complément avec LUIS
 
-Réaliser un bot qui répond à des questions prédéfinies reste assez simple comme nous avons pu le voir. Le problème est que pour répondre à ces interactions, il faut faire des égalités strictes entre les phrases saisies par l'utilisateur et les réponses aux actions implémentées de notre coté. Ceci va vite limiter les cas d'usages et nous n'aurons pas une interaction très naturelle. C'est ici qu'intervient _[LUIS](https://www.luis.ai/)_. _LUIS_ signifie _Language Understanding Intelligent Service,_ c'est grâce à ce service que nous allons pouvoir définir un modèle pour reconnaître nos phrases, l’entraîner et exposer cette reconnaissance à travers une API. L’intérêt de cette plateforme est de pouvoir mettre à disposition de tout développeur un système de machine learning sans pour autant avoir à le développer soi même.
+Réaliser un bot qui répond à des questions prédéfinies reste assez simple comme nous avons pu le voir. Le problème est que pour répondre à ces interactions, il faut faire des égalités strictes entre les phrases saisies par l'utilisateur et les réponses aux actions implémentées de notre coté. Ceci va vite limiter les cas d'usages et nous n'aurons pas une interaction très naturelle. C'est ici qu'intervient _[LUIS](https://www.luis.ai/)_. _LUIS_ signifie _Language Understanding Intelligent Service,_ c'est grâce à ce service que nous allons pouvoir définir un modèle pour reconnaître nos phrases, l’entraîner et exposer cette reconnaissance à travers une API. L’intérêt de cette plateforme est de pouvoir mettre à disposition de tout développeur un système de machine learning sans pour autant avoir à le développer soi même.
 
 Lorsque vous vous êtes connecté, vous pouvez commencer à réaliser votre premier modèle d'apprentissage. Pour cela, créez votre application :
 
@@ -116,8 +119,9 @@ Maintenant que nous avons un modèle entraîné, cliquez sur le bouton _Publish_
 
 Le cadre rouge correspond à l'Id de votre modèle, et le cadre vert à votre clé d'abonnement. Avec cette paire vous allez pouvoir compléter les informations dans les classes que nous allons maintenant développer.
 
-Pour interagir avec notre modèle LUIS, nous devons rajouter le package _nuget Microsoft.Bot.Builder._ Ensuite, créez une classe '[ManageLightDialog](https://github.com/3IE/LightManagerBot/blob/v1.0.0/ManageLightDialog.cs)' héritant de _LuisDialog_ afin de permettre l'interaction entre notre Bot et le modèle LUIS que nous avons réalisé précédemment. Afin de faire le lien entre notre classe et le modèle de LUIS nous allons utiliser l'attribut de classe _LuisModel_  qui prend en paramètre l'id de notre modèle (cadre rouge) et la clé d'abonnement (cadre vert).
+Pour interagir avec notre modèle LUIS, nous devons rajouter le package _nuget Microsoft.Bot.Builder._ Ensuite, créez une classe '[ManageLightDialog](https://github.com/3IE/LightManagerBot/blob/v1.0.0/ManageLightDialog.cs)' héritant de _LuisDialog_ afin de permettre l'interaction entre notre Bot et le modèle LUIS que nous avons réalisé précédemment. Afin de faire le lien entre notre classe et le modèle de LUIS nous allons utiliser l'attribut de classe _LuisModel _ qui prend en paramètre l'id de notre modèle (cadre rouge) et la clé d'abonnement (cadre vert).
 
+```c#
 \[Serializable\]
 \[LuisModel("eb99623f-9e64-4990-bff3-93d47ee13cd7", "0acaa8df6dc84425a998728c9fa3a9aa")\]
 public class ManageLightDialog : LuisDialog<object>
@@ -126,10 +130,13 @@ public class ManageLightDialog : LuisDialog<object>
 
 }
 
+```
+
  
 
-Lorsque LUIS reconnait une _intent_, il faut qu'il puisse appeler une méthode pour la traiter. Pour cela nous allons tagger une méthode avec l'attribut _intent_ qui prendra en paramètre  le nom de l'_intent_ défini dans le modèle _Luis._ La première _intent_ à définir est celle qui est vide, et qui sera appelée quand _Luis_ ne reconnaîtra pas d'action.
+Lorsque LUIS reconnait une _intent_, il faut qu'il puisse appeler une méthode pour la traiter. Pour cela nous allons tagger une méthode avec l'attribut _intent_ qui prendra en paramètre  le nom de l'_intent_ défini dans le modèle _Luis._ La première _intent_ à définir est celle qui est vide, et qui sera appelée quand _Luis_ ne reconnaîtra pas d'action.
 
+```swift
 \[Serializable\]
 \[LuisModel("eb99623f-9e64-4990-bff3-93d47ee13cd7", "0acaa8df6dc84425a998728c9fa3a9aa")\]
 public class ManageLightDialog : LuisDialog<object>
@@ -144,10 +151,13 @@ public class ManageLightDialog : LuisDialog<object>
     }
 }
 
+```
+
  
 
 L'action pour allumer la lumière est un peu plus complexe car nous devons vérifier avant toute chose la présence de deux entités (color & location). Nous allons donc faire une méthode pour extraire ces deux entités à partir de l'analyse de _Luis_ (_LuisResult_):
 
+```c#
 private bool TryFindType(LuisResult result, out string location, out string color)
 {
     location = null;
@@ -165,11 +175,13 @@ private bool TryFindType(LuisResult result, out string location, out string colo
 
     return false;
 }
+```
 
  
 
-Lorsque nous avons nos deux entités, nous pouvons retourner l'information au Bot afin qu'il puisse réaliser une action. Pour passer ces informations nous utiliserons la méthode _context.ConversationData.SetValue_ qui prend en template un objet défini par nous. Dans notre cas l'objet [_QueryItem_](https://github.com/3IE/LightManagerBot/blob/v1.0.0/QueryItem.cs) permettra de remonter les informations _Location_ et _Color_ utiles pour envoyer notre ordre d'allumage.
+Lorsque nous avons nos deux entités, nous pouvons retourner l'information au Bot afin qu'il puisse réaliser une action. Pour passer ces informations nous utiliserons la méthode _context.ConversationData.SetValue_ qui prend en template un objet défini par nous. Dans notre cas l'objet [_QueryItem_](https://github.com/3IE/LightManagerBot/blob/v1.0.0/QueryItem.cs) permettra de remonter les informations _Location_ et _Color_ utiles pour envoyer notre ordre d'allumage.
 
+```c#
 \[LuisIntent("OnLight")\]
 public async Task Onlight(IDialogContext context, LuisResult result)
 {
@@ -185,10 +197,13 @@ public async Task Onlight(IDialogContext context, LuisResult result)
     }
 }
 
+```
+
  
 
 Lors de ce dialogue, il faut également prendre en compte que l'utilisateur ne donnera pas toutes les informations. Bien sûr le service de _Luis_ nous l'indiquera mais nous devons faire remonter l'information à l'utilisateur pour récupérer les données manquantes. Dans le cas où il nous manque soit la localisation soit la couleur, nous utiliserons la méthode suivante :
 
+```c#
 public async Task GetOtherField(IDialogContext context, IAwaitable<Message> argument)
 {
     var incomingMessage = await argument;
@@ -206,11 +221,13 @@ public async Task GetOtherField(IDialogContext context, IAwaitable<Message> argu
     await context.PostAsync(message);
     context.Wait(MessageReceived);
 }
+```
 
  
 
 Avec cette méthode nous avons le flux complet ci-dessous prenant en compte les différents cas de figure :
 
+```swift
 \[LuisIntent("OnLight")\]
 public async Task Onlight(IDialogContext context, LuisResult result)
 {
@@ -249,10 +266,13 @@ public async Task Onlight(IDialogContext context, LuisResult result)
     }
 }
 
+```
+
  
 
-Pour utiliser l'interaction avec Luis et le code de notre bot nous allons reprendre le code du controller [_MessageController_](https://github.com/3IE/LightManagerBot/blob/v1.0.0/Controllers/MessagesController.cs) et modifier la méthode _Post._ Lorsque la classe représentant notre modèle _Luis_ est instanciée nous pouvons la passer en paramètre à _Conversation.SendAsync._ La récupération des informations pour envoyer un ordre à notre serveur s'effectue avec la méthode _reply.GetBotConversationData_ que nous allons templater avec la classe que nous souhaitons récupérer et que nous avons définie dans la classe utilisant notre modèle _Luis_.
+Pour utiliser l'interaction avec Luis et le code de notre bot nous allons reprendre le code du controller [_MessageController_](https://github.com/3IE/LightManagerBot/blob/v1.0.0/Controllers/MessagesController.cs) et modifier la méthode _Post._ Lorsque la classe représentant notre modèle _Luis_ est instanciée nous pouvons la passer en paramètre à _Conversation.SendAsync._ La récupération des informations pour envoyer un ordre à notre serveur s'effectue avec la méthode _reply.GetBotConversationData_ que nous allons templater avec la classe que nous souhaitons récupérer et que nous avons définie dans la classe utilisant notre modèle _Luis_.
 
+```c#
 public async Task<Message> Post(\[FromBody\]Message message)
 {
     if (message.Type == "Message")
@@ -275,6 +295,8 @@ public async Task<Message> Post(\[FromBody\]Message message)
         return HandleSystemMessage(message);
     }
 }
+
+```
 
  
 

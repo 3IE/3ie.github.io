@@ -64,14 +64,15 @@ Après différents tests, j'en ai conclu que :
 
 - Le script interagissant avec la composante [NavMeshAgent](https://docs.unity3d.com/560/Documentation/Manual/class-NavMeshAgent.html) doit être lancé après que l'environnement soit prêt, c'est-à-dire après que la méthode BuildNavMesh() est été utilisée. Je vous conseille de créer votre propre méthode pour remplacer la méthode standard Start() dans le script de votre agent. En effet lorsqu'on instancie un GameObject, s'il a un script attaché, la méthode standard Start(), usuellement utilisée pour initialiser le script, va être appelée. Voici un exemple de substitution:
     
+    ```c#
     public Camera cam;
     
     public NavMeshAgent agent;
     
-    /\*
+    /*
       La méthode Init() remplace la méthode standard Start(), elle est en public pour qu'elle
       être appelée à partir d'un autre script.
-    \*/
+    */
     
     public void Init()
     {
@@ -79,6 +80,7 @@ Après différents tests, j'en ai conclu que :
         agent = GetComponent<NavMeshAgent>();
         agent.enabled = false;
     }
+    ```
     
 - L'environnement peut être configuré dynamiquement qu'une seule fois par scène. C'est-à-dire que la méthode BuildNavMesh() ne sera ré-utilisable seulement s'il y a un changement de scène.
 
@@ -97,17 +99,20 @@ Pour illustrer le tout, j'ai réalisé un projet mettant en scène l'utilisation
 
 Voici les lignes importantes et l'ordre dans lesquels elles doivent être exécutées
 
-/\*
+```c#
+/*
   Les attributs surface et player sont définies plus haut et représentent respectivement
     un NavMeshSurface et un GameObject.
   BoyBehaviour est le script s'occupant du comportement de l'agent.
   La méthode Init() remplace la méthode standard Start() et MoveToDestination 
     indique la destination au composant NavMeshAgent de l'agent.
-\*/
+*/
 
 surface.BuildNavMesh();
 player.GetComponent<BoyBehaviour>().Init();
 player.GetComponent<BoyBehaviour>().MoveToDestination(destination.transform.position);
+
+```
 
 Si vous souhaitez voir le code source du projet dans son intégralité vous pouvez regarder mon [dépôt GitHub](https://github.com/Pleuvens/NavBoy/tree/develop).
 

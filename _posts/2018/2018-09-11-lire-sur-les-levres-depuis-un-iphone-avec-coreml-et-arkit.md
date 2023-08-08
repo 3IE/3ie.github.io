@@ -39,12 +39,14 @@ FaceStatsTVC: UIViewController, UITableViewDelegate, ARSCNViewDelegate, UITableV
 
 La fonction suivante va initialiser le tracking. Il faudra l'appeler depuis la méthode "viewWillAppear" dans votre [FaceStatsTVC.swift](https://github.com/3IE/WordRecognition-iOS/blob/v1.0/faceextract/Controller/FaceStatsTVC.swift)
 
+```swift
 func setupTracking() {
 	guard ARFaceTrackingConfiguration.isSupported else { return }
 	let configuration = ARFaceTrackingConfiguration()
 	configuration.isLightEstimationEnabled = false
 	session.run(configuration, options: \[.resetTracking, .removeExistingAnchors\])
 }
+```
 
 Nous n'avons pas besoin d'avoir d'estimation de la lumière car nous n'allons pas afficher d'informations en réalité augmentée sur le visage de l'utilisateur (ce qui est normalement prévu par Apple vu que ces fonctions font parties de ARKit).
 
@@ -54,6 +56,7 @@ La fonction renderer(\_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, fo
 
 Comme nous voulons lire sur les lèvres, intuitivement on sait que l'on peux se concentrer sur la région de la bouche. J'ai donc décidé de ne garder que les traits de la bouche, de la mâchoire et des pommettes. On enregistre aussi les valeurs min et max pour faciliter l'interprétation ensuite. Code à ajouter dans [FaceStatsTVC.swift](https://github.com/3IE/WordRecognition-iOS/blob/v1.0/faceextract/Controller/FaceStatsTVC.swift) :
 
+```swift
 func renderer(\_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
 	guard let faceAnchor = anchor as? ARFaceAnchor else { return }
 	let regionsToDisplay = \["mouth", "jaw", "cheek"\]
@@ -74,6 +77,7 @@ func renderer(\_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor
 		}
 	}
 }
+```
 
 Vous pouvez afficher les valeurs dans votre tableView avec le formatage de votre choix.
 
@@ -105,6 +109,7 @@ Avant de pouvoir reconnaitre une voyelle, il va falloir entraîner notre modèle
 
 J'ai choisi de stocker les différents enregistrements du visage dans un fichier json pour ensuite entraîner mon modèle depuis Xcode. Voila le format que nous allons utiliser :
 
+```js
 \[
   {
     "mouthFrown" : 0.025898713676724583,
@@ -125,6 +130,7 @@ J'ai choisi de stocker les différents enregistrements du visage dans un fichier
     "mouthStretch" : 0.12150635197758675
   }
 \]
+```
 
  
 
@@ -132,6 +138,7 @@ Créez un nouveau ViewController nommé "RecordVowelVC", ajoutez un ViewControll
 
 Notre fonction "renderer" va cette fois simplement stocker les 'blend shapes' qu'Apple nous fournit et c'est notre bouton qui va déclencher l'enregistrement. Nous avons donc cette méthode dans le fichier [RecordVowelVC.swift](https://github.com/3IE/WordRecognition-iOS/blob/v1.0/faceextract/Controller/RecordVowelVC.swift) :
 
+```swift
 func renderer(\_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
 	guard let faceAnchor = anchor as? ARFaceAnchor else { return }
 	latestBlendShapes = faceAnchor.blendShapes
@@ -139,11 +146,13 @@ func renderer(\_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor
 		detectVowel(latestBlendShapes)
 	}
 }
+```
 
  
 
 Toujours dans [RecordVowelVC.swift](https://github.com/3IE/WordRecognition-iOS/blob/v1.0/faceextract/Controller/RecordVowelVC.swift), ajoutez l'IBAction de votre "record" button
 
+```swift
 @IBAction func recordFaceAction(\_ sender: Any) {
 	var encodablesShapes: \[String: Encodable\] = FaceProcessing.simplifyRecord(latestBlendShapes)
 	encodablesShapes\["vowel"\] = selectedVowel
@@ -162,6 +171,7 @@ Toujours dans [RecordVowelVC.swift](https://github.com/3IE/WordRecognition-iOS/
 		print("unable to save json")
 	}
 }
+```
 
 J'ai implémenté une méthode de simplification de mes 'blend shapes' que j'ai déclarée dans une classe [FaceProcessing](https://github.com/3IE/WordRecognition-iOS/blob/v1.0/faceextract/BusinessLogic/FaceProcessing.swift). Elle retire les zones qui ne m'intéressent pas, récupère le nom du trait, fusionne les valeurs gauche et droit, et me donne un dictionnaire prêt à être transformé en json. Il ne me reste qu'à ajouter la voyelle sélectionnée avant d'écrire le json.
 
@@ -195,6 +205,7 @@ Votre trouverez sur github le json avec mes données ainsi que le modèle "Vowel
 
 Ajoutez le code suivant dans votre [playground](https://github.com/3IE/WordRecognitionModelTraining-MacOS/blob/v1.0/wordRecoTraining.playground/Contents.swift), il affichera aussi des stats en fin d'entraînement :
 
+```swift
 func vowelTraining() {
     do {
         let data = try MLDataTable(contentsOf: URL(fileURLWithPath: "/Users/verdie\_b/Desktop/coreml/vowelTraining/vowelTrainingData-20180823-17h50.json"))
@@ -217,6 +228,7 @@ func vowelTraining() {
         print("unable to generate")
     }
 }
+```
 
 ### Jusqu'où entraîner un modèle ?
 
@@ -240,6 +252,7 @@ Pour créer une instance de 'VowelOnFaceInput', j'ai rajouté une extension à l
 
 Maintenant, ajoutez la méthode suivante dans la classe [RecordVowelVC](https://github.com/3IE/WordRecognition-iOS/blob/v1.0/faceextract/Controller/RecordVowelVC.swift) pour lancer la prédiction :
 
+```swift
 func detectVowel(\_ blendshapes: \[ARFaceAnchor.BlendShapeLocation: NSNumber\]) {
 	let probabilities: \[String:Double\]
 	do {
@@ -254,11 +267,13 @@ func detectVowel(\_ blendshapes: \[ARFaceAnchor.BlendShapeLocation: NSNumber\]) 
 	
 	// TODO : display in your UI your probabilities on the main thread
 }
+```
 
  
 
 Nous voulons lancer la détection de voyelle à chaque update du visage, il faut donc appeler notre méthode dans la fonction "renderer" de [RecordVowelVC](https://github.com/3IE/WordRecognition-iOS/blob/v1.0/faceextract/Controller/RecordVowelVC.swift) :
 
+```swift
 func renderer(\_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
 	guard let faceAnchor = anchor as? ARFaceAnchor else { return }
 	latestBlendShapes = faceAnchor.blendShapes
@@ -266,6 +281,7 @@ func renderer(\_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor
 		detectVowel(latestBlendShapes)
 	}
 }
+```
 
 ##### Amélioration de la prédiction
 
@@ -279,12 +295,14 @@ Je calcule un coefficient compris entre 0 et 1 qui me donne une importance propo
 
 Vous pouvez mettre à jour votre méthode DetectVowel en ajouter le code suivant après calcul des probabilités :
 
+```swift
 vowelHistory.appendNewProbability(probabilities)
 if let best = vowelHistory.averagedSortedDesc.first {
 	DispatchQueue.main.async {
 		//TODO display best.key and best.value
 	}
 }
+```
 
 # Reconnaissance d'un mot
 
@@ -296,6 +314,7 @@ Nous avons ici un signal continu que nous souhaitons reconnaître. Le transforma
 
 On pourrait ajouter en postfix le numéro de l'échantillon, pour obtenir un json de ce type :
 
+```js
 \[
   {
     "mouthFrown\_t1" : 0.025898713676724583,
@@ -305,6 +324,7 @@ On pourrait ajouter en postfix le numéro de l'échantillon, pour obtenir un jso
     //and so on
   }
 \]
+```
 
 Mais cette approche n'est pas valable car les algorithmes de machine learning ont besoin d'un nombre constant de 'feature' à analyser, or la durée d'un mot est variable.
 
@@ -314,6 +334,7 @@ On pourrait tricher en ajoutant des données en padding, pour toujours avoir N �
 
 On pourrait utiliser une approche de 'feature extractation', c'est à dire un reformatage des données. L'idée est de stocker pour chaque trait du visage un 'array' de valeurs correspondant à son historique. Cette approche est crédible car Apple précise dans sa documentation que les [MLDataValue peuvent stocker des Array](https://developer.apple.com/documentation/createml/mldatavalue) (à un détail prêt, il faut des tableaux d'entiers, pas de nombres flottants). On aurait alors le json suivant :
 
+```js
 \[
   {
     "mouthFrown" : \[123, 201, 254\]
@@ -321,6 +342,7 @@ On pourrait utiliser une approche de 'feature extractation', c'est à dire un re
     //and so on
   }
 \]
+```
 
 Malheureusement, même si l'import des données par MLDataTable fonctionne, que le classifier s'entraîne bien, Xcode ne sait pas l'exporter. On récupère l'erreur suivante "Only string, numerical, or dictionary types allowed in exported model."
 
@@ -354,6 +376,7 @@ Nous allons utiliser la détection de neutre avec la classe [HistorizedProbabili
 
 L'enregistrement des expressions et la prise de décision ont été regroupés dans une classe "WordImage". Pour prendre la décision d'enregistrer je vérifie si la probabilité de "something" est 20% supérieur à celle de "neutral", et pour arrêter, je demande 40% de plus. Ce code se trouve dans le fichier [WordImage.swift](https://github.com/3IE/WordRecognition-iOS/blob/v1.0/faceextract/BusinessLogic/WordImage.swift) :
 
+```swift
 func predictNeedToRecord(isCurrentlyRecording: Bool) -> Bool {
 	guard neutralHistory.history.count > 0 else {
 		print("unable to predict with an empty history")
@@ -370,11 +393,13 @@ func predictNeedToRecord(isCurrentlyRecording: Bool) -> Bool {
 	}
 	return isCurrentlyRecording
 }
+```
 
  
 
 L'appel à cette méthode est encapsulé dans la méthode recordOnNeutralDetection(blendShapes:)  qui coordonne la prédiction du neutre et la prise de décision d'enregistrer. C'est cette méthode qui est appelée à chaque mise à jour du 'face tracking'. Ce code est dans le fichier [WordImage.swift](https://github.com/3IE/WordRecognition-iOS/blob/v1.0/faceextract/BusinessLogic/WordImage.swift) :
 
+```swift
 func recordOnNeutralDetection(blendShapes: \[ARFaceAnchor.BlendShapeLocation : NSNumber\]) {
 	neutralPredictionQueue.async {
 		guard let input = NeutralFaceInput(blendshapes: blendShapes) else { return }
@@ -385,11 +410,13 @@ func recordOnNeutralDetection(blendShapes: \[ARFaceAnchor.BlendShapeLocation : N
 		self.needToRecord = self.wordImage.predictNeedToRecord(isCurrentlyRecording: self.needToRecord)
 	}
 }
+```
 
  
 
 Et enfin, on peut appeler notre code depuis le controller [RecordWordVC](https://github.com/3IE/WordRecognition-iOS/blob/v1.0/faceextract/Controller/RecordWordVC.swift). La classe "WordImage" s'occupe aussi de stocker un buffer des dernières expressions détectées, buffer dans lequel on ira piocher les blend shapes qui correspondent au mot que l'utilisateur vient de prononcer :
 
+```swift
 func renderer(\_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
 	guard let faceAnchor = anchor as? ARFaceAnchor else { return }
 	wordImage.appendNewExpression(faceAnchor.blendShapes)
@@ -398,6 +425,7 @@ func renderer(\_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor
 		recordOnNeutralDetection(blendShapes: faceAnchor.blendShapes)
 	}
 }
+```
 
  
 
@@ -409,6 +437,7 @@ Pour améliorer l'image, j'ai décidé de multiplier toutes les valeurs des 'ble
 
 La classe [WordImage](https://github.com/3IE/WordRecognition-iOS/blob/v1.0/faceextract/BusinessLogic/WordImage.swift) contient une méthode wordImageFromExpressions() qui s'occupe de réaliser tout ces traitements. Comme l'implémentation des différentes étapes est panachée de gestion bas niveau des images et que ce n'est pas le sujet de cet article, je vous laisse regarder le code plus en détail sur github si vous le souhaitez. On peut voir les étapes de traitement ci dessous :
 
+```swift
 func wordImageFromExpressions() -> UIImage? {
 	guard neutralHistory.history.count > 0 else {
 		print("unable to determine the right window of expressions containing the word because neutral has not been monitored")
@@ -423,6 +452,7 @@ func wordImageFromExpressions() -> UIImage? {
 	
 	return WordImage.imageFrom(enhancedRecording, addPadding: false)
 }
+```
 
 Il faut ensuite sauvegarder les images sur le téléphone avec un dossier par mot, et on pourra les récupérer sur macOS depuis iTunes.
 
@@ -449,7 +479,7 @@ Comme nous avons des images très petites, une mise à l'échelle standard à te
 
 Par exemple les 4 spectrogrammes ci dessous proviennent de 4 enregistrements différents du mot "maison". Même si la la durée d'enregistrement varie de 29 à 34 échantillons, on peut constater que cela ne se voit plus une fois l'image redimensionnée :
 
- [](/assets/images/bateau1.png)[![](/assets/images/bateau1-150x150.png)](/assets/images/bateau1.png)  [](/assets/images/bateau2.png)[![](/assets/images/bateau2-150x150.png)](/assets/images/bateau2.png)  [](/assets/images/bateau3.png)  [![](/assets/images/bateau3-150x150.png)](/assets/images/bateau3.png)[![](/assets/images/bateau4-150x150.png)](/assets/images/bateau4.png)
+ [](/assets/images/bateau1.png) [![](/assets/images/bateau1-150x150.png)](/assets/images/bateau1.png)  [](/assets/images/bateau2.png) [![](/assets/images/bateau2-150x150.png)](/assets/images/bateau2.png) [](/assets/images/bateau3.png)  [![](/assets/images/bateau3-150x150.png)](/assets/images/bateau3.png) [![](/assets/images/bateau4-150x150.png)](/assets/images/bateau4.png)
 
 Pour traiter vos images, vous pouvez par exemple utiliser le traitement par lot de Photoshop ou bien faire du scripting avec ImageMagick.
 
@@ -463,10 +493,12 @@ Cette fois-ci, au lieu de taper plusieurs lignes de code dans notre playground, 
 
 Pour le mettre en place, ajoutez simplement les lignes suivantes dans votre [playground](https://github.com/3IE/WordRecognitionModelTraining-MacOS/blob/v1.0/wordRecoTraining.playground/Contents.swift) :
 
+```swift
 func wordTraining() {    
     let builder = MLImageClassifierBuilder()	
     builder.showInLiveView()
 }
+```
 
 Avec une trentaine d'itérations, vous devriez obtenir des résultats satisfaisants.
 
@@ -474,6 +506,7 @@ Avec une trentaine d'itérations, vous devriez obtenir des résultats satisfaisa
 
 Pour intégrer votre modèle prédictif de mots, procédez de la même manière que le modèle prédictif de voyelle, en réutilisant le RecordWordVC existant. Par contre, une fois le spectrogramme généré, il faut le redimensionner directement sur le téléphone avant de le donner au modèle coreML. Pour cela j'ai créé une extension de UIImage qui me permet de redimensionner une image avec la qualité d'interpolation de mon choix. Dans le cas présent, on utilisera CGInterpolationQuality.none qui correspond à du 'nearest pixel'. Vous pouvez trouver ce code dans le fichier [Helper.swift](https://github.com/3IE/WordRecognition-iOS/blob/v1.0/faceextract/BusinessLogic/Helper.swift) :
 
+```swift
 extension UIImage {
     func resizedImage(\_ newSize: CGSize, interpolationQuality: CGInterpolationQuality = .default) -> UIImage {
         guard self.size != newSize else { return self }
@@ -489,6 +522,7 @@ extension UIImage {
         return newImage!
     }
 }
+```
 
 On peut ensuite lancer la prédiction.
 

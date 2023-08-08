@@ -5,9 +5,9 @@ categories:
   - "technical"
 ---
 
-En août 2017 , google mettait à disposition son SDK de réalité augmentée : L' **ARCore**. Il succède au Projet Tango, lancé en 2014 et qui visait à répandre la réalité augmentée, grâce à des smartphones pourvus de plusieurs capteurs spéciaux. 
+En août 2017 , google mettait à disposition son SDK de réalité augmentée : L' **ARCore**. Il succède au Projet Tango, lancé en 2014 et qui visait à répandre la réalité augmentée, grâce à des smartphones pourvus de plusieurs capteurs spéciaux. 
 
-Pour le moment seulement certains appareils Android supportent cet outil, parmi eux on retrouve notamment le **Google Pixel** ou encore le **Samsung Galaxy S8****.**
+Pour le moment seulement certains appareils Android supportent cet outil, parmi eux on retrouve notamment le **Google Pixel** ou encore le **Samsung Galaxy S8****.**
 
 La liste exhaustive de devices compatible est publiée sur [la doc ARCore](https://developers.google.com/ar/discover/supported-devices)
 
@@ -33,7 +33,7 @@ A l’heure actuelle, la réalité augmentée est encore **peu répandue**. Un d
 
 [![](/assets/images/hololens.jpg)](/assets/images/hololens.jpg)
 
-Du coté des applications mobile on a par exemple IKEA, qui propose une application permettant de visualiser des meubles chez sois grâce à L’AR, afin d’aider le client dans sa décision. [![](/assets/images/ikea.jpg)](/assets/images/ikea.jpg)
+Du coté des applications mobile on a par exemple IKEA, qui propose une application permettant de visualiser des meubles chez sois grâce à L’AR, afin d’aider le client dans sa décision. [![](/assets/images/ikea.jpg)](/assets/images/ikea.jpg) 
 
 Dans le domaine médical on retrouve également quelques exemples d’opérations dans lesquelles la réalité augmentée est utilisée. Le chirurgien (munis d'Hololens pour les exemples actuels), opère son patient tout en profitant de nombreuses informations affichées en réalité augmentée.[![](/assets/images/31501281374_81b237b65b_b.jpg)](/assets/images/31501281374_81b237b65b_b.jpg)
 
@@ -73,10 +73,13 @@ Sélectionnez l’**Empty Activity** et terminez la création du  nouveau proje
 
 #### Paramétrage :
 
-Nous devons maintenant paramétrer notre projet de sorte qu’il puisse utiliser l'ARCore. Commencez par aller dans le **AndroidManifest.xml** et ajoutez les lignes suivantes :
+Nous devons maintenant paramétrer notre projet de sorte qu’il puisse utiliser l'ARCore. Commencez par aller dans le **AndroidManifest.xml** et ajoutez les lignes suivantes :
 
+```swift
 <uses-permission android:name="android.permission.CAMERA"/>
 <uses-feature android:name="android.hardware.camera.ar" android:required="true"/>
+
+```
 
  
 
@@ -84,26 +87,32 @@ Ajoutez également la ligne suivante, mais ce coup-ci, à l’intérieur des bal
 
 <meta-data android:name="com.google.ar.core" android:value="required"/>
 
- 
+```swift  
 
 Ensuite, rendez vous dans le **gradle.build** du projet, ici (Project: tuto\_ar) , et ajoutez la ligne ci-dessous dans le champ "dependencies" :
 
 classpath 'com.google.ar.sceneform:plugin:1.3.0'
+```
 
  
 
-Enfin, pour terminer notre paramétrage, ajoutez les dépendances suivantes dans le **gradle.build** de l’application (Module : app) :
+Enfin, pour terminer notre paramétrage, ajoutez les dépendances suivantes dans le **gradle.build** de l’application (Module : app) :
 
 Ces deux lignes dans "dependencies" :
 
+```swift
 implementation "com.google.ar.sceneform:core:1.3.0"
 implementation "com.google.ar.sceneform.ux:sceneform-ux:1.3.0"
+```
 
  
 
 Et celle-ci juste dans le "build.gradle" :
 
+```swift
 apply plugin: 'com.google.ar.sceneform.plugin'
+
+```
 
 #### Création de l'ArFragment :
 
@@ -111,6 +120,7 @@ Maintenant que toutes les **autorisations** et **dépendances** ont été ajout�
 
 Tout d’abord, occupons nous du layout. Dans **activity\_main.xml**, supprimez la textView et remplacez la par un **ArFragment** (élément qui va nous permettre d’afficher notre scène augmentée) :
 
+```swift
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -125,6 +135,7 @@ Tout d’abord, occupons nous du layout. Dans **activity\_main.xml**, supprimez 
         android:layout\_height="match\_parent" />
 
 </android.support.constraint.ConstraintLayout>
+```
 
  
 
@@ -132,6 +143,7 @@ Vous pouvez lui donner le nom et les dimensions que vous souhaitez. Ici pour l�
 
 Nous pouvons maintenant réellement commencer à coder. Dans la **MainActivity**, créons tout d’abord un objet **ArFragment** et lions-le à l’ArFragment de notre layout :
 
+```swift
 public class MainActivity extends AppCompatActivity {
 
     private ArFragment arFragment;
@@ -145,12 +157,15 @@ public class MainActivity extends AppCompatActivity {
   }
 }
 
+```
+
 #### Intégration d'un objet virtuel :
 
 Il nous faut maintenant quelque chose à afficher dans notre scène, sans quoi la réalité augmentée perdrait tout son charme (et son intérêt aussi). Pour commencer, nous allons juste **créer un cube rouge**. Libre à vous de changer la couleur ou même la forme si l’idée d’afficher un cube rouge vous dérange.
 
 Voici le code qui nous permet de créer le-dit cube :
 
+```swift
 public class MainActivity extends AppCompatActivity {
 
     private ArFragment arFragment;
@@ -169,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
                   redCubeRenderable = 
                           ShapeFactory.makeCube(new Vector3(0.2f,0.2f,0.2f), new Vector3(0.0f,0.15f,0.0f), material);});
                     //si vous rencontrez un problème ici, il est possible que vous ne soyez pas en java 8 (nécessaire pour les lambdas)
+```
 
  
 
@@ -176,7 +192,7 @@ Récapitulons :
 
 Jusqu’ici nous avons une scène AR contenue dans notre ArFragment et une forme 3D. C’est un bon début mais, comme vous vous en doutez,  il va falloir relier tout ça à un moment. Cependant, avant d’aller plus loin, plusieurs notions sont à comprendre.
 
-Tout d’abord l’organisation des différents modèles affichés dans notre scène. On pourrait représenter leurs différentes relations par **un arbre**. Chaque objet est **un nœud** de l’arbre et peut avoir **un parent** (_au maximum_) et de **0 à X enfants**. Un enfant “suis” son parent. Si l’on déplace le parent, l’enfant bouge avec lui. Pour visualiser, on peut prendre l’exemple suivant : nos bras sont enfants de notre corps. Si notre corps bouge, nos bras, _sauf cas exceptionnellement douloureux_, suivent.
+Tout d’abord l’organisation des différents modèles affichés dans notre scène. On pourrait représenter leurs différentes relations par **un arbre**. Chaque objet est **un nœud** de l’arbre et peut avoir **un parent** (_au maximum_) et de **0 à X enfants**. Un enfant “suis” son parent. Si l’on déplace le parent, l’enfant bouge avec lui. Pour visualiser, on peut prendre l’exemple suivant : nos bras sont enfants de notre corps. Si notre corps bouge, nos bras, _sauf cas exceptionnellement douloureux_, suivent.
 
 Autre notion importante, chaque objet de la scène AR à besoin d’un **point d’ancrage** (**anchor** en anglais). Ainsi, la plupart du temps, on va créer notre anchor et lui donner comme enfant notre objet 3D.
 
@@ -186,6 +202,7 @@ Enfin, dernière chose à prendre en compte, et pas des moindres. Nous souhaiton
 
 Maintenant que nous avons vu toutes ces choses, voyons comment cela se traduit au niveau du code :
 
+```swift
 public class MainActivity extends AppCompatActivity {
 
     private ArFragment arFragment;
@@ -230,6 +247,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
+```
 
  
 
@@ -293,10 +311,12 @@ Le **build.gradle** de l'application a aussi été **modifié**, il vous sera d'
 
 Maintenant que nous avons tous nos éléments, nous pouvons retourner dans **MainActivity**. Supprimez le code créant le cube, et **remplacez** le par celui ci :
 
+```swift
 ModelRenderable.builder()
                 .setSource(this, Uri.parse("3ie.sfb"))
                 .build()
                 .thenAccept(renderable -> mon\_modele = renderable);
+```
 
  
 
@@ -304,6 +324,7 @@ Ici "3ie" est le nom de mon modèle 3D.
 
 Opérez ensuite tout les changements découlant de cette modification. Voici ce que vous devriez obtenir :
 
+```swift
 public class MainActivity extends AppCompatActivity {
 
     private ArFragment arFragment;
@@ -346,6 +367,8 @@ public class MainActivity extends AppCompatActivity {
         );
 
     }
+
+```
 
  
 

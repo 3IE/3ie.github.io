@@ -45,7 +45,7 @@ Le caractère événementiel du projet a incité les équipes à stocker les don
 
 [![Solar Decathlon - image 1](/assets/images/app-solar.jpg)](/assets/images/app-solar.jpg)
 
-Ergonomie et Design : Skapa / Régularisation des données et développement serveur : 3ie
+Ergonomie et Design : Skapa / Régularisation des données et développement serveur : 3ie
 
 Le principal intérêt de ce projet reste la remontée d'une masse d’informations en temps réel, grâce aux capteurs, et leurs mise à disposition sur différentes plateformes web et mobile. En effet l'application SmartCityLive met en scène les données réelles générées par le quartier pour rendre un service : guide touristique, information sur l'énergie, les transports et les habitants.
 

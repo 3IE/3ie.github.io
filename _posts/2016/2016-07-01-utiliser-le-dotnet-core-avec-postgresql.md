@@ -25,12 +25,14 @@ Pour PostgreSQL, vous pouvez l'installer en local ou bien depuis l'image [Docke
 
 Pour faire notre test, initialisez votre base avec les données suivantes :
 
+```pgsql
 CREATE TABLE public.persons
 (
     id SERIAL PRIMARY KEY NOT NULL,
     name VARCHAR(100) NOT NULL
 );
 INSERT INTO persons(name) VALUES ('john'),('frank'),('fred');
+```
 
 ## Création du projet
 
@@ -42,12 +44,14 @@ Pour tester que tout fonctionne bien,  nous allons lancer notre projet. Le temp
 
 Vous devriez obtenir le résultat suivant :
 
+```batch
 $ dotnet run
 Project WebApplication1 (.NETCoreApp,Version=v1.0) was previously compiled. Skipping compilation.
 Hosting environment: Production
 Content root path: /Users/verdie\_b/Documents/versioning/DotnetCoreAndPostgres/src/WebApplication1
-Now listening on: http://\*:5000
+Now listening on: http://*:5000
 Application started. Press Ctrl+C to shut down.
+```
 
 Enfin, vérifiez que l'url suivante [http://localhost:5000/api/values](http://localhost:5000/api/values) s'affiche bien.
 
@@ -59,6 +63,7 @@ Tout d'abord, pour pouvoir se connecter à une base Postgres, il faut que nous a
 
 Ajoutez "Npgsql.EntityFrameworkCore.PostgreSQL" à vos dépendances :
 
+```js
 "dependencies": {
     "Microsoft.NETCore.App": {
       "version": "1.0.0",
@@ -76,6 +81,7 @@ Ajoutez "Npgsql.EntityFrameworkCore.PostgreSQL" à vos dépendances :
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
     "Npgsql.EntityFrameworkCore.PostgreSQL": "1.0.0"
   }
+```
 
 Ensuite faites un $ dotnet restore pour vérifier que la config est valide.
 
@@ -85,6 +91,7 @@ Avec EF Core, comme nous avons déjà notre base, il faut décrire dans le code 
 
 Créez un dossier 'Models' dans votre dossier 'WebApplication1' et ajoutez un fichier 'PersonsContext.cs' :
 
+```c#
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
@@ -112,6 +119,7 @@ namespace WebApplication1.Models
     }
 
 }
+```
 
 Notre base possède des identifiants en minuscule mais la _naming conventions_ en C# dicte que l'on utilise du Upper CamelCase. Ce problème se résout grace aux annotations 'Table' et 'Column' qui permettent de spécifier le nom des colonnes et des tables indépendamment des noms utilisés dans le code.
 
@@ -121,6 +129,7 @@ Pour l'exemple, nous allons  ajouter un web service très simple qui retournera
 
 Dans le dossier 'WebApplication1/Controllers', ajoutez un fichier 'DBController' :
 
+```c#
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -143,6 +152,7 @@ namespace WebApplication1.Controllers
         }
     }
 }
+```
 
 En .Net Core, on n'hérite plus de la classe APIController mais de Controller. Pour déterminer la route qui sera utilisée, il faut regarder l'annotation. Comme nous référençons "api/\[controller\]", le .Net va prendre le nom de la classe et retirer le postfix "Controller", ce qui nous donne la route "api/db"
 

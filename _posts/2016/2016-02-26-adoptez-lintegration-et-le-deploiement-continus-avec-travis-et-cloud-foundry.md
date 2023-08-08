@@ -54,11 +54,13 @@ Comme aucun package n'est pré-installé sur l'image Travis, il est important de
 
 Pour rendre notre projet compatible, un fichier '.travis.yml' très simple est suffisant :
 
+```yaml
 language: node\_js
 node\_js:
   - "stable"
 before\_script:
   - npm install grunt-cli -g
+```
 
 Le paramètre 'language' sert à configurer l'image système à utiliser (NodeJS dans notre cas). Le paramètre 'before\_script' (qui se rapporte au lifecycle) nous permet d'installer _grunt_ avant que Travis n'exécute d'autres commandes.
 
@@ -68,18 +70,22 @@ Comme nous utilisons _bower_, il faut que ce dernier puisse installer ses dépen
 
 Dans le 'package.json', nous avons donc la configuration suivante :
 
+```js
 "scripts": {
 	"postinstall": "bower install && typings install"
 }
+```
 
  
 
 Ensuite, conformément à la [documentation de Travis pour NodeJS](https://docs.travis-ci.com/user/languages/javascript-with-nodejs#Default-Test-Script), c'est la commande 'npm test' qui va être exécutée. Nous avons donc aussi reconfiguré cette étape pour exécuter 'grunt test', ce qui nous donne :
 
+```js
 "scripts": {
 	"postinstall": "bower install && typings install,
 	"test": "grunt test"
 }
+```
 
 # Déploiement Continu avec Cloud Foundry
 
@@ -89,7 +95,7 @@ Les interactions avec Pivotal se font via un CLI, qui s’appelle ‘cf’ pour 
 
 Cloud Foundry utilise des images systèmes que l'on appelle _buildpacks_ et qui contiennent les différents binaires et dépendances nécessaires à votre projet. On peut spécifier le _buildpack_ à utiliser, mais Cloud Foundry sait détecter le type de projet. Dans notre cas, Cloud Foundry détecte un fichier 'package.json' dans le dossier racine, ce qui indique un projet NodeJS.
 
-Il y a sans doute plus adapté pour servir un site web statique, d'autant plus que nous ne somme pas vraiment entrain de faire du NodeJS, on utilise simplement _npm_ pour gérer nos dépendances et avoir une sorte de makefile. On pourrait par exemple utiliser un _buildpack_ qui exécute un _nginx_, mais pour rester simple, nous allons continuer sur le scénario NodeJS.
+Il y a sans doute plus adapté pour servir un site web statique, d'autant plus que nous ne somme pas vraiment entrain de faire du NodeJS, on utilise simplement _npm_ pour gérer nos dépendances et avoir une sorte de makefile. On pourrait par exemple utiliser un _buildpack_ qui exécute un _nginx_, mais pour rester simple, nous allons continuer sur le scénario NodeJS.
 
 ## Configuration
 
@@ -97,9 +103,11 @@ Il y a sans doute plus adapté pour servir un site web statique, d'autant plus 
 
 Regardons le contenu de notre ‘manifest.yml’ :
 
+```yaml
 applications:
 - name: dev-angulartypescriptstarter
   memory: 128M
+```
 
 Il est très simple et contient simplement le nom du projet et la quantité de mémoire que l’on veut utiliser.
 
@@ -114,16 +122,19 @@ Nous avons donc reconfiguré, via le fichier 'package.json', le script 'postinst
 
 Cela nous donne donc la config suivante :
 
+```js
 "scripts": {
 	"postinstall": "bower install && typings install && grunt build",
 	"test": "grunt test",
 	"start": "grunt connect:cloudfoundry"
 }
+```
 
 #### Gruntfile.js
 
 Intéressons nous un instant à la tache 'grunt connect' à laquelle nous avons ajouté la _target_ 'cloudfoundry'.
 
+```js
 connect: {
 	dev: {
 		options: {
@@ -142,6 +153,7 @@ connect: {
 		}
 	}
 }
+```
 
 Les 2 _targets_ ont le même objectif : lancer un serveur web (en l'occurence, [connect](https://www.npmjs.com/package/connect)) qui va _host_ votre site
 
@@ -158,7 +170,7 @@ Maintenant, tapez la commande suivante pour vous connecter à l’endpoint de 
 
 $ cf login -a api.run.pivotal.io
 
- 
+```batch  
 
 Nous pouvons maintenant push notre projet sur Pivotal avec la commande $ cf push qui va utiliser les paramètres de notre 'manifest.yml' pour finaliser le déploiement.
 
@@ -181,9 +193,11 @@ L'encryption de Travis se base sur le principe de cryptographie à clé publique
 Une fois le CLI Travis installé, tapez la commande suivante pour créer la section _deploy_ dans le fichier '.travis.yml'
 
 $ travis setup cloudfoundry
+```
 
 En réponse, Travis nous a généré la configuration suivante :
 
+```yaml
 deploy:
   - provider: cloudfoundry
     api: https://api.run.pivotal.io
@@ -192,6 +206,7 @@ deploy:
       secure: #Pivotal encrypted password
     organization: 3ie
     space: development
+```
 
 ## Améliorations possibles
 
@@ -201,6 +216,7 @@ Il est possible d'ajouter des conditions rattachées à chaque provider. Il est 
 
 Cela nous donne la config suivante dans le fichier '.travis.yml' :
 
+```yaml
 deploy:
   - provider: cloudfoundry
     api: https://api.run.pivotal.io
@@ -224,7 +240,9 @@ deploy:
     on:
       repo: 3IE/TypescriptAngularStarter
       all\_branches: true
-      condition: ${TRAVIS\_BRANCH%%/\*} == release #we check if the start of the branch name contains 'release'
+      condition: ${TRAVIS\_BRANCH%%/*} == release #we check if the start of the branch name contains 'release'
+
+```
 
 #### Buildpack plus optimisé
 

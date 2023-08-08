@@ -32,7 +32,7 @@ Avant de commencer à utiliser BabylonJs, nous allons créer une scène sous 3ds
 
  
 
-Avant toute chose il faut [installer le plugin](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/3ds%20Max) permettant l'export de la scène 3D. Cet export nous permettra d'avoir un fichier _.babylon_ que nous pourrons alors importer dans notre scène WebGL. Le fichier de type _.babylon_ nous permet ici de faire la transition entre le monde BabylonJs et les différents format 3D qui peuvent exister, issus des logiciels de modelage (3ds Max, blender, ...).
+Avant toute chose il faut [installer le plugin](https://github.com/BabylonJS/Babylon.js/tree/master/Exporters/3ds%20Max) permettant l'export de la scène 3D. Cet export nous permettra d'avoir un fichier _.babylon_ que nous pourrons alors importer dans notre scène WebGL. Le fichier de type _.babylon_ nous permet ici de faire la transition entre le monde BabylonJs et les différents format 3D qui peuvent exister, issus des logiciels de modelage (3ds Max, blender, ...).
 
 Sous 3dsMax, un menu Babylon apparaît lorsque le plugin a bien été installé.
 
@@ -40,7 +40,7 @@ Sous 3dsMax, un menu Babylon apparaît lorsque le plugin a bien été installé
 
  
 
-Vous pouvez maintenant exporter votre scène au format BabylonJs. Le fichier _.babylon.manifest,_ qui peut être généré en même temps, permet d'indiquer si vous souhaitez mettre en cache navigateur votre modèle une fois celui-ci chargé une première fois. Ce comportement peut être source de bug quand vous développez car si vous regénérez votre fichier _.babylon,_ il faudra bien penser à nettoyer votre cache navigateur pour voir apparaître vos modifications.
+Vous pouvez maintenant exporter votre scène au format BabylonJs. Le fichier _.babylon.manifest,_ qui peut être généré en même temps, permet d'indiquer si vous souhaitez mettre en cache navigateur votre modèle une fois celui-ci chargé une première fois. Ce comportement peut être source de bug quand vous développez car si vous regénérez votre fichier _.babylon,_ il faudra bien penser à nettoyer votre cache navigateur pour voir apparaître vos modifications.
 
 [![Exporter Babylon](/assets/images/ExporterBabylon-1024x696.png)](/assets/images/ExporterBabylon.png)
 
@@ -50,6 +50,7 @@ Maintenant que votre scène est prête, il faut créer une directive AngularJs 
 
 Dans le fichier [babylonSurface.Directive.ts](https://github.com/3IE/demo-client-hue/blob/v1.0/app/directives/babylonSurface.directive.ts) nous allons donc créer la directive. La propriété template contiendra notre Canvas dans lequel le rendu BabylonJs s’exécutera. La méthode _unboundLink_ nous servira dans l'étape suivante pour déclarer le moteur BabylonJs. L'interface _IBabylonSurfaceDirectiveScope_ contient la variable _newColor_ pour faire transiter la couleur entre le controller AngularJs et notre scène 3D.
 
+```js
 /// <reference path='../../reference.ts'/>
 
 namespace app.directive {
@@ -72,14 +73,14 @@ namespace app.directive {
 
 		private canvasRender: HTMLCanvasElement;
 
-		/\* tslint:disable:typedef \*/
+		/* tslint:disable:typedef */
 		public static Factory() {
 			const directive = () => {
 				return new BabylonSurface();
 			};
 			return directive;
 		};
-		/\* tslint:enable:typedef \*/
+		/* tslint:enable:typedef */
 
 		private unboundLink(scope: IBabylonSurfaceDirectiveScope, element: ng.IAugmentedJQuery, attrs: IBabylonSurfaceDirectiveAttribute): void {
 			let that: BabylonSurface = this;
@@ -89,11 +90,13 @@ namespace app.directive {
 	}
 	angular.module('clilentHUE').directive('BabylonSurface', \[BabylonSurface.Factory()\]);
 }
+```
 
  
 
 Toujours dans cette directive, nous allons déclarer le moteur BabylonJs afin de pouvoir effectuer le rendu de la scène. Nous injecterons également dans la directive notre service ('business.light') permettant de faire le lien avec notre API. Pour pouvoir instancier le moteur BabylonJs (_BABYLON.Engine_), nous devons lui passer en paramètre la surface de rendu, dans notre cas le canvas de la directive _(this.canvasRender_). Pour charger une scène issue de 3dsMax, il faut utiliser la méthode _BABYLON.SceneLoader.Load_ en lui passant en paramètre le fichier \*.babylon. Celle-ci prend également en paramètre une callBack permettant d'être notifiée quand le fichier a fini d'être chargé. Sur une scène plus compliquée, nous pouvons également utiliser l'_[AssetManager](http://doc.babylonjs.com/tutorials/how_to_use_assetsmanager)_.
 
+```js
 namespace app.directive {
 	'use strict';
 
@@ -117,14 +120,14 @@ namespace app.directive {
 		private canvasRender: HTMLCanvasElement;
 		private engine: BABYLON.Engine;
 
-		/\* tslint:disable:typedef \*/
+		/* tslint:disable:typedef */
 		public static Factory() {
 			const directive = (businessLight: engine.common.business.Light) => {
 				return new BabylonSurface(businessLight);
 			};
 			return directive;
 		};
-		/\* tslint:enable:typedef \*/
+		/* tslint:enable:typedef */
 
 		private unboundLink(scope: IBabylonSurfaceDirectiveScope, element: ng.IAugmentedJQuery, attrs: IBabylonSurfaceDirectiveAttribute): void {
 			let that: BabylonSurface = this;
@@ -148,6 +151,7 @@ namespace app.directive {
 	}
 	angular.module('clientHUE').directive('BabylonSurface', \['business.light', BabylonSurface.Factory()\]);
 }
+```
 
  
 
@@ -157,26 +161,29 @@ Le but de cet article est de montrer l'interaction entre l'application AngularJS
 
 Dans le controller ([HomeController](https://github.com/3IE/demo-client-hue/blob/v1.0/app/controllers/home.controller.ts)) attaché à la page qui hébergera notre directive, nous définissons le scope AngularJS suivant :
 
+```js
 export interface IDebugControllerScope extends ng.IScope {
-	/\*\*
+	/*\*
 	 \* méthode pour faire la transformation du colorPicker vers
 	 \* la couleur typée 
-	 \*/
+	 */
 	changeColor: () => void;
-	/\*\*
+	/*\*
 	 \* représentation de la couleur typée
-	 \*/
+	 */
 	newColor: app.models.Light;
-	/\*\*
+	/*\*
 	 \* variable de la couleur binder sur le colorPicker 
-	 \*/
+	 */
 	myColor: string;
 }
+```
 
  
 
 Dans le constructeur du controller nous implémentons la méthode _changeColor_. Celle ci sera appelée pour valider la couleur du picker, la convertir en notre modèle et la transférer à notre directive. (Pour alléger le code nous aurions pu mettre aussi cette transformation directement dans un filter).
 
+```js
 this.$scope.changeColor = () => {
 	const re: RegExp = /rgba?\\(\\s\*(\\d{1,3})\\s\*,\\s\*(\\d{1,3})\\s\*,\\s\*(\\d{1,3})\\s\*(?:,\\s\*(\\d+(?:\\.\\d+)?)\\s\*)?\\)/;
 	const resultatParse: RegExpExecArray = re.exec(this.$scope.myColor);
@@ -184,6 +191,7 @@ this.$scope.changeColor = () => {
 	that.$scope.newColor.color.g = parseInt(resultatParse\[2\], 10) / 255;
 	that.$scope.newColor.color.b = parseInt(resultatParse\[3\], 10) / 255;
 };
+```
 
  
 
@@ -191,6 +199,7 @@ La variable this.$scope.myColor est bindée sur un [color picker](http://myplane
 
 Ensuite au niveau de la partie html, nous passons notre variable de scope à notre directive :
 
+```xhtml
 <color-picker 
 	ng-model="myColor" 
 	color-picker-format="'rgb'"
@@ -198,14 +207,17 @@ Ensuite au niveau de la partie html, nous passons notre variable de scope à not
 		></color-picker>
 <button ng-click="changeColor()">change color</button>
 <babylon-surface newColor="newColor"></babylon-surface>
+```
 
  
 
 Nous pouvons accéder à la variable _newColor_ dans la directive car nous l'avons déclarée dans le scope de celle-ci lors de sa création :
 
+```js
 interface IBabylonSurfaceDirectiveScope extends ng.IScope {
 	newColor: app.models.Light;
 }
+```
 
  
 
@@ -213,6 +225,7 @@ A l'heure actuelle nous pouvons faire passer la couleur de notre controller Angu
 
 La première étape dans notre directive est donc de passer à notre classe _[WorldManager](https://github.com/3IE/demo-client-hue/blob/v1.0/app/game_engine/WorldManager.ts)_ la variable de scope _newColor_. Celle-ci étant passée par référence nous aurons bien tous les changements d'état  (ex: Changement de couleur à travers le color picker). La classe _[WorldManager](https://github.com/3IE/demo-client-hue/blob/v1.0/app/game_engine/WorldManager.ts)_ exposera deux méthodes createScene (qui permettra d'initialiser notre scène en configurant les interactions avec les objets, les caméras, ...) et la méthode renderLoop (qui mettra à jour notre scène en fonction de l'état de la variable newColor)
 
+```js
 private unboundLink(scope: IBabylonSurfaceDirectiveScope, element: ng.IAugmentedJQuery, attrs: IBabylonSurfaceDirectiveAttribute): void {
 	let that: BabylonSurfaceNew = this;
 	that.canvasRender = element.children()\[0\] as HTMLCanvasElement;
@@ -236,11 +249,13 @@ private unboundLink(scope: IBabylonSurfaceDirectiveScope, element: ng.IAugmented
 		});
 	});
 }
+```
 
  
 
 La seconde étape est de compléter la méthode createScene. Comme indiqué plus haut, elle permet de configurer notre scène. La première action est d'éteindre la lumière de la lampe. Puis nous allons rendre pickable (pouvoir interagir avec un mesh et notre souris) l'interrupteur de la lampe. Pour réaliser cela, BabylonJS projète le point d'impact de notre souris  et vérifie s'il y a une collision avec un objet dit pickable. Pour simplifier le code nous utiliserons l'[ActionManager](http://doc.babylonjs.com/tutorials/How_to_use_Actions) de BabylonJS que nous attachons à l'interrupteur. L'ActionManager permet d'attacher une réponse à un event se produisant sur l'objet sur lequel il est attaché. Dans notre cas lors d'un clic gauche sur l'interrupteur, nous allons lancer une animation actionnant l'interrupteur ainsi que la gestion de la lumière avec la méthode ManageLight (savoir si nous devons allumer ou éteindre la lumière de la scène et de quelle couleur nous devons l'afficher)
 
+```js
 public createScene(scene: BABYLON.Scene): void {
 	let that: WorldManager = this;
 	scene.lights\[1\].setEnabled(false);
@@ -262,6 +277,7 @@ public createScene(scene: BABYLON.Scene): void {
 		}
 	});
 }
+```
 
 # Communication bidirectionnelle
 
@@ -269,6 +285,7 @@ Notre serveur étant capable de pousser de la données vers les clients pour les
 
 Pour gérer la partie WebSocket, nous ajoutons une méthode _realData_ dans la couche d'accès aux données dans le fichier [data.light.ts](https://github.com/3IE/demo-client-hue/blob/v1.0/app_engine/common/data/data.light.ts). Nous allons utiliser la bibliothèque [socket.io](http://socket.io/) disponible à travers [npm socket.io-client](https://www.npmjs.com/package/socket.io-client). Il faut d'abord créer le WebSocket grâce à la méthode _io.connect_ à laquelle il faut passer l'url du serveur créé dans la première partie (Par défaut localhost:3000). Sur la réception du nom de l'event (_eventName_) nous appliquerons la fonction passée en paramètre sous forme de callback.
 
+```js
 public realData(eventName: string, callback: Function): void {
 	this.socket = io.connect('http://localhost:3000/');
 	const that: Light = this;
@@ -280,6 +297,7 @@ public realData(eventName: string, callback: Function): void {
 		});
 	});
 }
+```
 
  
 
@@ -287,6 +305,7 @@ Pour utiliser cette communication bidirectionnelle, nous allons ajouter le suppo
 
 La Callback permettra de mettre à jour la couleur de la lampe, ou bien de l'éteindre en fonction du message qui sera passé à la WebSocket.
 
+```js
 this.businessLight.realData('stateLight', function(data: models.Light): void {
 	that.isRemoteChange = true;
 	that.newColor.color.r = data.color.r;
@@ -297,6 +316,7 @@ this.businessLight.realData('stateLight', function(data: models.Light): void {
 	that.activeLight = data.state;
 
 });
+```
 
  
 

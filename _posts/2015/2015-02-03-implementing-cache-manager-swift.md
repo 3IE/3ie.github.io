@@ -28,6 +28,7 @@ The CacheManager implementation is pretty straightforward
 
 First, let's declare our class. The objectMaxId variable will be used to generate the next unique filename to link for an object identifier. You could use "filenameFromIdDico.count" but by using another variable you can improve more easily your CacheManager. For example you could allow for removal of objects and still guarantee that you generate a valid unique filename.
 
+```swift
 class CacheManager: NSObject, NSCoding {
 	private var objectMaxId: Int = 0
 	private var filenameFromIdDico: \[String : String\] = \[:\]
@@ -36,11 +37,13 @@ class CacheManager: NSObject, NSCoding {
 		super.init()
 	}	
 }
+```
 
  
 
 First of all, here is an utility method that we are going to use to generate a full path from a filename
 
+```swift
 class func pathInDocDirectory(filename: String)->String? {
 	let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
 	if paths.count > 0 {
@@ -50,11 +53,13 @@ class func pathInDocDirectory(filename: String)->String? {
 	}
 	return nil
 }
+```
 
  
 
 Since Swift does not currently allow class to have static variable, the singleton uses the method of the computed property with a Struct containing a static variable (check this [singleton tutorial](http://thatthinginswift.com/singletons/) to learn more about this). The only difference is that we try to load an existing CacheManager from the phone instead of simply instantiating a new cache manager
 
+```swift
 class var sharedInstance: CacheManager {
 	struct Static {
 		static var instance: CacheManager?
@@ -73,11 +78,13 @@ class var sharedInstance: CacheManager {
 	}
 	return Static.instance!
 }
+```
 
  
 
 The init method is used by the NSKeyedUnarchiver.unarchiveObjectWithFile when we reload the CacheManager
 
+```swift
 required init(coder aDecoder: NSCoder) {
 	super.init()
 	self.objectMaxId = aDecoder.decodeIntegerForKey("objectMaxId")
@@ -85,15 +92,19 @@ required init(coder aDecoder: NSCoder) {
 		self.filenameFromIdDico = dico
 	}
 }
+```
 
  
 
 The encodeWithCoder is used by the NSKeyedArchiver.archiveRootObject to save the CacheManager
 
+```swift
 func encodeWithCoder(aCoder: NSCoder) {
 	aCoder.encodeInteger(self.objectMaxId, forKey: "objectMaxId")
 	aCoder.encodeObject(self.filenameFromIdDico, forKey: "filenameFromUrlDic")
 }
+
+```
 
  
 
@@ -103,6 +114,7 @@ If it's an object whose ID we do not know, we assign it a unique filename, then 
 
 Every time we save an object, we save the CacheManager.
 
+```swift
 func saveObject(object:AnyObject, identifier:String) -> Bool {
 	if (identifier.isEmpty) {
 		return false
@@ -131,11 +143,13 @@ func saveObject(object:AnyObject, identifier:String) -> Bool {
 	self.saveToDevice()
 	return status;
 }
+```
 
  
 
 And finaly the method to load an object from its identifier. If we find it in the dictionnary, we load this object
 
+```swift
 func loadObject(identifier:String) -> AnyObject? {
 	if let filename: String = self.filenameFromIdDico\[identifier\] {
 		if let filepath = CacheManager.pathInDocDirectory(filename) {
@@ -144,6 +158,7 @@ func loadObject(identifier:String) -> AnyObject? {
 	}
 	return nil
 }
+```
 
  
 

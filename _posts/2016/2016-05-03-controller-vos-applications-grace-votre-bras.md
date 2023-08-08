@@ -39,7 +39,7 @@ Dans cet article, nous illustrerons l'utilisation du bracelet MYO en venant comp
 
 Pour Windows nous pouvons récupérer le SDK directement sur [leur site](https://s3.amazonaws.com/thalmicdownloads/windows/SDK/myo-sdk-win-0.9.0.zip). La version du SDK est une DLL implémentée en C++. Dans notre cas nous souhaitons l'utiliser à travers une application UWP développé en C#. Il faut donc référencer un wrapper que vous pouvez trouver sur ce [github MyoSharp](https://github.com/tayfuzun/MyoSharp).
 
-La 1ère étape est de copier la DLL officielle (en fonction de votre plateforme il faudra prendre soit le x86 ou la x64), la copier dans votre projet et ne pas oubliez de la copier à chaque fois dans votre répertoire de build. Pour cela modifier dans les propriétés de la DLL l'option _Copy to output directory_ avec la valeur _Copy always._ 
+La 1ère étape est de copier la DLL officielle (en fonction de votre plateforme il faudra prendre soit le x86 ou la x64), la copier dans votre projet et ne pas oubliez de la copier à chaque fois dans votre répertoire de build. Pour cela modifier dans les propriétés de la DLL l'option _Copy to output directory_ avec la valeur _Copy always._ 
 
 ![myo_dll](/assets/images/myo_dll-1024x681.png)
 
@@ -51,15 +51,19 @@ Il faut ensuite référencer notre wrapper c# dans les références de notre pro
 
 Maintenant, nous devons nous connecter au Myo pour recevoir les différents événements du bracelet. Dans cet article nous allons ajouter cette fonctionnalité dans le viewModel '[LampViewModel.cs](https://github.com/3IE/universal-manager-light/blob/v2.0.0/UniversalManagerLight/ViewModel/LampViewModel.cs)', mais ce code peut se mettre à n'importe quel endroit où vous souhaitez déclencher la surveillance des événements du Myo. Pour cela il faut ouvrir un canal de communication :
 
+```c#
 var channel = Channel.Create(
        ChannelDriver.Create(ChannelBridge.Create(),
        MyoErrorHandlerDriver.Create(MyoErrorHandlerBridge.Create()))
 );
 
+```
+
 Puis nous allons gérer les événements de connexion et déconnexion du bracelet grâce à un HUB.
 
 Nous pouvons également interagir avec le Myo depuis le code par exemple en le faisant vibrer avec la méthode _Vibrate._
 
+```c#
 var hub = MyoSharp.Device.Hub.Create(channel);
 
 // listen for when the Myo connects
@@ -79,10 +83,13 @@ hub.MyoDisconnected += (sender, e1) =>
     e1.Myo.PoseChanged -= Myo\_PoseChanged;
 };
 
+```
+
 Le cœur de l'algorithme va maintenant se situer dans la réponse à l’événement _PoseChanged._ C'est dans cet événement que nous allons être notifié de chaque position détectée par le MYO. Dans notre cas nous allons filtrer uniquement l'action _double tap_ pour allumer ou éteindre notre lampe. Lorsque l'événement _DoubleTap_ sera détecté, on utilisera notre dataAccess pour envoyer un ordre à notre serveur d'API.
 
-Dans l'argument de l’événement (_PoseEventArgs_) nous pouvons récupérer d'autres informations grâce à la propriété _Myo._ Vous pouvez filtrer les gestes grâce à l'enum _Pose,_ mais également récupérer la direction du bras, ou encore les données de l'accéléromètre_._
+Dans l'argument de l’événement (_PoseEventArgs_) nous pouvons récupérer d'autres informations grâce à la propriété _Myo._ Vous pouvez filtrer les gestes grâce à l'enum _Pose,_ mais également récupérer la direction du bras, ou encore les données de l'accéléromètre_._
 
+```c#
 private async void Myo\_PoseChanged(object sender, PoseEventArgs e)
 {
     switch (e.Myo.Pose)
@@ -105,9 +112,13 @@ private async void Myo\_PoseChanged(object sender, PoseEventArgs e)
     }
 }
 
+```
+
 Nous intégrons un simple bouton dans notre vue XAML pour lancer l'action. Cette action est basée sur une commande (_StartListeningMyo_) contenu dans le viewModel :
 
+```xhtml
 <Button  RequestedTheme="Dark" Command="{Binding StartListeningMyo}" IsEnabled="{Binding IsEnabledMyo}">Activer</Button>
+```
 
  
 

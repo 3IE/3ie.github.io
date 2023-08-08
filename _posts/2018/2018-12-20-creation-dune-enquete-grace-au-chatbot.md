@@ -53,45 +53,59 @@ Une des contraintes concernant l’_Enum_ est de la faire commencer à 1, le 0 �
 
 Le but de _DialogForm_ étant de nous simplifier la vie, il est capable de générer une question cohérente par rapport au nom du champ. Cependant nous pouvons remplacer cette génération en utilisant l’attribut _Prompt_.
 
+```c#
 \[Prompt("Voulez-vous recevoir notre newsletter ? {||}")\]
 public bool Newsletter;
+
+```
 
 ## Génération des choix pour les réponses
 
 Les réponses aux questions, sont générées de manière automatique également en se basant sur la valeur des _enums_. Ainsi pour une valeur d’_enum_ « _ScienceFiction_ » la génération affichera « Science Fiction » il en aurait été de même pour une valeur d’_enum_ « Science\_Fiction » Si nous voulons afficher « Science-fiction » Nous devons utiliser l’attribut _Describe_.
 
+```c#
 \[Describe("Science-fiction")\]
 ScienceFiction = 1,
+```
 
 L’utilisateur pour répondre, peut également taper des synonymes comme « SF » par exemple. Pour que le programme puisse interpréter convenablement la réponse nous devons lui spécifier les termes qu’il peut accepter en utilisant l’attribut _Term_ :
 
+```c#
 \[Describe("Science-fiction")\]
 \[Terms("SF", "Science fiction", "Science-fiction")\]
 ScienceFiction = 1,
+```
 
 L’attribut _Describe_ peut également prendre en compte des images :
 
+```c#
 \[Describe(image: "https://www.staples.fr/content//assets/images/product/76170-00H\_1\_xnl.jpg")\]
 Eau = 1,
+```
 
 ## Validation des réponses
 
 Il existe également d’autres attributs permettant de conditionner la réponse ainsi sur un champ entier nous pouvons lui spécifier un intervalle :
 
+```c#
 \[Numeric(10, 100)\]
 public int Age;
+```
 
 Si la réponse n’est pas dans cet intervalle, le dialogue demandera une nouvelle réponse.
 
 La validation peut également être plus complexe en utilisant un pattern de validation de type expression régulière.
 
+```c#
 \[Pattern("(@)(.+)$")\]
 public string Email;
+```
 
 ## Configuration de l’enchaînement des questions
 
 Pour instancier notre dialogue, nous allons implémenter une méthode renvoyant un _IForm<NomDeLaClasse>_ . Le corps de base de cette méthode générant le _Dialog_ se trouve ci dessous.
 
+```c#
 public static IForm<MovieForm> BuildForm()
 {
     return new FormBuilder<MovieForm>()
@@ -101,6 +115,7 @@ public static IForm<MovieForm> BuildForm()
            .Build();
 
 }
+```
 
 La fonction message permet de lancer la série de questions. La méthode _Confirm_ permet une fois l’ensemble du questionnaire réalisé de demander une confirmation à l’utilisateur ainsi si celui-ci souhaite changer une réponse, il peut revenir à la question pour changer sa réponse.
 
@@ -110,6 +125,7 @@ En exécutant tel quel cette méthode, c'est le framework qui choisira l'ordre d
 
 Pour définir l’ordre des questions il faut utiliser l’attribut _Field_, en indiquant le nom du champ
 
+```c#
 public static IForm<MovieForm> BuildForm()
 {
     return new FormBuilder<MovieForm>()
@@ -120,9 +136,11 @@ public static IForm<MovieForm> BuildForm()
            .Build();
 
 }
+```
 
 Nous pouvons également décider de modifier la séquence des questions, et ainsi avoir une méthode nous indiquant la prochaine étape en fonction d’une valeur. Pour cela nous pouvons écrire une méthode qui retournera la prochaine étape, si nous souhaitons continuer l'ordre défini par les méthodes _Field("..")_, nous devrons juste appeler _NextStep()_ :
 
+```c#
 private static NextStep SetNextAfterLocation(object value, MovieForm state)
 {
 
@@ -141,19 +159,22 @@ private static NextStep SetNextAfterLocation(object value, MovieForm state)
 
     }
 }
+```
 
 Dans le cas d’une localisation « Autre » nous avons utilisé une _Enum_ _StepDirection_ qui permet de terminer directement le dialogue.
 
 Pour utiliser cette méthode il faut la déclarer à la suite de _Field_.
 
+```c#
 .Field(new FieldReflector<MovieForm>(nameof(LocationTheater))
     .SetNext(SetNextAfterLocation))
+```
 
 Nous pouvons également directement désactiver une question en fonction de la réponse d’une autre question :
 
 .Field(nameof(Drink), state => state.LocationTheater == LocationTheaterOptions.Paris13)
 
-Ainsi la question _Drink_ ne sera posée que si _LocationTheater_ est égale à _Paris13_.
+```c# Ainsi la question _Drink_ ne sera posée que si _LocationTheater_ est égale à _Paris13_.
 
 Dans le paragraphe précédent nous avons pu voir que nous pouvions valider une réponse en fonction d’attributs (Numeric, Pattern, …). Bien que ces attributs répondent à une grande partie des problématiques, ils ne peuvent gérer des cas complexes. Dans cette situation nous pouvons utiliser une autre surcharge de _Field_ pour spécifier nous même une méthode de validation.
 
@@ -171,6 +192,7 @@ Dans le paragraphe précédent nous avons pu voir que nous pouvions valider une 
 
     return result;
   })
+```
 
 La validation d’une question se fait en retournant un objet _ValidateResult_. Si la validation est conforme vous devez setter l’attribut _IsValid_ à _true_ et indiquer la _Value_ pour cette question. Dans le cas où la réponse est non valide, _IsValid_ doit être renseigné à _false_ et vous devez surtout indiquer un feedback pour votre utilisateur.
 
@@ -184,9 +206,10 @@ La construction du dialogue passe par la méthode suivante :
 
 Chain.From(() => FormDialog.FromForm(MovieForm.BuildForm))
 
-Que nous chaînons avec la méthode _Do_ permettant d’exécuter le dialogue. C’est dans cette action que nous pourrons récupérer les éléments de réponse du dialogue.
+```swift Que nous chaînons avec la méthode _Do_ permettant d’exécuter le dialogue. C’est dans cette action que nous pourrons récupérer les éléments de réponse du dialogue.
 
 var completed = await survey;
+```
 
 La variable _completed_ contient les champs public de notre classe _MovieForm_. Il ne faut pas oublier non plus de gérer les cas d’erreur notamment lorsque nous avions retourné _NextStep(StepDirection.Quit);_ Cette instruction provoque une exception dans l’exécution que nous devons _catcher_. Nous pourrions laisser notre utilisateur sans information, mais il s’agirait ici d’une mauvaise expérience. A travers _e.LastForm_ vous pouvez accéder au résultat du dialogue et ainsi déterminer pourquoi vous avez quitté le dialogue et informer convenablement votre utilisateur de la raison.
 

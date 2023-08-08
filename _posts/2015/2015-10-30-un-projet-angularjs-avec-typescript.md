@@ -29,6 +29,7 @@ Cet article se décomposera en plusieurs parties :
 
 Afin d'avoir une base pour commencer notre projet voici la structure de la solution :
 
+```swift
 ├───app (Répertoire contenant l'application)
 │ ├───controllers (Répertoire contenant les controllers angularjs)
 │ ├───css (Répertoire de destination après compilation des fichiers less)
@@ -43,6 +44,7 @@ Afin d'avoir une base pour commencer notre projet voici la structure de la solut
 │ 		 └───data (Répertoire contenant la couche d'accès aux données, par exemple les requêtes vers les API)
 ├───bower\_components
 ├───models (Répertoire contenant les fichiers des objets)
+```
 
  
 
@@ -50,20 +52,24 @@ Pour initaliser la solution nous allons télécharger la bibliothèque angularJS
 
 c:\\myproject> bower install angular angular-bootstrap angular-ui-router angular-ui-validate bootstrap less --save
 
-L'option --save permet d'enregistrer les dépendances dans le fichier bower.json
+```sh L'option --save permet d'enregistrer les dépendances dans le fichier bower.json
 
 ##### tsd
 
 La première étape de configuration d'un projet Angular en Typescript est de récupérer les fichiers de définition, ayant pour extension \*.d.ts. Dès que vous souhaitez utiliser une bibliothèque externe n'étant pas écrite en Typescript, il vous faudra récupérer ces fichiers afin de permettre l'autocomplétion. Ces fichiers sont disponibles grâce au projet [tsd manager](http://definitelytyped.org/tsd/). Pour l'utiliser il faut l'installer grâce à NPM.
 
 C:\\myproject> npm install tsd -g
+```
 
 Une fois tsd installé, il faut l'initialiser. Pour cela, tapez la commande suivante :
 
+```batch
 C:\\myproject> tsd init
 
 -> written tsd.json
 -> written typings\\tsd.d.ts
+
+```
 
 Vous venez d'ajouter un fichier tsd.json qui permet de configurer l'ensemble des fichiers de définitions que vous allez installer pour votre projet. C'est grâce à  ce fichier que les autres développeurs récupéreront exactement les mêmes versions que vous. Le fichier tsd.d.ts permet quand à lui de recenser tous les fichiers de définitions que vous avez configuré. C'est ce fichier que vous référencerai afin d'obtenir l'auto complétion sur vos bibliothèques externes.
 
@@ -74,6 +80,7 @@ De base nous installons 2 fichiers de définition :
 
 N'oubliez pas de rajouter l'option --save pour que les fichiers \*.d.ts soit inscrit dans le fichier typings\\tsd.d.ts
 
+```batch
 C:\\myproject> tsd install angular angular-ui-router --save
 
  - angular-ui-router / angular-ui-router
@@ -90,6 +97,8 @@ C:\\myproject> tsd install angular angular-ui-router --save
     - angularjs/angular.d.ts
     - jquery/jquery.d.ts
 
+```
+
 ##### Grunt
 
 Afin de pouvoir compiler nos fichiers typescript nous devons également installer quelques dépendances npm :
@@ -102,7 +111,7 @@ Afin que ces dépendances soient sauvegardées sur le projet (package.json), n'o
 
 C:\\myproject> npm install grunt grunt-develop grunt-ts load-grunt-tasks typescript grunt-http-server --save
 
-Nous allons maintenant modifier le Gruntfile pour réaliser la compilation des fichiers TS. A cette étape le Gruntfile ne servira que pour la compilation. Nous verrons lors d'un prochain article comment l'enrichir pour générer les fichiers CSS, faire les tests et effectuer un déploiement du site.
+```batch Nous allons maintenant modifier le Gruntfile pour réaliser la compilation des fichiers TS. A cette étape le Gruntfile ne servira que pour la compilation. Nous verrons lors d'un prochain article comment l'enrichir pour générer les fichiers CSS, faire les tests et effectuer un déploiement du site.
 
 module.exports = function (grunt) {
 
@@ -112,7 +121,7 @@ module.exports = function (grunt) {
 
     ts: {
       default: {
-        src: \["\*\*/\*.ts", "!node\_modules/\*\*/\*.ts", "!bower\_components/\*\*/\*.ts", "app\_engine/\*\*/\*.ts"\],
+        src: \["\**/*.ts", "!node\_modules/**/*.ts", "!bower\_components/**/*.ts", "app\_engine/**/*.ts"\],
         options: {
           target: 'es5',
           module: 'commonjs',
@@ -123,7 +132,7 @@ module.exports = function (grunt) {
     }, 
     clean: { 
       // remove old javascript files 
-      public: \["app/\*.js", "app/\*\*/\*.js", "app\_engine/\*\*/\*.js"\]
+      public: \["app/*.js", "app/**/*.js", "app\_engine/**/*.js"\]
     },
     'http-server':{
       'dev':{
@@ -144,6 +153,7 @@ module.exports = function (grunt) {
   grunt.registerTask('default', \['clean','ts'\]);
   
 };
+```
 
 Ici, la tache par défaut du Gruntfile permet de nettoyer le répertoire des fichiers JS avant de compiler les fichiers TS.
 
@@ -163,7 +173,7 @@ Avant toute chose nous devons ajouter un fichier reference.ts à la racine du 
 
 /// <reference path="./typings/tsd.d.ts"/>
 
-La 1ere étape du développement consiste à déclarer notre application Angular. Pour cela créez un fichier app.startup.ts pour initialiser les différentes routes et configurer l'application (Vous pouvez vous inspirer du fichier présent dans le [starter](https://github.com/3IE/TypescriptAngularStarter/blob/fd622603c3bf224b8bedc26a7cfa84c204eeb0ce/app/app.startup.ts)).
+```js La 1ere étape du développement consiste à déclarer notre application Angular. Pour cela créez un fichier app.startup.ts pour initialiser les différentes routes et configurer l'application (Vous pouvez vous inspirer du fichier présent dans le [starter](https://github.com/3IE/TypescriptAngularStarter/blob/fd622603c3bf224b8bedc26a7cfa84c204eeb0ce/app/app.startup.ts)).
 
 ##### **Création d'un controller**
 
@@ -177,9 +187,11 @@ namespace app {
 		pseudo:string;
 	}
 }
+```
 
 La seconde étape est de la déclarer la classe du controller dans laquelle on va injecter le $scope typé :
 
+```js
 namespace app{
 	'use strict';
 	
@@ -196,9 +208,11 @@ namespace app{
 		}
 	}
 }
+```
 
 L'enregistrement du controller ce fait comme d'habitude grâce à angular.module("...").controller("...")
 
+```swift
 namespace app{
 	'use strict';
 	
@@ -217,11 +231,13 @@ namespace app{
 	
 	angular.module('starterKit').controller("NavBarController", \["$scope", NavBarController\]);
 }
+```
 
 ##### Ajout d'une classe model
 
 Afin d'avoir un projet typé, les classes Model doivent elles aussi être déclarées. Pour cela, créez un répertoire Models à la racine du projet, puis ajoutez un fichier ts pour référencer votre nouvelle classe :
 
+```js
 namespace app.models{
 	'use strict';
 	
@@ -232,14 +248,19 @@ namespace app.models{
 		}
 	}
 }
+```
 
 N'oubliez pas d'ajouter la référence vers ce fichier ts dans le fichier reference.ts. De cette manière la déclaration de cette classe pourra être utilisée dans tout le reste du projet. Il faut également ajouter la référence vers le fichier js qui sera généré dans l'index.html.
 
+```js
 /// <reference path="./typings/tsd.d.ts"/>
 /// <reference path="./models/school.ts"/>
 
+```
+
 utilisation de la classe school dans un controller :
 
+```js
 /// <reference path="../../reference.ts"/>
 
 namespace app {
@@ -258,6 +279,7 @@ namespace app {
 
 	angular.module('starterKit').controller("ProfileController", \["$scope", ProfileController\]);
 }
+```
 
 ##### Déclaration d'un service
 
@@ -265,15 +287,16 @@ Dans notre cas nous nous servons des services pour séparer les couches au nivea
 
 Dans cette classe d'accès aux données nous allons utiliser ng.IHttpService pour accéder aux API et ng.IQService pour les _promises_.
 
+```js
 /// <reference path="../../../reference.ts"/>
 
 namespace engine.common.data {
 	'use strict';
 
 	export class User {
-		/\*\*
+		/*\*
 		 \*
-		 \*/
+		 */
 		constructor(private $http: ng.IHttpService, private $q: ng.IQService) {
 
 		}
@@ -296,6 +319,7 @@ namespace engine.common.data {
 
 	angular.module('common.data').service("data.user", \["$http", "$q", User\]);
 }
+```
 
 Lorsque vous rajoutez des services ou tout fichier TS devant être utilisé dans le reste de la solution n'oubliez pas de rajouter la référence dans le fichier reference.ts à la racine du projet. Sinon vous n'obtiendrez pas l'auto-complétion.
 
@@ -303,6 +327,7 @@ Lorsque vous rajoutez des services ou tout fichier TS devant être utilisé dans
 
 Pour réaliser une directive il faut implémenter ng.IDirective. La particularité de la directive est le fait de définir une méthode (Factory) permettant de retourner une instance de la directive. Cela est du à Angular qui demande toujours une fonction en paramètre lors la déclaration d'une directive. Si vous devez récupérer des paramètres de la directive vous pouvez enrichir ng.IAttributes, par exemple pour exécuter une fonction du _controller_.
 
+```js
 /// <reference path="../../reference.ts"/>
 
 module app.directive {
@@ -341,6 +366,8 @@ module app.directive {
 	angular.module('starterKit').directive("ngEnter", \[NgEnter.Factory()\]);
 }
 
+```
+
 ##### Dernière étape la compilation
 
 Etant donné que nous avons créé un gruntfile au début du projet nous allons pouvoir automatiser cette partie. Si vous êtes sous VS Code vous pouvez lancer une tache grunt avec la commande : crl + maj + p Sélectionnez launch task, puis le nom de la tache à lancer (dans notre cas Default).
@@ -353,6 +380,7 @@ Si on souhaite gagner un peu de temps et lancer directement une tache de compila
 
 Il faut ensuite compléter le fichier avec le nom de la tache que l'on souhaite exécuter (dans notre cas default).
 
+```js
 {
     "version": "0.1.0",
     "command": "grunt",
@@ -362,11 +390,13 @@ Il faut ensuite compléter le fichier avec le nom de la tache que l'on souhaite 
         "taskName": "default"
     }\]
 }
+```
 
 Maintenant lorsque l'on refait ctrl + maj + b nous pouvons lancer directement notre tache de compilation.
 
 L'interet d'utiliser ce type de technologie c'est que nous ne sommes pas lié à un IDE. Ainsi si nous ouvrons un invite de commande nous pouvons également executer notre tache grunt.
 
+```batch
 C:\\myproject>grunt default
 
 Running "ts:default" (ts) task
@@ -378,6 +408,7 @@ TypeScript compilation complete: 2.27s for 17 TypeScript files.
 Done, without errors.
 
 C:\\myproject>
+```
 
 ##### Tester le site
 

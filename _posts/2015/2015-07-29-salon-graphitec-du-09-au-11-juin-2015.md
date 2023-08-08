@@ -32,7 +32,7 @@ Ayant une invitation pour ce salon, nous avons pu assister à différentes conf�
 
  
 
-Le thème du salon était: «  **A l’ère de la transformation digitale des entreprises et de la convergence des médias, quel est l’impact de cette mutation pour les acteurs des Arts et industries graphiques ?  Quelles stratégies, quels outils, quelles organisations, devront-ils mettre en place pour s’adapter à cette nouvelle donne dans un contexte économique difficile ?** »
+Le thème du salon était: «  **A l’ère de la transformation digitale des entreprises et de la convergence des médias, quel est l’impact de cette mutation pour les acteurs des Arts et industries graphiques ?  Quelles stratégies, quels outils, quelles organisations, devront-ils mettre en place pour s’adapter à cette nouvelle donne dans un contexte économique difficile ?** »
 
 A l’heure actuelle, nous vivons une réelle mutation dans les métiers graphiques. Les entreprises sont obligées de changer leurs fusils d’épaules si elles veulent perdurer et coexister avec le monde du digital. Ce salon a permis de voir à travers les **différentes conférences**:
 
@@ -56,7 +56,7 @@ Les **Master Class**, nous, proposent plusieurs ateliers avec la présence d’*
 
 [![wacom-cintiq-companion-3qtr](/assets/images/wacom-cintiq-companion-3qtr-300x229.jpg)](/assets/images/wacom-cintiq-companion-3qtr.jpg)
 
-dOu encore la **Cintiq HD24** :
+dOu encore la **Cintiq HD24** :
 
 [![710x440_DTH2400HD_02](/assets/images/710x440_DTH2400HD_02-300x186.jpg)](/assets/images/710x440_DTH2400HD_02.jpg)
 

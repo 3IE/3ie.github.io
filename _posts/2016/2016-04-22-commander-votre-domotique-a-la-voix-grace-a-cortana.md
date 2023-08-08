@@ -11,16 +11,17 @@ tags:
   - "uwp"
 ---
 
-Dans cette partie, nous allons nous intéresser à une NUI (Natural User Interface) : la reconnaissance vocale à travers _Cortana_ qui est l’assistant vocal de Windows10. Les commandes vocales dans les applications windows sont disponibles depuis déjà un moment, l’intérêt de _Cortana_ est de pouvoir établir un semblant d'interactivité. On parle ici d'un semblant car il faut programmer le comportement, et c'est que nous allons voir à travers cet article. Nous allons étudier une interaction directe avec l'application et une autre sous forme de dialogue directement dans _Cortana_ afin de contrôler notre lampe Philips HUE, pour laquelle nous avions développé un serveur lors d'une [partie précédente](https://blog.3ie.fr/un-exemple-de-projet-iot/). Le traitement du langage humain peut mener à certaines ambiguïtés. Cette problématique peut être levée avec [LUIS](https://www.microsoft.com/cognitive-services/en-us/language-understanding-intelligent-service-luis) que nous traiterons dans un prochain article. L'ensemble du code de cet article est disponible sur notre [Github](https://github.com/3IE/universal-manager-light/tree/v1.0.0).
+Dans cette partie, nous allons nous intéresser à une NUI (Natural User Interface) : la reconnaissance vocale à travers _Cortana_ qui est l’assistant vocal de Windows10. Les commandes vocales dans les applications windows sont disponibles depuis déjà un moment, l’intérêt de _Cortana_ est de pouvoir établir un semblant d'interactivité. On parle ici d'un semblant car il faut programmer le comportement, et c'est que nous allons voir à travers cet article. Nous allons étudier une interaction directe avec l'application et une autre sous forme de dialogue directement dans _Cortana_ afin de contrôler notre lampe Philips HUE, pour laquelle nous avions développé un serveur lors d'une [partie précédente](https://blog.3ie.fr/un-exemple-de-projet-iot/). Le traitement du langage humain peut mener à certaines ambiguïtés. Cette problématique peut être levée avec [LUIS](https://www.microsoft.com/cognitive-services/en-us/language-understanding-intelligent-service-luis) que nous traiterons dans un prochain article. L'ensemble du code de cet article est disponible sur notre [Github](https://github.com/3IE/universal-manager-light/tree/v1.0.0).
 
 # Objectifs
 
 ## Architecture
 
-Pour interagir avec _Cortana_ il faut une application sous Windows10, et si on souhaite la diffuser également sous Windows Phone, une application universelle (UWP) est tout indiquée. Nous suivrons une logique de programmation de type MVVM tout au long de cet article. Pour raison de simplicité nous avons utilisé le framework [MVVM Light](http://www.mvvmlight.net/), mais tout le code peut être compatible avec d'autres frameworks tel que [PRISM](https://github.com/PrismLibrary/Prism). Il existe deux interactions avec _Cortana_ : la première est de lancer des ordres lorsque l'application est en cours d’exécution, et la seconde est d'inscrire des commandes auprès de _Cortana_ (sous forme de composant).
+Pour interagir avec _Cortana_ il faut une application sous Windows10, et si on souhaite la diffuser également sous Windows Phone, une application universelle (UWP) est tout indiquée. Nous suivrons une logique de programmation de type MVVM tout au long de cet article. Pour raison de simplicité nous avons utilisé le framework [MVVM Light](http://www.mvvmlight.net/), mais tout le code peut être compatible avec d'autres frameworks tel que [PRISM](https://github.com/PrismLibrary/Prism). Il existe deux interactions avec _Cortana_ : la première est de lancer des ordres lorsque l'application est en cours d’exécution, et la seconde est d'inscrire des commandes auprès de _Cortana_ (sous forme de composant).
 
 [![Architecture Cortana](/assets/images/Architecture-300x178.png)](/assets/images/Architecture.png) Les commandes vocales sont décrites dans un fichier XML qui suit la norme [VCD](https://msdn.microsoft.com/fr-fr/library/windows/apps/dn722331). Ci dessous un exemple de fichier de définition (celui que nous utiliserons dans cet article est disponible sur notre [github](https://github.com/3IE/universal-manager-light/blob/v1.0.0/UniversalManagerLight/VoiceCommandDefinition.xml)) :
 
+```xhtml
 <?xml version="1.0" encoding="utf-8"?>
 <VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
   <CommandSet xml:lang="fr-fr" Name="UniversalAppCommandSet\_fr-fr">
@@ -34,6 +35,7 @@ Pour interagir avec _Cortana_ il faut une application sous Windows10, et si on s
     </Command>   
   </CommandSet>
 </VoiceCommands>
+```
 
 Le nœud VoiceCommands peut contenir plusieurs CommandSet, ce qui est utile lorsque vous souhaitez utiliser votre reconnaissance vocale dans plusieurs langues. Vous devez renseigner la langue du CommandSet (dans notre cas 'fr-fr').
 
@@ -63,6 +65,7 @@ Avant toute chose nous allons créer un viewModel ([LampViewModel.cs](https://gi
 
 Ce viewModel contiendra les commandes (OnLight, OffLight, ChangeColor) à exécuter pour piloter notre lampe. Afin de garder notre UI réactive, nous utiliserons ici le couple async / await pour nous assurer de l'asynchronisme de nos commandes. La variable _Message_ est bindée sur notre interface permettant d'avoir un feedback pour notre utilisateur.
 
+```c#
 OnLight = new RelayCommand(async (param) =>
 {
     bool res = await dataAccess.On(new Models.Light() { State = true, LightId = 1, Color = new Models.Color() });
@@ -76,10 +79,13 @@ OnLight = new RelayCommand(async (param) =>
     }
 });
 
+```
+
  
 
-Pour faire la liaison entre notre viewModel et notre serveur d'API pilotant les lampes Philips HUE, nous passerons par notre classe [Light.cs](https://github.com/3IE/universal-manager-light/blob/v1.0.0/DataAccess/Light.cs) située dans la dataAccess. Pour faire transiter notre structure d'objet vers notre serveur, nous sérialisons avec la méthode _JsonConvert.SerializeObject_ 
+Pour faire la liaison entre notre viewModel et notre serveur d'API pilotant les lampes Philips HUE, nous passerons par notre classe [Light.cs](https://github.com/3IE/universal-manager-light/blob/v1.0.0/DataAccess/Light.cs) située dans la dataAccess. Pour faire transiter notre structure d'objet vers notre serveur, nous sérialisons avec la méthode _JsonConvert.SerializeObject_ 
 
+```c#
 private const string BASE\_URL = "http://localhost:3000/";
 public async Task<bool> On(Models.Light light)
 {
@@ -99,19 +105,25 @@ public async Task<bool> On(Models.Light light)
     }
 }
 
+```
+
  
 
 Maintenant l'ensemble du travail va s'effectuer dans l'[App.xaml.cs](https://github.com/3IE/universal-manager-light/blob/v1.0.0/UniversalManagerLight/App.xaml.cs)
 
 Il faut tout d'abord charger le fichier de définition des commandes vocales (_[VoiceCommandDefinition.xml](https://github.com/3IE/universal-manager-light/blob/v1.0.0/UniversalManagerLight/VoiceCommandDefinition.xml)_) situé à la racine du projet. Ce chargement doit avoir lieu au moment du lancement de l'application, sur l'event _OnLaunched_.
 
+```c#
 var storageFile = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///VoiceCommandDefinition.xml"));
 await Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(storageFile);
+
+```
 
  
 
 Puis sur la réponse à l'event _OnActivated_, nous allons filtrer le résultat de la reconnaissance vocale afin d'instancier le ViewModel avec les bons paramètres. Le filtre s'effectue avec l'enum _ActivationKind_ et la valeur _VoiceCommand_. Cette condition nous permet de pouvoir caster en toute sécurité l'argument _commandArgs_ en _VoiceCommandActivatedEventArgs._ Ce cast nous permet de récupérer le nom de la commande ainsi que le texte qui a été prononcé pour activer cette commande. Ensuite, il ne reste qu'à filtrer le nom de la commande pour configurer le contexte d’exécution. Dans un exemple plus complet nous pourrions récupérer par exemple l'id de la lampe sur laquelle on souhaite agir.
 
+```c#
  if (args.Kind == ActivationKind.VoiceCommand)
 {
     var commandArgs = args as VoiceCommandActivatedEventArgs;
@@ -147,11 +159,13 @@ Puis sur la réponse à l'event _OnActivated_, nous allons filtrer le résultat 
             break;
     }
 }
+```
 
  
 
 Le cas du changement de couleur pour une lampe va nous permettre d'introduire le concept de désambiguïsation. Typiquement pour le changement de couleur nous avons introduit dans le fichier [VoiceCommandDefinition.xml](https://github.com/3IE/universal-manager-light/blob/v1.0.0/UniversalManagerLight/VoiceCommandDefinition.xml) une possibilité de choix au niveau des couleurs avec la variable _color._ La liste de choix pour cette variable se trouve dans le noeud _PhraseList_ ayant pour label le nom de la variable à savoir dans notre cas _color._
 
+```xhtml
 <Command Name="changeColor">
     <Example>  change la couleur en rouge  </Example>
     <ListenFor RequireAppName="BeforeOrAfterPhrase"> change la couleur en {color} </ListenFor>
@@ -163,20 +177,24 @@ Le cas du changement de couleur pour une lampe va nous permettre d'introduire le
     <Item>bleu</Item>
     <Item>vert</Item>
 </PhraseList>
+```
 
  
 
 Pour obtenir ce choix et pouvoir envoyer les bons paramètres à notre viewModel, nous utiliserons la propriété _SemanticInterpretation_ du résultat de la commande vocale. Pour factoriser le code nous utiliserons la méthode :
 
+```c#
 private string SemanticInterpretation(string interpretationKey, SpeechRecognitionResult speechRecognitionResult)
 {
     return speechRecognitionResult.SemanticInterpretation.Properties\[interpretationKey\].FirstOrDefault();
 }
+```
 
  
 
 Maintenant nous pouvons compléter le switch case pour différencier les différentes commandes :
 
+```c#
 switch (voiceCommandName)
 {
     case "offLight":
@@ -217,13 +235,15 @@ switch (voiceCommandName)
         break;
 }
 
+```
+
  
 
-Ensuite nous pouvons lancer la navigation vers la page qui est associée au viewModel avec la méthode _Navigate_ 
+Ensuite nous pouvons lancer la navigation vers la page qui est associée au viewModel avec la méthode _Navigate_ 
 
 rootFrame.Navigate(navigationToPageType, navigationCommand);
 
- 
+```c#  
 
 La récupération des paramètres _navigationCommand_ s'effectuera dans la méthode _OnNavigatedTo_ de la [page](https://github.com/3IE/universal-manager-light/blob/v1.0.0/UniversalManagerLight/View/Lamp.xaml.cs)_._ Dans la logique du MVVM, le _DataContext_ est bindé sur le ViewModel de la page, ce qui nous permet de pouvoir récupérer les commandes du ViewModel et de pouvoir passer les paramètres de la commande vocale.
 
@@ -253,6 +273,8 @@ protected override void OnNavigatedTo(NavigationEventArgs e)
 
 }
 
+```
+
  
 
 Maintenant nous avons le chemin complet pour lancer une commande à travers Cortana et allumer notre lampe.
@@ -275,6 +297,7 @@ La première étape est de récupérer le _AppServiceTriggerDetails_ qui nous p
 
 La deuxième étape est de récupérer la commande vocale. Ensuite nous retrouverons la même logique pour dispatcher les ordres vers notre dataAccess grâce à un _switch case_ sur le nom de la commande_._ Si aucune commande ne correspond, nous lancerons l'application.
 
+```c#
 var triggerDetails = taskInstance.TriggerDetails as AppServiceTriggerDetails;
 
 voiceServiceConnection =
@@ -293,10 +316,13 @@ switch (voiceCommand.CommandName)
         break;
 }
 
+```
+
  
 
-La méthode _SendCompletionMessageForAmbiance permet_ d'établir un dialogue avec notre utilisateur pour lui indiquer les différents choix s'offrant à lui. Dans le but d'apporter un retour à notre utilisateur nous commençons par lui afficher un message à travers notre méthode _ShowProgressScreen._ Pour afficher une réponse à notre utilisateur il faut utiliser la méthode _CreateResponse_ de la classe statique _VoiceCommandResponse_ qui prend en paramètre un type _VoiceCommandUserMessage._ Ce type est intéressant car il va nous permettre d'indiquer ce que _Cortana_ devra afficher mais également prononcer à travers les propriétés respectives _DisplayMessage_ et _SpokenMessage._
+La méthode _SendCompletionMessageForAmbiance permet_ d'établir un dialogue avec notre utilisateur pour lui indiquer les différents choix s'offrant à lui. Dans le but d'apporter un retour à notre utilisateur nous commençons par lui afficher un message à travers notre méthode _ShowProgressScreen._ Pour afficher une réponse à notre utilisateur il faut utiliser la méthode _CreateResponse_ de la classe statique _VoiceCommandResponse_ qui prend en paramètre un type _VoiceCommandUserMessage._ Ce type est intéressant car il va nous permettre d'indiquer ce que _Cortana_ devra afficher mais également prononcer à travers les propriétés respectives _DisplayMessage_ et _SpokenMessage._
 
+```c#
 private async Task ShowProgressScreen(string message)
 {
     var userProgressMessage = new VoiceCommandUserMessage();
@@ -306,10 +332,13 @@ private async Task ShowProgressScreen(string message)
     await voiceServiceConnection.ReportProgressAsync(response);
 }
 
+```
+
  
 
 Pour constituer une liste de choix il faut créer une liste de _VoiceCommandContentTile._ Dans notre cas nous allons utiliser uniquement un contenu textuel pour interagir.
 
+```c#
 var ambianceContentTiles = new List<VoiceCommandContentTile>();
 
 var ambianceWork = new VoiceCommandContentTile();
@@ -319,19 +348,23 @@ ambianceWork.TextLine1 = "Permet de mettre les lampes en vert";
 ambianceWork.AppContext = "work";
 
 ambianceContentTiles.Add(ambianceWork);
+```
 
  
 
 Lorsque la liste de choix est réalisée nous pouvons l'afficher à l'utilisateur avec la fonction _CreateResponseForPrompt._ Celle-ci, en plus de prendre en paramètre notre liste de choix, doit également prendre les messages à afficher à l'utilisateur. Lorsque l'utilisateur a répondu nous devons analyser sa réponse pour récupérer le nom de l'ambiance.
 
+```c#
 var response = VoiceCommandResponse.CreateResponseForPrompt(userPrompt, userReprompt, ambianceContentTiles);
 var voiceCommandDisambiguationResult = await voiceServiceConnection.RequestDisambiguationAsync(response);
 string ambiance = voiceCommandDisambiguationResult.SelectedItem.AppContext as string;
+```
 
  
 
 Vous pouvez également demander une confirmation à votre utilisateur; la réponse négative ou positive sera alors contenu dans la réponse.
 
+```c#
 userPrompt.DisplayMessage = userPrompt.SpokenMessage = "Activer l'ambiance  " + ambiance;
 userReprompt.DisplayMessage = userReprompt.DisplayMessage = "Voulez vous activer l'ambiance " + ambiance + "?";
 response = VoiceCommandResponse.CreateResponseForPrompt(userPrompt, userReprompt);
@@ -341,6 +374,7 @@ if (voiceCommandConfirmation.Confirmed)
 {
 
 }
+```
 
  
 
@@ -348,11 +382,14 @@ Selon la réponse de l'utilisateur, nous pouvons lancer notre ordre grâce à l
 
 Une fois l'interaction terminée il faut notifier l'utilisateur que le flux est terminé.
 
+```swift
 var userMessage = new VoiceCommandUserMessage();
 
 userMessage.DisplayMessage = userMessage.SpokenMessage = "L'ambiance " + ambiance + " a été activée";
 response = VoiceCommandResponse.CreateResponse(userMessage);
 await voiceServiceConnection.ReportSuccessAsync(response);
+
+```
 
  
 

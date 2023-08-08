@@ -5,7 +5,7 @@ categories:
   - "tendances-web"
 ---
 
-  _Noël est bel et bien là : illuminations, sapins, frénésie dans les magasins... que ce soit dans le métro, sur les affichages 4/3 vous n’avez pas pu échapper aux messages subliminaux des marques cette année : pour être "in" et tendance il faudra offrir High-Tech._ Un sondage réalisé par Intel révèle que plus de la moitié (51%) des Européens comptent offrir des produits high-tech à cette occasion. Ce marché promet donc d’être fort lucratif. Des jouets pour enfants aux cadeaux originaux pour adultes tout le monde y passe.
+ _Noël est bel et bien là : illuminations, sapins, frénésie dans les magasins... que ce soit dans le métro, sur les affichages 4/3 vous n’avez pas pu échapper aux messages subliminaux des marques cette année : pour être "in" et tendance il faudra offrir High-Tech._ Un sondage réalisé par Intel révèle que plus de la moitié (51%) des Européens comptent offrir des produits high-tech à cette occasion. Ce marché promet donc d’être fort lucratif. Des jouets pour enfants aux cadeaux originaux pour adultes tout le monde y passe.
 
 Pour les retardataires voici la sélection 3ie des cadeaux qui méritent une place sous le sapin :
 
@@ -29,7 +29,7 @@ _Prix : 30€_
 
  
 
-[![archos-music-beany-1](/assets/images/archos-music-beany-1.jpg)](http://www.archos.com/fr/products/objects/cself/amb/index.html)[Bonnet Bluetooth Archos Beany](http://www.archos.com/fr/products/objects/cself/amb/index.html) : Bonne idée pour les frileux fondus de musique et pas très exigent sur la qualité du son. En associant ce bonnet tricoté à son smartphone via bluetooth on peut écouter notre musique n’importe où. Grâce à un système de bouton et micro intégrés directement au bonnet on peut même contrôler le volume du son et décrocher lors d’un appel. Disponible en 4 couleurs il y’en aura pour tous les goûts.
+[![archos-music-beany-1](/assets/images/archos-music-beany-1.jpg)](http://www.archos.com/fr/products/objects/cself/amb/index.html)[Bonnet Bluetooth Archos Beany](http://www.archos.com/fr/products/objects/cself/amb/index.html) : Bonne idée pour les frileux fondus de musique et pas très exigent sur la qualité du son. En associant ce bonnet tricoté à son smartphone via bluetooth on peut écouter notre musique n’importe où. Grâce à un système de bouton et micro intégrés directement au bonnet on peut même contrôler le volume du son et décrocher lors d’un appel. Disponible en 4 couleurs il y’en aura pour tous les goûts.
 
 _Prix : 29€_
 
