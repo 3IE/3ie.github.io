@@ -61,3 +61,9 @@ Pour aller plus loin, il serait judicieux d'exploiter les possibilités exclusiv
 Bien qu’il soit possible de réaliser une application fonctionnant à travers les deux plateformes avec une approche utilisateur similaire, les interactions doivent être réfléchies à l’avance avec les deux appareils en tête. La réalité mixte, telle que proposée par l’Hololens 2, se distingue de la réalité virtuelle par une interactivité réduite, mais une plus grande souplesse par la possibilité d’exploiter l’environnement réel, ainsi qu’une plus grande expressivité avec les gestes des mains et la direction du regard tracé.
 
 Noé Topeza
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **owen.duffourg**

@@ -16,23 +16,29 @@ First include LocalAuthentication framework into your app via Target > Build Pha
 Once it's done, this code snippet prompts the user to either authenticate via Touch ID, or via password, and the callback give you the process result.
 
 ```swift
-Context \*myContext = \[\[LAContext alloc\] init\];
-NSError \*authError = nil;
-NSString \*myLocalizedReasonString = @"Please authenticate to access your private photos"; //Provide the reason why you're requesting Touch ID authentication
+Context *myContext = [[LAContext alloc] init];
+NSError *authError = nil;
+NSString *myLocalizedReasonString = @"Please authenticate to access your private photos"; //Provide the reason why you're requesting Touch ID authentication
 
-if (\[myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError\]) {
-    \[myContext evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
+if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
+    [myContext evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
               localizedReason:myLocalizedReasonString
-                        reply:^(BOOL success, NSError \*error) {
+                        reply:^(BOOL success, NSError *error) {
                             if (success) {
                                 NSLog(@"Success");
                             } else {
                                 NSLog(@"Failure: %@", error.localizedDescription);
                             }
-                        }\];
+                        }];
 } else {
     NSLog(@"AuthError: %@", authError.localizedDescription);
 }
 ```
 
 However, Apple specifies you must provide the very good reason why you're requesting the user to authenticate in your app ; moreover, the UX impact is significant so that you may use this feature only when there is a clear necessity to.
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **herve.droit**

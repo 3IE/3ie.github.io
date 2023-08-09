@@ -28,7 +28,7 @@ C'est cette composante qui définit les endroits accessibles et inaccessibles da
 
 L'association de ces deux paramètres permet une configuration précise de l'environnement.
 
-\[gallery columns="1" size="full" ids="1926"\]
+[gallery columns="1" size="full" ids="1926"]
 
 #### NavMeshAgent:
 
@@ -42,19 +42,19 @@ Cette composante va permettre à l'agent de se déplacer. Un agent ne peut se d�
 
 Cette composante permet d'ajuster le comportement d'un agent. Imaginons que vous souhaitiez configurer la navigation d'un ennemi et qu'il y a des zones que vous souhaitez qu'ils évitent mais peuvent utiliser en dernier recours. Cette composante peut permettre de définir la zone à éviter, l'agent l'évitera donc sauf s'il n'a pas le choix. Pour en savoir plus sur la composante et ses paramètres vous pouvez vous référer à la [documentation](https://docs.unity3d.com/Manual/class-NavMeshModifier.html). Cette composante se base sur la hiérarchie des composantes Transform.
 
-\[gallery columns="1" size="full" ids="1954"\]
+[gallery columns="1" size="full" ids="1954"]
 
 #### NavMeshModifierVolume:
 
 Cette composante a le même but que celle du dessus sauf qu'elle se base sur le volume. Vous pouvez vous référer à sa [documentation](https://docs.unity3d.com/Manual/class-NavMesh-ModifierVolume.html) pour une étude plus approfondie.
 
-\[gallery columns="1" size="full" ids="1955"\]
+[gallery columns="1" size="full" ids="1955"]
 
 #### NavMeshLink:
 
 Cette composante permet de lier deux endroits qui utilisent la composante [NavMeshSurface](https://docs.unity3d.com/Manual/class-NavMeshSurface.html). Elle permet de lier différentes surfaces ou une surface à elle-même. Comme montré dans la [documentation](https://docs.unity3d.com/Manual/class-NavMeshLink.html), elle est utile pour l'utilisation de sauts par exemple.
 
-\[gallery columns="2" size="full" ids="1950,1951"\]
+[gallery columns="2" size="full" ids="1950,1951"]
 
 ### Utilisation dynamique:
 
@@ -86,7 +86,7 @@ Après différents tests, j'en ai conclu que :
 
 Pour illustrer le tout, j'ai réalisé un projet mettant en scène l'utilisation des composantes NavMesh dynamiquement. J'utilise uniquement les composantes [NavMeshSurface](https://docs.unity3d.com/Manual/class-NavMeshSurface.html) et [NavMeshAgent](https://docs.unity3d.com/560/Documentation/Manual/class-NavMeshAgent.html). Mon environnement est créé sous un GameObject parent qui possède le [NavMeshSurface](https://docs.unity3d.com/Manual/class-NavMeshSurface.html). Ci-dessous la configuration de mon [NavMeshSurface](https://docs.unity3d.com/Manual/class-NavMeshSurface.html) et de mon [NavMeshAgent](https://docs.unity3d.com/560/Documentation/Manual/class-NavMeshAgent.html):
 
-\[gallery columns="2" size="full" ids="2022,2023"\]
+[gallery columns="2" size="full" ids="2022,2023"]
 
 [Mon script](https://github.com/Pleuvens/NavBoy/blob/develop/Assets/Scripts/Maze/Maze.cs) s’exécute comme suit:
 
@@ -118,4 +118,10 @@ Si vous souhaitez voir le code source du projet dans son intégralité vous pouv
 
 Voici le résultat:
 
-\[gallery columns="1" size="full" ids="1920"\]
+[gallery columns="1" size="full" ids="1920"]
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **pleuvens.fervil**

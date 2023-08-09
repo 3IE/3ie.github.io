@@ -25,7 +25,7 @@ La première étape est de créer un plugin unity permettant d'avoir un Broadcas
 1. Sous Android Studio, vous pouvez créer un projet avec une activity basic; nous reviendrons sur cette activity dans la prochaine partie. Elle correspondra à notre application de configuration. [![](/assets/images/1_CreateBasicActivity-1024x711.png)](/assets/images/1_CreateBasicActivity.png)
 2. Ouvre le menu module settings [![](/assets/images/2_OpenModuleSettings.png)](/assets/images/2_OpenModuleSettings.png)
 3. Rajouter un module (le + en haut à gauche) de type Android Library nommé  "PluginCommunication"
-4. Puis créer une classe"ConfigurationReceiver" dérivant de BroadcastReceiver, il faudra implémenter la méthode OnReceive. C'est dans cette méthode que nous allons indiquer "le protocol" de communication, en fait il s'agit juste de dire dans quelle variable de l'intent nous allons rechercher l'information. Dans notre cas nous avons choisi la variable EXTRA\_TEXT de cette manière nous ferons véhiculer l'information dans une chaine Json que nous serons capables de traiter coté Unity.
+4. Puis créer une classe"ConfigurationReceiver" dérivant de BroadcastReceiver, il faudra implémenter la méthode OnReceive. C'est dans cette méthode que nous allons indiquer "le protocol" de communication, en fait il s'agit juste de dire dans quelle variable de l'intent nous allons rechercher l'information. Dans notre cas nous avons choisi la variable EXTRA_TEXT de cette manière nous ferons véhiculer l'information dans une chaine Json que nous serons capables de traiter coté Unity.
     
     ```java
     public class ConfigurationReceiver extends BroadcastReceiver {
@@ -34,7 +34,7 @@ La première étape est de créer un plugin unity permettant d'avoir un Broadcas
     
         @Override
         public void onReceive(Context context, Intent intent) {
-            String sentIntent = intent.getStringExtra(Intent.EXTRA\_TEXT);
+            String sentIntent = intent.getStringExtra(Intent.EXTRA_TEXT);
     
             if (sentIntent != null){
                 text = sentIntent;
@@ -54,7 +54,7 @@ La première étape est de créer un plugin unity permettant d'avoir un Broadcas
     
         @Override
         public void onReceive(Context context, Intent intent) {
-            String sentIntent = intent.getStringExtra(Intent.EXTRA\_TEXT);
+            String sentIntent = intent.getStringExtra(Intent.EXTRA_TEXT);
     
             if (sentIntent != null){
                 text = sentIntent;
@@ -126,7 +126,7 @@ Si vous souhaitez mettre en cache ces informations pour éviter de toujours lanc
 
 # Création de l'application de configuration
 
-Nous allons maintenant nous servir de notre projet "app" que nous avions créer dans la première partie. Sur la vue de l'activity (app/res/layout/content\_main.xml) , vous pouvez ajouter un textbox et un bouton.
+Nous allons maintenant nous servir de notre projet "app" que nous avions créer dans la première partie. Sur la vue de l'activity (app/res/layout/content_main.xml) , vous pouvez ajouter un textbox et un bouton.
 
 [![](/assets/images/5_InterfaceContentMain-1024x516.png)](/assets/images/5_InterfaceContentMain.png)
 
@@ -146,14 +146,14 @@ myButton.setOnClickListener(new View.OnClickListener() {
         }
         Intent myIntent = new Intent();
         myIntent.setAction("fr.iiie.unityConfiguration");
-        myIntent.putExtra(Intent.EXTRA\_TEXT, applicationInformation.toString() );
+        myIntent.putExtra(Intent.EXTRA_TEXT, applicationInformation.toString() );
         sendOrderedBroadcast(myIntent, null, new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 Bundle results = getResultExtras(true);
                 Log.i("SendOrderedBroadc", "Final Result Receiver = " + results.getString("Breadcrumb", "nil"));
             }
-        }, null, Activity.RESULT\_OK, null, null);
+        }, null, Activity.RESULT_OK, null, null);
     }
 });
 ```
@@ -165,3 +165,9 @@ myButton.setOnClickListener(new View.OnClickListener() {
 Une fois l'application Unity installée, ainsi que l'application de configuration nous pouvons renseigner les informations dans l'application native et s'assurer que ces informations sont bien récupérées sur l'application unity.
 
 Vous pouvez retrouver les sources de l'application et du plugin sur notre [github](https://github.com/3IE/UnityConfigurator).
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **arnaud.lemettre**

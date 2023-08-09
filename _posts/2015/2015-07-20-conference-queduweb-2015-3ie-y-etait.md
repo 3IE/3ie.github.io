@@ -47,3 +47,9 @@ Enfin, le dernier point à noter autour de cette journée est la position des pr
 Il est pourtant crucial aujourd'hui d'avoir un référencement plus que correct quand on sait que les trois premiers résultats de Google captent plus de 90% des clics et que ces trois premiers résultats contiennent très souvent des adwords mis en place par Google.
 
 En conclusion, beaucoup de sujets et de débats d'actualité dans le monde du référencement et plus généralement du web d'aujourd'hui ont été abordés durant cette journée de conférence QueDuWeb 2015. Et beaucoup restent en suspens aujourd'hui et devront être résolus dans les années à venir. La question du respect de la vie privée est une question que se pose de plus en plus de personnes depuis l'affaire Snowden et les dernières actions et annonces de Google forcent les particuliers à s'en poser de plus en plus.
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **cedric.eugeni**

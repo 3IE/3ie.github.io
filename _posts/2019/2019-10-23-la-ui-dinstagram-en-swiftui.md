@@ -65,7 +65,7 @@ quant à :
 
 ```swift
 #if DEBUG
-struct ContentView\_Previews: PreviewProvider {
+struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
@@ -266,7 +266,7 @@ struct StoriesView: View {
             }
             
             // Stories Circles
-            ScrollView(\[.horizontal\], showsIndicators: false){
+            ScrollView([.horizontal], showsIndicators: false){
                 HStack {
                    Image("AvatarBig1")
                    Image("AvatarBig1")
@@ -375,3 +375,9 @@ L'application est disponible en Open Source sur [ce dépôt](https://github.com/
 Pour l'avoir testé pendant quelques jours SwiftUI est un Framework assez puissant et efficace surtout pour des UI simples. Plus besoin de UITableViewDelegates, ViewController management... Cependant UIKit restera le framework phare d'Apple (pour le moment). Sachez qu'il est possible d'utiliser les deux Frameworks UIKit et SwiftUI au sein du même projet.
 
 N'hésitez pas à jeter un coup d'oeil sur quelques projets intéressants réalisés en SwiftUI : [About-SwiftUI](https://github.com/Juanpe/About-SwiftUI)
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **yassir.ramdani**

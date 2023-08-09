@@ -85,12 +85,15 @@ Nous devons maintenant paramétrer notre projet de sorte qu’il puisse utiliser
 
 Ajoutez également la ligne suivante, mais ce coup-ci, à l’intérieur des balises application :
 
+```swift
 <meta-data android:name="com.google.ar.core" android:value="required"/>
+```
 
-```swift  
+ 
 
-Ensuite, rendez vous dans le **gradle.build** du projet, ici (Project: tuto\_ar) , et ajoutez la ligne ci-dessous dans le champ "dependencies" :
+Ensuite, rendez vous dans le **gradle.build** du projet, ici (Project: tuto_ar) , et ajoutez la ligne ci-dessous dans le champ "dependencies" :
 
+```swift
 classpath 'com.google.ar.sceneform:plugin:1.3.0'
 ```
 
@@ -118,28 +121,28 @@ apply plugin: 'com.google.ar.sceneform.plugin'
 
 Maintenant que toutes les **autorisations** et **dépendances** ont été ajoutées, nous pouvons passer à la partie intéressante : la création de notre application.
 
-Tout d’abord, occupons nous du layout. Dans **activity\_main.xml**, supprimez la textView et remplacez la par un **ArFragment** (élément qui va nous permettre d’afficher notre scène augmentée) :
+Tout d’abord, occupons nous du layout. Dans **activity_main.xml**, supprimez la textView et remplacez la par un **ArFragment** (élément qui va nous permettre d’afficher notre scène augmentée) :
 
 ```swift
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout\_width="match\_parent"
-    android:layout\_height="match\_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <fragment android:name="com.google.ar.sceneform.ux.ArFragment"
-        android:id="@+id/ux\_fragment"
-        android:layout\_width="match\_parent"
-        android:layout\_height="match\_parent" />
+        android:id="@+id/ux_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </android.support.constraint.ConstraintLayout>
 ```
 
  
 
-Vous pouvez lui donner le nom et les dimensions que vous souhaitez. Ici pour l’exemple, l’ArFragment est nommé ux\_fragment et il recouvre tout l’écran.
+Vous pouvez lui donner le nom et les dimensions que vous souhaitez. Ici pour l’exemple, l’ArFragment est nommé ux_fragment et il recouvre tout l’écran.
 
 Nous pouvons maintenant réellement commencer à coder. Dans la **MainActivity**, créons tout d’abord un objet **ArFragment** et lions-le à l’ArFragment de notre layout :
 
@@ -151,9 +154,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity\_main);
+        setContentView(R.layout.activity_main);
 
-        arFragment = (ArFragment)getSupportFragmentManager().findFragmentById(R.id.ux\_fragment);
+        arFragment = (ArFragment)getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
   }
 }
 
@@ -174,9 +177,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity\_main);
+        setContentView(R.layout.activity_main);
 
-        arFragment = (ArFragment)getSupportFragmentManager().findFragmentById(R.id.ux\_fragment);
+        arFragment = (ArFragment)getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
         
         MaterialFactory.makeOpaqueWithColor(this, new Color(android.graphics.Color.RED))
         .thenAccept(
@@ -211,9 +214,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity\_main);
+        setContentView(R.layout.activity_main);
 
-        arFragment = (ArFragment)getSupportFragmentManager().findFragmentById(R.id.ux\_fragment);
+        arFragment = (ArFragment)getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
 
         MaterialFactory.makeOpaqueWithColor(this, new Color(android.graphics.Color.RED)) 
         .thenAccept( 
@@ -227,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
                     if (redCubeRenderable == null) {
                         return;
                     }
-                    if (plane.getType() != Plane.Type.HORIZONTAL\_UPWARD\_FACING) {
+                    if (plane.getType() != Plane.Type.HORIZONTAL_UPWARD_FACING) {
                         return;
                     }
 
@@ -257,7 +260,7 @@ On remarque qu’on attache un **OnTapArPlaneListener** à notre arFragment  qu
 
 Vous pouvez alors **compiler** et **lancer** votre première application de réalité augmentée (sur un modèle compatible évidemment).
 
-\[youtube https://www.youtube.com/watch?v=jP\_I9S2XLfY&w=560&h=315\]
+[youtube https://www.youtube.com/watch?v=jP_I9S2XLfY&w=560&h=315]
 
 * * *
 
@@ -315,7 +318,7 @@ Maintenant que nous avons tous nos éléments, nous pouvons retourner dans **Mai
 ModelRenderable.builder()
                 .setSource(this, Uri.parse("3ie.sfb"))
                 .build()
-                .thenAccept(renderable -> mon\_modele = renderable);
+                .thenAccept(renderable -> mon_modele = renderable);
 ```
 
  
@@ -328,27 +331,27 @@ Opérez ensuite tout les changements découlant de cette modification. Voici ce 
 public class MainActivity extends AppCompatActivity {
 
     private ArFragment arFragment;
-    private ModelRenderable mon\_modele;
+    private ModelRenderable mon_modele;
     
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity\_main);
+        setContentView(R.layout.activity_main);
 
-        arFragment = (ArFragment)getSupportFragmentManager().findFragmentById(R.id.ux\_fragment);
+        arFragment = (ArFragment)getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
 
         ModelRenderable.builder()
                 .setSource(this, Uri.parse("3ie.sfb"))
                 .build()
-                .thenAccept(renderable -> mon\_modele = renderable);
+                .thenAccept(renderable -> mon_modele = renderable);
 
         arFragment.setOnTapArPlaneListener(
                 (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
-                    if (mon\_modele == null) {
+                    if (mon_modele == null) {
                         return;
                     }
-                    if (plane.getType() != Plane.Type.HORIZONTAL\_UPWARD\_FACING) {
+                    if (plane.getType() != Plane.Type.HORIZONTAL_UPWARD_FACING) {
                         return;
                     }
 
@@ -360,7 +363,7 @@ public class MainActivity extends AppCompatActivity {
                     //On attache ensuite notre modèle au point d'encrage
                     TransformableNode Node = new TransformableNode(arFragment.getTransformationSystem());
                     Node.setParent(anchorNode);
-                    Node.setRenderable(mon\_modele);
+                    Node.setRenderable(mon_modele);
                     Node.select();
 
                 }
@@ -374,16 +377,22 @@ public class MainActivity extends AppCompatActivity {
 
 Vous pouvez **compiler** et **tester**, c'est maintenant **votre modèle** que vous intégrez à la scène.
 
-\[youtube https://www.youtube.com/watch?v=0pYYCKIbg7c&w=560&h=315\]
+[youtube https://www.youtube.com/watch?v=0pYYCKIbg7c&w=560&h=315]
 
  
 
 Le code est disponible sur le GitHub de 3ie :
 
-[https://github.com/3IE/tutoriel\_arcore](https://github.com/3IE/tutoriel_arcore)
+[https://github.com/3IE/tutoriel_arcore](https://github.com/3IE/tutoriel_arcore)
 
 * * *
 
 ### Pour conclure :
 
 L'ARCore est un outils pratique est relativement facile a prendre en main. Cependant, l'ARCore seul est pour le moment assez limité. Pour pouvoir élargir massivement le champ des possibles, l'utilisation d'un logiciel supplémentaire, comme Unity par exemple est nécessaire. Ainsi il est possible d'aller beaucoup plus loin et
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **armand.briquet**

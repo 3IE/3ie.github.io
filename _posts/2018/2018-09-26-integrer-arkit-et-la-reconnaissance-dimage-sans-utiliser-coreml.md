@@ -72,7 +72,7 @@ else {
 Une fois cette image créée, on peut exploiter la fonction renderer qui est appelée à chaque fois qu’une image de référence est détectée.
 
 ```swift
-func renderer(\_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
 guard let imageAnchor = anchor as? ARImageAnchor else { return }
 let ref = imageAnchor.referenceImage
 updateQueue.async {
@@ -171,3 +171,9 @@ Il est possible de retrouver le code complet du projet sur [ce repo github](http
 - [ARKit by Apple](https://developer.apple.com/documentation/arkit)
 - [Recognising images in AR Experiences by Apple](https://developer.apple.com/documentation/arkit/recognizing_images_in_an_ar_experience)
 - [For 3D Models](https://poly.google.com)
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **robin.champsaur**

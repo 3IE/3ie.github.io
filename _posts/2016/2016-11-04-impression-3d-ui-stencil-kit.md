@@ -26,7 +26,13 @@ Et voilà le résultat !
 
 Et comme à 3iE on aime partager, si vous aussi, vous voulez griffonner des interfaces facilement, vous pouvez télécharger les kits UI Stencil pour impression 3D :
 
-- Nexus 5 [ui-stencil-nexus\_export-c4d-stl](/assets/images/UI-Stencil-Nexus_export-c4d.stl_.zip)
-- Iphone 5&6 [ui\_stencil\_iphone5-6-stl](/assets/images/UI_Stencil_Iphone5-6.stl_.zip)
+- Nexus 5 [ui-stencil-nexus_export-c4d-stl](/assets/images/UI-Stencil-Nexus_export-c4d.stl_.zip)
+- Iphone 5&6 [ui_stencil_iphone5-6-stl](/assets/images/UI_Stencil_Iphone5-6.stl_.zip)
 
 Enjoy your print ;)
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **juliette.chansard**

@@ -55,14 +55,14 @@ Comme aucun package n'est pré-installé sur l'image Travis, il est important de
 Pour rendre notre projet compatible, un fichier '.travis.yml' très simple est suffisant :
 
 ```yaml
-language: node\_js
-node\_js:
+language: node_js
+node_js:
   - "stable"
-before\_script:
+before_script:
   - npm install grunt-cli -g
 ```
 
-Le paramètre 'language' sert à configurer l'image système à utiliser (NodeJS dans notre cas). Le paramètre 'before\_script' (qui se rapporte au lifecycle) nous permet d'installer _grunt_ avant que Travis n'exécute d'autres commandes.
+Le paramètre 'language' sert à configurer l'image système à utiliser (NodeJS dans notre cas). Le paramètre 'before_script' (qui se rapporte au lifecycle) nous permet d'installer _grunt_ avant que Travis n'exécute d'autres commandes.
 
  
 
@@ -115,8 +115,8 @@ Il est très simple et contient simplement le nom du projet et la quantité de m
 
 Dans le cadre d'un _buildpack_ NodeJS, il y a 2 étapes qui nous intéressent
 
-- le [build](https://devcenter.heroku.com/articles/nodejs-support#build-behavior) qui exécute un $ npm install
-- le [runtime](https://devcenter.heroku.com/articles/nodejs-support#default-web-process-type) qui exécute un $ npm start
+- le [build](https://devcenter.heroku.com/articles/nodejs-support#build-behavior) qui exécute un `$ npm install`
+- le [runtime](https://devcenter.heroku.com/articles/nodejs-support#default-web-process-type) qui exécute un `$ npm start`
 
 Nous avons donc reconfiguré, via le fichier 'package.json', le script 'postinstall' (pour que le projet soit automatiquement _build_ une fois les packages _npm_ et _bower_ installés) ansi que le script 'start' (pour lancer un serveur web).
 
@@ -157,22 +157,24 @@ connect: {
 
 Les 2 _targets_ ont le même objectif : lancer un serveur web (en l'occurence, [connect](https://www.npmjs.com/package/connect)) qui va _host_ votre site
 
-- la _target_ 'dev' va servir votre site sur le port 5000, depuis le dossier qui a été build par grunt; en plus elle va ouvrir votre browser (open: true) tout en affichant dans votre terminal les différentes requêtes (debug: true), ce qui vous permet de tester que le site s'affiche bien
-- la _target_ 'cloudfoundry' lance le server web, mais en utilisant le port renseigné dans les variables d'environnement par Cloud Foundry (port: process.env.PORT || 5000)
+- la _target_ 'dev' va servir votre site sur le port 5000, depuis le dossier qui a été build par grunt; en plus elle va ouvrir votre browser (open: true) tout en affichant dans votre terminal les différentes requêtes (`debug: true`), ce qui vous permet de tester que le site s'affiche bien
+- la _target_ 'cloudfoundry' lance le server web, mais en utilisant le port renseigné dans les variables d'environnement par Cloud Foundry (`port: process.env.PORT || 5000`)
 
 ## Déploiement
 
-Avant de push le site sur Cloud Foundry, assurez vous qu'il s'affiche bien en local avec la commande  $ grunt build && grunt connect:dev.
+Avant de push le site sur Cloud Foundry, assurez vous qu'il s'affiche bien en local avec la commande  `$ grunt build && grunt connect:dev`.
 
-Pour éviter de transférer inutilement tous les artefacts de _npm_ et _bower_ (les dossiers 'node\_modules' et 'bower\_components'), nous avons créé un fichier '.cfignore' qui fonctionne sur le même principe que le .'gitignore'. Vous pouvez y ajouter tous les fichiers ou dossiers que vous ne souhaitez pas transférer à Cloud Foundry.
+Pour éviter de transférer inutilement tous les artefacts de _npm_ et _bower_ (les dossiers 'node_modules' et 'bower_components'), nous avons créé un fichier '.cfignore' qui fonctionne sur le même principe que le .'gitignore'. Vous pouvez y ajouter tous les fichiers ou dossiers que vous ne souhaitez pas transférer à Cloud Foundry.
 
 Maintenant, tapez la commande suivante pour vous connecter à l’endpoint de Pivotal; en effet, comme le CLI est compatible avec toutes les solutions Cloud Foundry, il nous faut préciser laquelle utiliser :
 
+```batch
 $ cf login -a api.run.pivotal.io
+```
 
-```batch  
+ 
 
-Nous pouvons maintenant push notre projet sur Pivotal avec la commande $ cf push qui va utiliser les paramètres de notre 'manifest.yml' pour finaliser le déploiement.
+Nous pouvons maintenant push notre projet sur Pivotal avec la commande `$ cf push` qui va utiliser les paramètres de notre 'manifest.yml' pour finaliser le déploiement.
 
 # Interconnexion entre Travis et Cloud Foundry
 
@@ -192,6 +194,7 @@ L'encryption de Travis se base sur le principe de cryptographie à clé publique
 
 Une fois le CLI Travis installé, tapez la commande suivante pour créer la section _deploy_ dans le fichier '.travis.yml'
 
+```batch
 $ travis setup cloudfoundry
 ```
 
@@ -239,8 +242,8 @@ deploy:
     manifest: manifest-preprod.yml
     on:
       repo: 3IE/TypescriptAngularStarter
-      all\_branches: true
-      condition: ${TRAVIS\_BRANCH%%/*} == release #we check if the start of the branch name contains 'release'
+      all_branches: true
+      condition: ${TRAVIS_BRANCH%%/*} == release #we check if the start of the branch name contains 'release'
 
 ```
 
@@ -255,3 +258,9 @@ Cette solution a été implémentée sur la [V0.4 de notre projet AngularTypesc
 Ce type de scénario peut facilement s'appliquer à des projets dans d'autres languages, Travis et Pivotal supportant bon nombre d'environnements.
 
 Vous pouvez télécharger un exemple fonctionnel dans la [V0.3 de notre projet AngularTypescriptStarer](https://github.com/3IE/TypescriptAngularStarter/releases/tag/v0.3)
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **benoit.verdier**

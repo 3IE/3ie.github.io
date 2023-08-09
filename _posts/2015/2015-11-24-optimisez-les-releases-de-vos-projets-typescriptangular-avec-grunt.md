@@ -63,7 +63,7 @@ Il faut que vous installiez les packages suivants:
 - grunt-contrib-less
 - grunt-contrib-clean
 
-Pour rappel, cela peut se faire directement dans le fichier 'package.json' (suivi d'un 'npm install') ou bien en passant par la commande ''npm install PACKAGE\_NAME --save" .
+Pour rappel, cela peut se faire directement dans le fichier 'package.json' (suivi d'un 'npm install') ou bien en passant par la commande ''npm install PACKAGE_NAME --save" .
 
  
 
@@ -78,10 +78,10 @@ Il nous faut tout d'abord ajouter les variables que l'on va utiliser dans le res
 ```js
 var globalCfg = {
 	src: {
-		tsFiles: \['{app,app\_engine,models,test}/**/*.ts','reference.ts'\],
-		generatedJSFiles: \['{app,app\_engine,models,test}/**/*.{js,js.map}', 'reference.{js,js.map}'\],
-		staticMiscFiles: \['index.html', 'app/**/*.{html,json}', 'app/img/*\*'\],
-		staticFontFiles: \['bower\_components/bootstrap/dist/fonts/*\*'\]
+		tsFiles: ['{app,app_engine,models,test}/**/*.ts','reference.ts'],
+		generatedJSFiles: ['{app,app_engine,models,test}/**/*.{js,js.map}', 'reference.{js,js.map}'],
+		staticMiscFiles: ['index.html', 'app/**/*.{html,json}', 'app/img/**'],
+		staticFontFiles: ['bower_components/bootstrap/dist/fonts/**']
 	},
 	distDir: 'dist/'
 };
@@ -92,7 +92,7 @@ var globalCfg = {
 Modifiez votre tâche _build_ de la façon suivante :
 
 ```js
-grunt.registerTask('build', \[
+grunt.registerTask('build', [
 	'testing',
 	'copy',
 	'useminPrepare',
@@ -102,7 +102,7 @@ grunt.registerTask('build', \[
 	'uglify:generated',
 	'filerev',
 	'usemin'
-\]);
+]);
 ```
 
 Nous avons maintenant le déroulé suivant :
@@ -110,7 +110,7 @@ Nous avons maintenant le déroulé suivant :
 1. testing: validation du code Typescript et compilation en Javascript
 2. copy: copie des ressources statiques dans le dossier de destination
 3. useminPrepare: génération de la configuration des tâches
-4. \*:generated: exécution des différentes tâches via la _Target_ 'generated'
+4. *:generated: exécution des différentes tâches via la _Target_ 'generated'
 5. filerev: renommage des ressources avec un nom unique basé sur le contenu du fichier (basé sur le md5)
 6. usemin: remplacement des références vers les ressources dans les fichiers html
 
@@ -123,10 +123,10 @@ Ajoutez la tâche suivante dans votre Gruntfile.
 ```js
 copy: {
 	main: {
-		files: \[
+		files: [
 			{ expand: true, src: '<%= globalCfg.src.staticMiscFiles %>', dest: '<%= globalCfg.distDir %>', filter: 'isFile' },
 			{ expand: true, src: '<%= globalCfg.src.staticFontFiles %>', dest: '<%= globalCfg.distDir %>/fonts/', flatten: true, filter: 'isFile' }
-		\],
+		],
 	},
 }
 ```
@@ -145,12 +145,12 @@ useminPrepare: {
 		//this custom flow allows usemin to support less
 		flow: {
 			steps: {
-				'js': \['concat', 'uglify'\],
-				'css': \['concat', 'cssmin'\],
-				'less': \[{
+				'js': ['concat', 'uglify'],
+				'css': ['concat', 'cssmin'],
+				'less': [{
 					name: 'less',
 					createConfig: lessCreateConfig
-				}\]
+				}]
 			},
 			post: {}
 		},
@@ -176,14 +176,14 @@ A titre d'exemple, voila 2 _blocks_ tirés de notre fichier index.html
 
 ```xhtml
 <!-- build:css css/globals.css -->
-<link rel="stylesheet" href="../bower\_components/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
 <link href="css/4-col-portfolio.css" rel="stylesheet">
 <!-- endbuild -->
 ```
 
 ```xhtml
 <!-- build:js js/app.js -->
-<script src="../bower\_components/angular/angular.js"></script>
+<script src="../bower_components/angular/angular.js"></script>
 <script src="app.startup.js"></script>
 <!-- endbuild -->
 ```
@@ -201,12 +201,12 @@ Pour cela, la première étape est de redéfinir le _flow_ de _Usemin_ (on ne p
 ```js
 flow: {
 	steps: {
-		'js': \['concat', 'uglify'\],
-		'css': \['concat', 'cssmin'\],
-		'less': \[{
+		'js': ['concat', 'uglify'],
+		'css': ['concat', 'cssmin'],
+		'less': [{
 			name: 'less',
 			createConfig: lessCreateConfig
-		}\]
+		}]
 	},
 	post: {}
 }
@@ -219,20 +219,20 @@ Déclarez cette fonction en haut de votre Gruntfile, à coté de votre variable 
 ```js
 //less config function for usemin
 var lessCreateConfig = function (context, block) {
-	var cfg = { files: \[\] },
+	var cfg = { files: [] },
 		//the destination file is the one referenced in the html and it's to be placed in the context.outDir folder 
 		outfile = path.join(context.outDir, block.dest),
 		filesDef = {};
 
 	filesDef.dest = outfile;
-	filesDef.src = \[\];
+	filesDef.src = [];
 	//we have to process each 'less' file referenced in the html, and they are in the 'inDir' folder 
 	context.inFiles.forEach(function (inFile) {
 		filesDef.src.push(path.join(context.inDir, inFile));
 	});
 
 	cfg.files.push(filesDef);
-	context.outFiles = \[block.dest\];
+	context.outFiles = [block.dest];
 	return cfg;
 };
 ```
@@ -240,7 +240,7 @@ var lessCreateConfig = function (context, block) {
 Cette fonction utilise 2 paramètres fournis par _usemin._
 
 - context: un objet qui contient le contexte d'exécution de l'étape que _usemin_ est entrain de traiter
-- block: un objet qui contient le _block_ que usemin a extrait du fichier html (celui contenu entre <!-- build --> et <!-- endbuild --> )
+- block: un objet qui contient le _block_ que usemin a extrait du fichier html (celui contenu entre <!-- build --> et `<!-- endbuild -->` )
 
 Pour en savoir plus sur le sujet, vous pouvez vous référez à la doc usemin sur le [createConfig](https://github.com/yeoman/grunt-usemin#createconfig).
 
@@ -298,12 +298,12 @@ Créez la tâche suivante votre Gruntfile:
 ```js
 less: {
 	options: {
-		plugins: \[
+		plugins: [
 			//plugin that automatically prefixes the css rules with vendor prefixes when needed 
-			new (require('less-plugin-autoprefix'))({ browsers: \["last 2 versions"\] }),
+			new (require('less-plugin-autoprefix'))({ browsers: ["last 2 versions"] }),
 			//plugin that minifies the css
 			new (require('less-plugin-clean-css'))()
-		\]
+		]
 	}
 }
 ```
@@ -337,7 +337,7 @@ C'est la tâche finale pour packager notre release. Usemin va parcourir votre ht
 ```js
 usemin: {
 	//html file within which usemin is going to replace the resource references  
-	html: \['<%= globalCfg.distDir %>/app/**/*.html'\],
+	html: ['<%= globalCfg.distDir %>/app/**/*.html'],
 	options: {
 		assetsDirs: '<%= globalCfg.distDir %>/app',
 		blockReplacements: {
@@ -358,3 +358,9 @@ Pour les fichiers _css_ et _jss_, _usemin_ va remplacer tout le _Block_ par sa v
 Vous pouvez maintenant lancer la commande 'grunt build' pour packager votre application vers le dossier 'dist' et ensuite utiliser la commande 'grunt web' pour tester le résultat.
 
 Vous pouvez retrouver le projet complet sur le git [TypescriptAngularStarter](https://github.com/3IE/TypescriptAngularStarter/tree/v0.2.3) et le détail du [fichier gruntfile](https://github.com/3IE/TypescriptAngularStarter/blob/v0.2.3/Gruntfile.js).
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **benoit.verdier**

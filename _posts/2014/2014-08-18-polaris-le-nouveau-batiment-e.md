@@ -41,3 +41,9 @@ La plateforme azure nous a permis d’absorber la montée en charge d’informat
 La force de 3ie réside dans sa capacité d’accueillir son client avec des locaux dédiés pour brainstormer avec toutes les équipes présentent. À la fin de la journée le client à son idée implémentée. Cette méthode de travail permet d’être réactif et de traduire une idée en temps réel. Le client a pu ainsi voir son application se construire au fur et à mesure de la journée.
 
 _Application disponible sur  IOS, Iphone et Ipad ainsi qu’une déclinaison en version Web._
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **sabrina.bouylaghmane**

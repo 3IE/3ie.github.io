@@ -25,3 +25,9 @@ Ce teaser raconte l’expérience Expert Search dans un univers décalé et illu
 Expert Search se rajoute aux multiples outils déjà déployés par Google en termes de messagerie [Google Talk](http://fr.wikipedia.org/wiki/Google_Talk), Google+ Messenger et Hangouts. https://www.youtube.com/watch?v=-QAxJtTrTsg&feature=youtu.be Cette vidéo a été créée en motion design, ce qui permet d’apporter une touche jeune, dynamique et attractive. Il s’agit ici, contrairement aux vidéos plus institutionnelles, d'associer le **plaisir visuel** à **l'appropriation du** **message**, c’est la notion même de motion design.
 
 Le motion design s'impose aujourd'hui comme la référence en matière de vidéo de communication auquel nous consacrerons un prochain article.
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **sabrina.bouylaghmane**

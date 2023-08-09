@@ -160,3 +160,9 @@ Le **Lean UX** est une très bonne méthode pour avoir des **retours rapidement*
 Il y a donc un impact direct sur la durée du projet ainsi que le budget alloué. Cela permet de l’optimiser et d'obtenir une rentabilité rapidement.
 
 **Grâce à cette methode, nous avons ainsi pu imaginer rapidement une nouvelle solution avec nos stakeholders.** **Notre client est ravi du premier résultat obtenu, et les équipes heureuses d'avoir pu partager ensemble les expertises.**
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **aryan.manalai**

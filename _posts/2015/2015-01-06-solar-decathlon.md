@@ -56,3 +56,9 @@ La principale ambition des différents acteurs du Solar Decathlon est de partage
 [Découvrez SmartCityLive](http://workspacefindercloudcomputing.cloudapp.net/workspace-ios/ "Décrouvez SmartCityLive")
 
 _Disponible sur IOS, Ipad et Android._
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **sabrina.bouylaghmane**

@@ -46,3 +46,9 @@ Notre travail sur ce framework a consisté dans un premier temps à le remettre 
 ##### Le futur ?
 
 Notre contribution ne s'arrêtera pas à cette remise à jour. D'autres nouveautés sont à venir, notamment l'ajout d'annotations permisses par la version 1.5 de typescript, une modularité au niveau de l'ORM utilisé.
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **arnaud.lemettre**

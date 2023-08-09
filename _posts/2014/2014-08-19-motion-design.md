@@ -21,3 +21,9 @@ Fort de son pouvoir ludique et interactif, le motion design est une arme consid�
 Le Motion Design, au-delà d’être devenu un métier à part entière, est devenu un passage obligé pour tous. Il s’est approprié toutes les évolutions technologiques pour les adapter aux images et capter l’attention de tous les internautes. Constat confirmant cette évolution stratégique, d’après un sondage fait par le site «motiongraphicdesigncensus», la tranche d’âge des motions designer s’élève en moyenne entre 23 et 35 ans, et le logiciel After Effects a été le plus utilisé en 2009 devant Photoshop et Final Cut.
 
 Confucius disait « Une image vaut mille mots. » Aujourd’hui, avec le Motion Design, une vidéo vaut 10 000 mots.
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **sabrina.bouylaghmane**

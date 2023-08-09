@@ -21,23 +21,23 @@ Disparition de certaines notations jugées antiques, simplification de la syntax
 
 ### La fin de l'héritage C++/Objective C
 
-Swift 2.1 avait déjà préparé le terrain en indiquant des Warnings lors de l'utilisation de boucles "à l'ancienne" de style C   **for (int i = 0; i < taille; i++)**.
+Swift 2.1 avait déjà préparé le terrain en indiquant des Warnings lors de l'utilisation de boucles "à l'ancienne" de style C   **`for (int i = 0; i < taille; i++)`**.
 
-Swift possède suffisamment de types de boucles pour pouvoir se passer de ces notations, et rendre ainsi le langage moins obscur au débutant. On peut aimer ou pas, mais Chris Lattner, le créateur du Swift [explique pourquoi il est sage](https://github.com/apple/swift-evolution/blob/master/proposals/0004-remove-pre-post-inc-decrement.md) de retirer les opérateurs \--  et ++  du lexique du Swift. Leur utilisation en pre-incrémentation ou post-incrémentation n'est pas toujours très claire, leur intérêt est minime par rapport à utiliser += 1  ou -= 1 , et enfin, leur utilisation était assez limitée car le langage propose de nombreuses notations permettant de s'en passer.
+Swift possède suffisamment de types de boucles pour pouvoir se passer de ces notations, et rendre ainsi le langage moins obscur au débutant. On peut aimer ou pas, mais Chris Lattner, le créateur du Swift [explique pourquoi il est sage](https://github.com/apple/swift-evolution/blob/master/proposals/0004-remove-pre-post-inc-decrement.md) de retirer les opérateurs \--  et ++  du lexique du Swift. Leur utilisation en pre-incrémentation ou post-incrémentation n'est pas toujours très claire, leur intérêt est minime par rapport à utiliser += 1  ou` -= 1` , et enfin, leur utilisation était assez limitée car le langage propose de nombreuses notations permettant de s'en passer.
 
 Encore une fois, Apple fait tout pour faire disparaître les fonctions statiques de style C au profit de méthode Swift. Ainsi les célèbres fonctions du Grand Central Dispatch sont remplacées.
 
  
 
 ```swift
-dispatch\_async(dispatch\_get\_main\_queue()) {
+dispatch_async(dispatch_get_main_queue()) {
 // Code à exécuter dans le main thread
 }
 ```
 
  
 
-Elles sont remplacées par les méthodes statiques d'un nouvel objet, la  DispatchQueue , ce qui est une approche plus Swift car orientée objet.
+Elles sont remplacées par les méthodes statiques d'un nouvel objet, la  `DispatchQueue` , ce qui est une approche plus Swift car orientée objet.
 
  
 
@@ -120,7 +120,7 @@ x.reverse()
 
 ```
 
-Ici la méthode  reverse désigne l'action qu'elle aura sur  **x** . Elle modifie l'objet. Si on veut avoir un nouvel objet à partir de  x sans modifier , il faut conjuguer le nom de la méthode en fonction. Elle devient alors:
+Ici la méthode  reverse désigne l'action qu'elle aura sur  **`x`** . Elle modifie l'objet. Si on veut avoir un nouvel objet à partir de  `x` sans modifier , il faut conjuguer le nom de la méthode en fonction. Elle devient alors:
 
 ```swift
 let y = x.reversed()
@@ -129,7 +129,7 @@ let y = x.reversed()
 
  
 
-On comprend alors tout de suite que  reversed retourne quelque chose.
+On comprend alors tout de suite que  `reversed` retourne quelque chose.
 
 Pour plus d'information sur l'API, consultez la vidéo de la WWDC 2016 "[Swift API Design Guidelines](https://www.youtube.com/watch?v=UU2fNq35xkM)".
 
@@ -167,13 +167,13 @@ La modification qui revient le plus souvent est l'ajout de l'underscore avant le
 
 [![underscore](/assets/images/underscore.png)](/assets/images/underscore.png)
 
-Comme on peut voir dans cette méthode saveObject , la logique Swift 3 veut qu'on renomme en  save et qu'on rajoute le label  object au premier argument.
+Comme on peut voir dans cette méthode saveObject , la logique Swift 3 veut qu'on renomme en  save et qu'on rajoute le label  `object` au premier argument.
 
 J'ai dû alors répéter cette opération une centaine de fois pour avoir un code swifty. Finalement, l'outil de migration n'a fait que mettre des underscore là où il faut changer le code afin de respecter au mieux la nouvelle guideline.
 
 Ce n'est pas la première fois que l'assistant de migration propose des modifications mystiques, mais cette fois-ci, je suis tombé sur des ajouts de code défiant toute logique.
 
-Comme cette fonction de comparaison templatées ajoutée en fileprivate (un nouveau niveau d'accessibilité, rendant une fonction accessible uniquement dans le fichier où elle est déclarée) au début de ce fichier ex nihilo, dont je cherche toujours l'origine et qui ne sera jamais utilisée.
+Comme cette fonction de comparaison templatées ajoutée en `fileprivate` (un nouveau niveau d'accessibilité, rendant une fonction accessible uniquement dans le fichier où elle est déclarée) au début de ce fichier ex nihilo, dont je cherche toujours l'origine et qui ne sera jamais utilisée.
 
 [![bizarre](/assets/images/bizarre-1024x202.png)](/assets/images/bizarre.png)
 
@@ -190,3 +190,9 @@ Pour plus de détails sur les points abordés dans l'article, voici quelques lie
 [Le guide de migration Apple](https://swift.org/migration-guide/)
 
 [Le nouveau GCD](http://rolling-rabbits.com/2016/07/21/grand-central-dispatch-in-swift-3/)
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **serge.panev**

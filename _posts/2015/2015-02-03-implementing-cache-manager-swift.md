@@ -31,7 +31,7 @@ First, let's declare our class. The objectMaxId variable will be used to genera
 ```swift
 class CacheManager: NSObject, NSCoding {
 	private var objectMaxId: Int = 0
-	private var filenameFromIdDico: \[String : String\] = \[:\]
+	private var filenameFromIdDico: [String : String] = [:]
 
 	override init(){
 		super.init()
@@ -47,7 +47,7 @@ First of all, here is an utility method that we are going to use to generate a f
 class func pathInDocDirectory(filename: String)->String? {
 	let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
 	if paths.count > 0 {
-		if let path: String = paths\[0\] as? String {
+		if let path: String = paths[0] as? String {
 			return path + "/" + filename
 		}
 	}
@@ -63,11 +63,11 @@ Since Swift does not currently allow class to have static variable, the singleto
 class var sharedInstance: CacheManager {
 	struct Static {
 		static var instance: CacheManager?
-		static var token: dispatch\_once\_t = 0
+		static var token: dispatch_once_t = 0
 	}
-	dispatch\_once(&Static.token) {
+	dispatch_once(&Static.token) {
 		//we try to load an existing CacheManager, otherwise we create a new one
-		if let filepath = CacheManager.pathInDocDirectory(CACHE\_MANAGER\_NAME) {
+		if let filepath = CacheManager.pathInDocDirectory(CACHE_MANAGER_NAME) {
 			if let mgr = NSKeyedUnarchiver.unarchiveObjectWithFile(filepath) as? CacheManager{
 				Static.instance = mgr
 			}
@@ -88,7 +88,7 @@ The init method is used by the NSKeyedUnarchiver.unarchiveObjectWithFile when we
 required init(coder aDecoder: NSCoder) {
 	super.init()
 	self.objectMaxId = aDecoder.decodeIntegerForKey("objectMaxId")
-	if let dico:\[String:String\] = aDecoder.decodeObjectForKey("filenameFromUrlDic") as? \[String:String\] {
+	if let dico:[String:String] = aDecoder.decodeObjectForKey("filenameFromUrlDic") as? [String:String] {
 		self.filenameFromIdDico = dico
 	}
 }
@@ -121,18 +121,18 @@ func saveObject(object:AnyObject, identifier:String) -> Bool {
 	}
 	
 	//we sync on the object to be sure that only thread at a time generates a new objectId
-	objc\_sync\_enter(self)
+	objc_sync_enter(self)
 	var filename: String
 	//we check to see if the CacheManager has a caches object for this identifier
-	if let filenameFromDico: String = self.filenameFromIdDico\[identifier\] {
+	if let filenameFromDico: String = self.filenameFromIdDico[identifier] {
 		filename = filenameFromDico
 	}
 	else {
 		self.objectMaxId++
 		filename = "object." + String(self.objectMaxId)
-		self.filenameFromIdDico\[identifier\] = filename
+		self.filenameFromIdDico[identifier] = filename
 	}
-	objc\_sync\_exit(self)
+	objc_sync_exit(self)
 	
 	var status: Bool = false
 	//we generate the full path for the object every time instead of caching it because the path contains a unique identifier that changes with each build, so we mustn't cache it
@@ -151,7 +151,7 @@ And finaly the method to load an object from its identifier. If we find it in th
 
 ```swift
 func loadObject(identifier:String) -> AnyObject? {
-	if let filename: String = self.filenameFromIdDico\[identifier\] {
+	if let filename: String = self.filenameFromIdDico[identifier] {
 		if let filepath = CacheManager.pathInDocDirectory(filename) {
 			return NSKeyedUnarchiver.unarchiveObjectWithFile(filepath)
 		}
@@ -163,3 +163,9 @@ func loadObject(identifier:String) -> AnyObject? {
  
 
 Be sure to download the demo of this [cache manager on github](https://github.com/3IE/swift-cache-manager) !
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **benoit.verdier**

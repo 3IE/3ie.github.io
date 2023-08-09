@@ -40,7 +40,7 @@ Si vous êtes sous Visual Studio, créez un nouveau projet de type "ASP.NET Cor
 
 Si vous êtes sous VS Code, vous pouvez télécharger le template depuis le [github aspnet](https://github.com/aspnet/Templates/tree/release/src/BaseTemplates/WebAPI) mais il faudra le modifier un peu car il y a des directives qui sont normalement interprétées par Visual Studio.
 
-Pour tester que tout fonctionne bien,  nous allons lancer notre projet. Le template contient une solution complète ainsi qu'un projet. Depuis un terminal, déplacez vous dans le dossier de ce dernier. Restaurez les packages avec $ dotnet restore et ensuite exécutez le projet avec $ dotnet run. La compilation est automatiquement lancée lors du 'run' si 'dotnet' détecte que des fichiers ont été modifiés depuis la dernière compilation.
+Pour tester que tout fonctionne bien,  nous allons lancer notre projet. Le template contient une solution complète ainsi qu'un projet. Depuis un terminal, déplacez vous dans le dossier de ce dernier. Restaurez les packages avec $ dotnet restore et ensuite exécutez le projet avec `$ dotnet run`. La compilation est automatiquement lancée lors du 'run' si 'dotnet' détecte que des fichiers ont été modifiés depuis la dernière compilation.
 
 Vous devriez obtenir le résultat suivant :
 
@@ -48,7 +48,7 @@ Vous devriez obtenir le résultat suivant :
 $ dotnet run
 Project WebApplication1 (.NETCoreApp,Version=v1.0) was previously compiled. Skipping compilation.
 Hosting environment: Production
-Content root path: /Users/verdie\_b/Documents/versioning/DotnetCoreAndPostgres/src/WebApplication1
+Content root path: /Users/verdie_b/Documents/versioning/DotnetCoreAndPostgres/src/WebApplication1
 Now listening on: http://*:5000
 Application started. Press Ctrl+C to shut down.
 ```
@@ -83,7 +83,7 @@ Ajoutez "Npgsql.EntityFrameworkCore.PostgreSQL" à vos dépendances :
   }
 ```
 
-Ensuite faites un $ dotnet restore pour vérifier que la config est valide.
+Ensuite faites un `$ dotnet restore` pour vérifier que la config est valide.
 
 #### Création du modèle
 
@@ -108,13 +108,13 @@ namespace WebApplication1.Models
         }
     }
 
-    \[Table("persons")\]
+    [Table("persons")]
     public class Person
     {
-        \[Column("id")\]
+        [Column("id")]
         public int Id { get; set; }
 
-        \[Column("name")\]
+        [Column("name")]
         public string Name { get; set; }
     }
 
@@ -137,11 +137,11 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    \[Route("api/\[controller\]")\]
+    [Route("api/[controller]")]
     public class DBController : Controller
     {
         // GET api/db
-        \[HttpGet\]
+        [HttpGet]
         public IEnumerable<Person> Get()
         {
             using (var db = new PersonsContext())
@@ -154,7 +154,7 @@ namespace WebApplication1.Controllers
 }
 ```
 
-En .Net Core, on n'hérite plus de la classe APIController mais de Controller. Pour déterminer la route qui sera utilisée, il faut regarder l'annotation. Comme nous référençons "api/\[controller\]", le .Net va prendre le nom de la classe et retirer le postfix "Controller", ce qui nous donne la route "api/db"
+En .Net Core, on n'hérite plus de la classe APIController mais de Controller. Pour déterminer la route qui sera utilisée, il faut regarder l'annotation. Comme nous référençons "api/[controller]", le .Net va prendre le nom de la classe et retirer le postfix "Controller", ce qui nous donne la route "api/db"
 
 Vous pouvez maintenant consulter votre web service à l'url suivante : [http://localhost:5000/api/db](http://localhost:5000/api/db)
 
@@ -163,3 +163,9 @@ Vous pouvez maintenant consulter votre web service à l'url suivante : [http://
 La sortie du .Net Core est une très bonne nouvelle car cela va permettre de mixer beaucoup plus facilement les technos sur un petit serveur Linux. Plus de raison d'hésiter, le développement est en plus facilité avec la mise à dispo de VSCode sur les principaux OS.
 
 Vous pouvez retrouver le code de projet sur le [github 3IE](https://github.com/3IE/DotnetCoreAndPostgres/)
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **benoit.verdier**

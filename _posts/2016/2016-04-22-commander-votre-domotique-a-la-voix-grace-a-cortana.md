@@ -24,7 +24,7 @@ Pour interagir avec _Cortana_ il faut une application sous Windows10, et si on s
 ```xhtml
 <?xml version="1.0" encoding="utf-8"?>
 <VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
-  <CommandSet xml:lang="fr-fr" Name="UniversalAppCommandSet\_fr-fr">
+  <CommandSet xml:lang="fr-fr" Name="UniversalAppCommandSet_fr-fr">
     <AppName>génie</AppName>
     <Example> génie </Example>
     <Command Name="offLight">
@@ -86,7 +86,7 @@ OnLight = new RelayCommand(async (param) =>
 Pour faire la liaison entre notre viewModel et notre serveur d'API pilotant les lampes Philips HUE, nous passerons par notre classe [Light.cs](https://github.com/3IE/universal-manager-light/blob/v1.0.0/DataAccess/Light.cs) située dans la dataAccess. Pour faire transiter notre structure d'objet vers notre serveur, nous sérialisons avec la méthode _JsonConvert.SerializeObject_ 
 
 ```c#
-private const string BASE\_URL = "http://localhost:3000/";
+private const string BASE_URL = "http://localhost:3000/";
 public async Task<bool> On(Models.Light light)
 {
     try
@@ -95,7 +95,7 @@ public async Task<bool> On(Models.Light light)
         {
             string json = JsonConvert.SerializeObject(light);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await webClient.PostAsync($"{BASE\_URL}light/on", content);
+            HttpResponseMessage response = await webClient.PostAsync($"{BASE_URL}light/on", content);
             return true;
         }
     }
@@ -130,7 +130,7 @@ Puis sur la réponse à l'event _OnActivated_, nous allons filtrer le résultat 
 
     Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
 
-    string voiceCommandName = speechRecognitionResult.RulePath\[0\];
+    string voiceCommandName = speechRecognitionResult.RulePath[0];
     string textSpoken = speechRecognitionResult.Text;
 
     // The commandMode is either "voice" or "text", and it indictes how the voice command
@@ -186,7 +186,7 @@ Pour obtenir ce choix et pouvoir envoyer les bons paramètres à notre viewModel
 ```c#
 private string SemanticInterpretation(string interpretationKey, SpeechRecognitionResult speechRecognitionResult)
 {
-    return speechRecognitionResult.SemanticInterpretation.Properties\[interpretationKey\].FirstOrDefault();
+    return speechRecognitionResult.SemanticInterpretation.Properties[interpretationKey].FirstOrDefault();
 }
 ```
 
@@ -241,12 +241,15 @@ switch (voiceCommandName)
 
 Ensuite nous pouvons lancer la navigation vers la page qui est associée au viewModel avec la méthode _Navigate_ 
 
+```c#
 rootFrame.Navigate(navigationToPageType, navigationCommand);
+```
 
-```c#  
+ 
 
 La récupération des paramètres _navigationCommand_ s'effectuera dans la méthode _OnNavigatedTo_ de la [page](https://github.com/3IE/universal-manager-light/blob/v1.0.0/UniversalManagerLight/View/Lamp.xaml.cs)_._ Dans la logique du MVVM, le _DataContext_ est bindé sur le ViewModel de la page, ce qui nous permet de pouvoir récupérer les commandes du ViewModel et de pouvoir passer les paramètres de la commande vocale.
 
+```c#
 protected override void OnNavigatedTo(NavigationEventArgs e)
 {
     var vm = this.DataContext as LampViewModel;
@@ -414,3 +417,9 @@ Pour lancer une commande, on peut maintenant s'adresser à _Cortana_ avec la phr
 Cet article a été écrit un peu avant l'annonce de Microsoft à la [//Build 2016](http://news.microsoft.com/build2016/) où Satya Nadella a annoncé que l'avenir des applications allait passer par l’avènement des bots. Pour accompagner cette annonce, Microsoft a sorti un [framework](https://dev.botframework.com/) permettant de programmer des bots qui seront mis en relation avec des logiciels, sites ou des assistants vocales tel que _Cortana_.
 
 Avec ce type d'application, nous pouvons changer les usages des différents logiciels que nous utilisons. Nous vivons dans un monde de plus en plus multi-taches. Avec les assistants vocaux nous libérons nos mains pour réaliser d'autres tâches en parallèle.
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **arnaud.lemettre**

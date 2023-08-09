@@ -66,3 +66,9 @@ _Brillance et métal_
 _Relief et détails_
 
 Pour plus d’informations concernant l’escape game du 25 février 2022, auquel participe 3IE, voici le [lien qui parle des journées d’immersion à l’Epita](https://www.epita.fr/journees-immersion/?fbclid=IwAR2q3oKcaC8t0DZ4T3wkQwZ3b_MIPp6psda76GHDcpJnEulsQCgHI7igC5U).
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **marion.demotie**

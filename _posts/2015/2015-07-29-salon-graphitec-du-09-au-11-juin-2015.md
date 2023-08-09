@@ -95,3 +95,9 @@ Autre exemple, **Typekit** nous autorise à récupérer des polices à titre é
  
 
 Ce salon était une belle occasion de se tenir informer des nouvelles tendances digitales, graphiques, etc. dans un cadre sympa. Vivement la prochaine édition !
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **marion.panis**

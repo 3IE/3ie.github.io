@@ -95,3 +95,9 @@ Apple a terminé sa conférence par l'annonce d'**Apple Music**, son offre de st
  
 
 Source image [LeKeynote](http://lekeynote.fr) & [iMore](http://www.imore.com)
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **cedric.eugeni**

@@ -35,9 +35,9 @@ class HLRequest: NSObject, NSURLConnectionDelegate {
 The last thing to do is to implement our delegate. Open your Swift class and add your protocol at the top of class declaration, and implement the methods, this way:
 
 ```swift
-class EYHomeVC: UIViewController, HLRequestDelegate\[/objc\]
+class EYHomeVC: UIViewController, HLRequestDelegate[/objc]
 
-\[objc\]func doNothing() {
+[objc]func doNothing() {
     println("I'm totally useless");
 }
 
@@ -57,3 +57,9 @@ productRequest.executeRequest()
 ```
 
 Find [complete snippet here](https://github.com/fiftydegrees/swift-snippets).
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **herve.droit**

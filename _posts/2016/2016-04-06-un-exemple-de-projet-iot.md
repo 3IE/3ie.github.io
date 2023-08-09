@@ -186,7 +186,7 @@ Using tsc v1.8.9
 
 TypeScript compilation complete: 3.53s for 1 TypeScript files.
 
-Running "file\_append:app" (file\_append) task
+Running "file_append:app" (file_append) task
 
 Done, without errors.
 PS C:\\Github\\demo-server-hue>
@@ -210,3 +210,9 @@ Pour tester nos APIs, nous pouvons allumer/éteindre une lumière à l'aide de 
 # Conclusion
 
 Avec très peu de ligne de code (vous pouvez retrouver le code complet sur notre [github](https://github.com/3IE/demo-server-hue)), nous venons de créer une API pour gérer nos lampes en local. Ce serveur va nous être utile pour illustrer l'utilisation de différents clients (interface vocale avec Cortana, Client 3D en WebGL basé sur BabylonJS, utilisation du bracelet Myo) que nous verrons dans les prochaines parties.
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **arnaud.lemettre**

@@ -54,32 +54,32 @@ Une des contraintes concernant l’_Enum_ est de la faire commencer à 1, le 0 �
 Le but de _DialogForm_ étant de nous simplifier la vie, il est capable de générer une question cohérente par rapport au nom du champ. Cependant nous pouvons remplacer cette génération en utilisant l’attribut _Prompt_.
 
 ```c#
-\[Prompt("Voulez-vous recevoir notre newsletter ? {||}")\]
+[Prompt("Voulez-vous recevoir notre newsletter ? {||}")]
 public bool Newsletter;
 
 ```
 
 ## Génération des choix pour les réponses
 
-Les réponses aux questions, sont générées de manière automatique également en se basant sur la valeur des _enums_. Ainsi pour une valeur d’_enum_ « _ScienceFiction_ » la génération affichera « Science Fiction » il en aurait été de même pour une valeur d’_enum_ « Science\_Fiction » Si nous voulons afficher « Science-fiction » Nous devons utiliser l’attribut _Describe_.
+Les réponses aux questions, sont générées de manière automatique également en se basant sur la valeur des _enums_. Ainsi pour une valeur d’_enum_ « _ScienceFiction_ » la génération affichera « Science Fiction » il en aurait été de même pour une valeur d’_enum_ « Science_Fiction » Si nous voulons afficher « Science-fiction » Nous devons utiliser l’attribut _Describe_.
 
 ```c#
-\[Describe("Science-fiction")\]
+[Describe("Science-fiction")]
 ScienceFiction = 1,
 ```
 
 L’utilisateur pour répondre, peut également taper des synonymes comme « SF » par exemple. Pour que le programme puisse interpréter convenablement la réponse nous devons lui spécifier les termes qu’il peut accepter en utilisant l’attribut _Term_ :
 
 ```c#
-\[Describe("Science-fiction")\]
-\[Terms("SF", "Science fiction", "Science-fiction")\]
+[Describe("Science-fiction")]
+[Terms("SF", "Science fiction", "Science-fiction")]
 ScienceFiction = 1,
 ```
 
 L’attribut _Describe_ peut également prendre en compte des images :
 
 ```c#
-\[Describe(image: "https://www.staples.fr/content//assets/images/product/76170-00H\_1\_xnl.jpg")\]
+[Describe(image: "https://www.staples.fr/content//assets/images/product/76170-00H_1_xnl.jpg")]
 Eau = 1,
 ```
 
@@ -88,7 +88,7 @@ Eau = 1,
 Il existe également d’autres attributs permettant de conditionner la réponse ainsi sur un champ entier nous pouvons lui spécifier un intervalle :
 
 ```c#
-\[Numeric(10, 100)\]
+[Numeric(10, 100)]
 public int Age;
 ```
 
@@ -97,7 +97,7 @@ Si la réponse n’est pas dans cet intervalle, le dialogue demandera une nouvel
 La validation peut également être plus complexe en utilisant un pattern de validation de type expression régulière.
 
 ```c#
-\[Pattern("(@)(.+)$")\]
+[Pattern("(@)(.+)$")]
 public string Email;
 ```
 
@@ -110,7 +110,7 @@ public static IForm<MovieForm> BuildForm()
 {
     return new FormBuilder<MovieForm>()
            .Message("Merci de prendre quelques minutes pour répondre aux questions.")
-	   .Confirm("Est-ce votre selection ? {\*}")
+	   .Confirm("Est-ce votre selection ? {*}")
 
            .Build();
 
@@ -147,7 +147,7 @@ private static NextStep SetNextAfterLocation(object value, MovieForm state)
     switch ((LocationTheaterOptions)value)
     {
         case LocationTheaterOptions.Paris13:
-            return new NextStep(new\[\] { nameof(Drink) });
+            return new NextStep(new[] { nameof(Drink) });
         case LocationTheaterOptions.Paris12:
             return new NextStep();
 
@@ -172,12 +172,15 @@ Pour utiliser cette méthode il faut la déclarer à la suite de _Field_.
 
 Nous pouvons également directement désactiver une question en fonction de la réponse d’une autre question :
 
+```c#
 .Field(nameof(Drink), state => state.LocationTheater == LocationTheaterOptions.Paris13)
+```
 
-```c# Ainsi la question _Drink_ ne sera posée que si _LocationTheater_ est égale à _Paris13_.
+Ainsi la question _Drink_ ne sera posée que si _LocationTheater_ est égale à _Paris13_.
 
 Dans le paragraphe précédent nous avons pu voir que nous pouvions valider une réponse en fonction d’attributs (Numeric, Pattern, …). Bien que ces attributs répondent à une grande partie des problématiques, ils ne peuvent gérer des cas complexes. Dans cette situation nous pouvons utiliser une autre surcharge de _Field_ pour spécifier nous même une méthode de validation.
 
+```c#
 .Field(nameof(MovieCategory), validate: async (state, value) =>
 {
     var category = (MovieCategoryOptions)value;
@@ -204,10 +207,13 @@ Nous  allons donc modifier la classe servant de point d’entrée du _dialog «
 
 La construction du dialogue passe par la méthode suivante :
 
+```swift
 Chain.From(() => FormDialog.FromForm(MovieForm.BuildForm))
+```
 
-```swift Que nous chaînons avec la méthode _Do_ permettant d’exécuter le dialogue. C’est dans cette action que nous pourrons récupérer les éléments de réponse du dialogue.
+Que nous chaînons avec la méthode _Do_ permettant d’exécuter le dialogue. C’est dans cette action que nous pourrons récupérer les éléments de réponse du dialogue.
 
+```swift
 var completed = await survey;
 ```
 
@@ -220,3 +226,9 @@ Grâce à _FormFlow_, nous avons pu mettre en place un dialogue qui suit un cert
 L'utilisation de _FormFlow_ pour construire un questionnaire est une bonne alternative à _GoogleForm_ et qui permet de recueillir de l'information à travers les systèmes de messagerie (_Slack, Skype, ..._), dans une page web, et même par sms ...
 
 Vous pouvez retrouver l'ensemble du code source sur notre [Github](https://github.com/3IE/bot-survey).
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **arnaud.lemettre**

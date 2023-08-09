@@ -32,3 +32,9 @@ Retrouvez Mana Cube sur [Facebook](https://www.facebook.com/ManaCube/), [Twitt
  
 
 [![mana_cube_ionis_361_incubateur_ionis-education-group_epita_dungeon_monsters_jeu_video_mobile_2016_01](/assets/images/mana_cube_ionis_361_incubateur_ionis-education-group_epita_dungeon_monsters_jeu_video_mobile_2016_01.jpg)](/assets/images/mana_cube_ionis_361_incubateur_ionis-education-group_epita_dungeon_monsters_jeu_video_mobile_2016_01.jpg)Mana Cube vue par Guillaume Bardèche, directeur de IONIS 361 _« Mana Cube est une startup accompagnée par IONIS 361 qui apporte sa dose de "fun" aux autres startups incubées. Ses dirigeants, expérimentés et compétents, ont su tirer parti de l'incubation de la meilleure manière et je suis convaincu que les jeux innovants qu'ils proposent vont continuer à nous divertir longtemps. Je suis heureux que la sortie de leur premier jeu s'effectue déjà après à peine plus d'un mois d'incubation et coïncide avec la nomination prestigieuse qu'ils viennent d'obtenir. »_
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **marion.panis**

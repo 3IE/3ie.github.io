@@ -21,3 +21,9 @@ L’année 2013 a clairement participé à la démocratisation du concept et à 
 L’enjeu à présent est d’être capable de créer des KPI afin de justifier, crédibiliser et mesurer les opérations de gamification engagés par la marque.
 
 _« Chaque homme cache en lui un enfant qui veut jouer » Nietzsche_
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **sabrina.bouylaghmane**

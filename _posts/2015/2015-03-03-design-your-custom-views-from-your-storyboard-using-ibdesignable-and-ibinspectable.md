@@ -68,3 +68,9 @@ Try to adjust these settings, and see the result live into your storyboard!
 [![Screen Shot 2014-11-05 at 10.52.06 pm](/assets/images/Screen-Shot-2014-11-05-at-10.52.06-pm-284x300.png)](http://nscurious.com/wp-content/uploads/2014/11/Screen-Shot-2014-11-05-at-10.52.06-pm.png)
 
 Here we are, you just discovered these two new keywords. Now, both your creativity and needs are the limits. You can find a similar example [here on Github](https://github.com/fiftydegrees/HLDesignableBootstrap).
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **herve.droit**

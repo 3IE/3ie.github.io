@@ -84,17 +84,17 @@ namespace app.directive {
 
 		private unboundLink(scope: IBabylonSurfaceDirectiveScope, element: ng.IAugmentedJQuery, attrs: IBabylonSurfaceDirectiveAttribute): void {
 			let that: BabylonSurface = this;
-			that.canvasRender = element.children()\[0\] as HTMLCanvasElement;			
+			that.canvasRender = element.children()[0] as HTMLCanvasElement;			
 		}
 
 	}
-	angular.module('clilentHUE').directive('BabylonSurface', \[BabylonSurface.Factory()\]);
+	angular.module('clilentHUE').directive('BabylonSurface', [BabylonSurface.Factory()]);
 }
 ```
 
  
 
-Toujours dans cette directive, nous allons déclarer le moteur BabylonJs afin de pouvoir effectuer le rendu de la scène. Nous injecterons également dans la directive notre service ('business.light') permettant de faire le lien avec notre API. Pour pouvoir instancier le moteur BabylonJs (_BABYLON.Engine_), nous devons lui passer en paramètre la surface de rendu, dans notre cas le canvas de la directive _(this.canvasRender_). Pour charger une scène issue de 3dsMax, il faut utiliser la méthode _BABYLON.SceneLoader.Load_ en lui passant en paramètre le fichier \*.babylon. Celle-ci prend également en paramètre une callBack permettant d'être notifiée quand le fichier a fini d'être chargé. Sur une scène plus compliquée, nous pouvons également utiliser l'_[AssetManager](http://doc.babylonjs.com/tutorials/how_to_use_assetsmanager)_.
+Toujours dans cette directive, nous allons déclarer le moteur BabylonJs afin de pouvoir effectuer le rendu de la scène. Nous injecterons également dans la directive notre service ('business.light') permettant de faire le lien avec notre API. Pour pouvoir instancier le moteur BabylonJs (_BABYLON.Engine_), nous devons lui passer en paramètre la surface de rendu, dans notre cas le canvas de la directive _(this.canvasRender_). Pour charger une scène issue de 3dsMax, il faut utiliser la méthode _BABYLON.SceneLoader.Load_ en lui passant en paramètre le fichier *.babylon. Celle-ci prend également en paramètre une callBack permettant d'être notifiée quand le fichier a fini d'être chargé. Sur une scène plus compliquée, nous pouvons également utiliser l'_[AssetManager](http://doc.babylonjs.com/tutorials/how_to_use_assetsmanager)_.
 
 ```js
 namespace app.directive {
@@ -132,7 +132,7 @@ namespace app.directive {
 		private unboundLink(scope: IBabylonSurfaceDirectiveScope, element: ng.IAugmentedJQuery, attrs: IBabylonSurfaceDirectiveAttribute): void {
 			let that: BabylonSurface = this;
 			// on récupère l’élément canvas du template
-			that.canvasRender = element.children()\[0\] as HTMLCanvasElement;
+			that.canvasRender = element.children()[0] as HTMLCanvasElement;
 			// on instancie le moteur avec le canvas
 			that.engine = new BABYLON.Engine(this.canvasRender, true);
 
@@ -149,7 +149,7 @@ namespace app.directive {
 		}
 
 	}
-	angular.module('clientHUE').directive('BabylonSurface', \['business.light', BabylonSurface.Factory()\]);
+	angular.module('clientHUE').directive('BabylonSurface', ['business.light', BabylonSurface.Factory()]);
 }
 ```
 
@@ -163,17 +163,17 @@ Dans le controller ([HomeController](https://github.com/3IE/demo-client-hue/blob
 
 ```js
 export interface IDebugControllerScope extends ng.IScope {
-	/*\*
-	 \* méthode pour faire la transformation du colorPicker vers
-	 \* la couleur typée 
+	/**
+	 * méthode pour faire la transformation du colorPicker vers
+	 * la couleur typée 
 	 */
 	changeColor: () => void;
-	/*\*
-	 \* représentation de la couleur typée
+	/**
+	 * représentation de la couleur typée
 	 */
 	newColor: app.models.Light;
-	/*\*
-	 \* variable de la couleur binder sur le colorPicker 
+	/**
+	 * variable de la couleur binder sur le colorPicker 
 	 */
 	myColor: string;
 }
@@ -185,11 +185,11 @@ Dans le constructeur du controller nous implémentons la méthode _changeColor_.
 
 ```js
 this.$scope.changeColor = () => {
-	const re: RegExp = /rgba?\\(\\s\*(\\d{1,3})\\s\*,\\s\*(\\d{1,3})\\s\*,\\s\*(\\d{1,3})\\s\*(?:,\\s\*(\\d+(?:\\.\\d+)?)\\s\*)?\\)/;
+	const re: RegExp = /rgba?\\(\\s*(\\d{1,3})\\s*,\\s*(\\d{1,3})\\s*,\\s*(\\d{1,3})\\s*(?:,\\s*(\\d+(?:\\.\\d+)?)\\s*)?\\)/;
 	const resultatParse: RegExpExecArray = re.exec(this.$scope.myColor);
-	that.$scope.newColor.color.r = parseInt(resultatParse\[1\], 10) / 255;
-	that.$scope.newColor.color.g = parseInt(resultatParse\[2\], 10) / 255;
-	that.$scope.newColor.color.b = parseInt(resultatParse\[3\], 10) / 255;
+	that.$scope.newColor.color.r = parseInt(resultatParse[1], 10) / 255;
+	that.$scope.newColor.color.g = parseInt(resultatParse[2], 10) / 255;
+	that.$scope.newColor.color.b = parseInt(resultatParse[3], 10) / 255;
 };
 ```
 
@@ -228,9 +228,9 @@ La première étape dans notre directive est donc de passer à notre classe _[Wo
 ```js
 private unboundLink(scope: IBabylonSurfaceDirectiveScope, element: ng.IAugmentedJQuery, attrs: IBabylonSurfaceDirectiveAttribute): void {
 	let that: BabylonSurfaceNew = this;
-	that.canvasRender = element.children()\[0\] as HTMLCanvasElement;
+	that.canvasRender = element.children()[0] as HTMLCanvasElement;
 	that.engine = new BABYLON.Engine(this.canvasRender, true);
-	let worldManager: app.game\_engine.WorldManager = new app.game\_engine.WorldManager(scope.newColor, that.businessLight);
+	let worldManager: app.game_engine.WorldManager = new app.game_engine.WorldManager(scope.newColor, that.businessLight);
 
 	window.addEventListener('resize', function(): any {
 		this.engine.resize();
@@ -258,7 +258,7 @@ La seconde étape est de compléter la méthode createScene. Comme indiqué plus
 ```js
 public createScene(scene: BABYLON.Scene): void {
 	let that: WorldManager = this;
-	scene.lights\[1\].setEnabled(false);
+	scene.lights[1].setEnabled(false);
 	scene.meshes.forEach((mesh: BABYLON.Mesh) => {
 		mesh.isPickable = false;
 		if (mesh.name === 'Box001') {
@@ -329,3 +329,9 @@ Voici le rendu final de la scène
 # Conclusion
 
 Grâce à cet exemple nous avons pu mettre en place un client 3D basé sur babylonJS de façon assez simple. Bien que ce framework soit très bien pour les jeux videos, il peut tout a fait être couplé avec une application de type AngularJS afin d'avoir une interaction de l'application vers la scène mais également du serveur d'API vers la scène 3D.
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **arnaud.lemettre**

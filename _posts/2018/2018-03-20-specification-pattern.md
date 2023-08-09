@@ -24,10 +24,13 @@ public IReadOnlyList<Order> GetOrderBetweenDate(DateTime startDate, DateTime end
 
 Votre code devient :
 
+```c#
 public IReadOnlyList<Order> GetOrder(Specification<Order> specification) { ... }
+```
 
-```c# Ce qui permet d’avoir des couches d’accès aux données beaucoup plus simples et surtout moins de code à écrire. L’autre avantage permet d’offrir plus de souplesse sur la récupération des données en permettant de mixer les Specifications, tout en gardant une lisibilité sur la condition. Si nous prenons, par exemple, le corps d’une méthode permettant de remonter une collection de données filtrées :
+Ce qui permet d’avoir des couches d’accès aux données beaucoup plus simples et surtout moins de code à écrire. L’autre avantage permet d’offrir plus de souplesse sur la récupération des données en permettant de mixer les Specifications, tout en gardant une lisibilité sur la condition. Si nous prenons, par exemple, le corps d’une méthode permettant de remonter une collection de données filtrées :
 
+```c#
 var tv = products.Where(x => x.Category == 1 && x.Brand == "samsung");
 ```
 
@@ -60,14 +63,14 @@ Pour utiliser cette classe, nous devons implémenter une spécification typée 
 ```c#
 public class CitySpecification : Specification<Order>
 {
-    private string \_city;
+    private string _city;
     public CitySpecification(string city)
     {
-        \_city = city;
+        _city = city;
     }
     public override Expression<Func<Order, bool>> ToExpression()
     {
-        return order => order.Address.City == \_city;
+        return order => order.Address.City == _city;
     }
 }
 
@@ -104,20 +107,20 @@ Pour l’implémentation d’un AndSpecification :
 ```c#
 public class AndSpecification<T> : Specification<T>
    {
-       private readonly Specification<T> \_left;
-       private readonly Specification<T> \_right;
+       private readonly Specification<T> _left;
+       private readonly Specification<T> _right;
  
        public AndSpecification(Specification<T> left, Specification<T> right)
        {
-           \_right = right;
-           \_left = left;
+           _right = right;
+           _left = left;
        }
  
  
        public override Expression<Func<T, bool>> ToExpression()
        {
-           Expression<Func<T, bool>> leftExpression = \_left.ToExpression();
-           Expression<Func<T, bool>> rightExpression = \_right.ToExpression();
+           Expression<Func<T, bool>> leftExpression = _left.ToExpression();
+           Expression<Func<T, bool>> rightExpression = _right.ToExpression();
            
            var paramExpr = Expression.Parameter(typeof(T));
            var exprBody = Expression.AndAlso(leftExpression.Body, rightExpression.Body);
@@ -137,7 +140,7 @@ Avec les dernières modifications, nous pouvons utiliser les classes de cette ma
 ```c#
 var limitDateSpec = new LimitDateSpecification(DateTime.Now);
 var citySpec = new CitySpecification(city);
-var res = await \_query.FindOrderAsync(citySpec.And(limitDateSpec));
+var res = await _query.FindOrderAsync(citySpec.And(limitDateSpec));
 
 // ou encore
 bool isInCity = citySpec.IsSatisfiedBy(myOrder);
@@ -149,3 +152,9 @@ bool isInCity = citySpec.IsSatisfiedBy(myOrder);
 Cette approche nous permet de réutiliser facilement les conditions, facilite les tests, certes nous avons plus de classes à tester mais les méthodes sont plus simples. Nous gagnons également en temps de développement sur nos accès aux données en fournissant une seule méthode prenant en paramètre nos Specifications.
 
 Les sources de cet article sont disponibles sur notre [github](https://github.com/3IE/SpecificationPattern).
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **arnaud.lemettre**

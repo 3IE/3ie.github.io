@@ -31,10 +31,13 @@ Passons aux choses sérieuses, WebAssembly n'en est encore qu'à ses balbutiemen
 
 Ici nous créons un nouveau projet Angular grâce à CLI
 
+```ps
 ng new angular-wasm
+```
 
-```ps Nous avons envie que TypeScript puisse reconnaître des modules provenant de WebAssembly
+Nous avons envie que TypeScript puisse reconnaître des modules provenant de WebAssembly
 
+```swift
 npm install @types/webassembly-js-api --dev --save
 ```
 
@@ -47,16 +50,17 @@ L'installation terminée, nous allons pouvoir créer nos programmes en _C_ qui s
 
 Créez un dossier wasm dans app/
 
-mkdir src/app/wasm
-
 ```ps
+mkdir src/app/wasm
+```
 
+```c
 #include <emscripten.h>
 #include <string.h>
 #include <stdlib.h>
 
 // Implémentation itérative de fibonacci
-int EMSCRIPTEN\_KEEPALIVE fibo(int n)
+int EMSCRIPTEN_KEEPALIVE fibo(int n)
 {
   int first = 0, second = 1;
 
@@ -73,16 +77,16 @@ int EMSCRIPTEN\_KEEPALIVE fibo(int n)
 // Ici on alloue petit à petit un tableau
 // dans lequel on insert des caractères puis on le retourne
 // Taille du tableau : 10 000 000 d'éléments
-char\* EMSCRIPTEN\_KEEPALIVE play\_with\_memory()
+char* EMSCRIPTEN_KEEPALIVE play_with_memory()
 {
-	char\* str = malloc(2);
-	str\[0\] = 'a';
-	str\[1\] = '\\0';
-	for (size\_t i = 0; i < 10000000; i++)
+	char* str = malloc(2);
+	str[0] = 'a';
+	str[1] = '\\0';
+	for (size_t i = 0; i < 10000000; i++)
 	{
 		str = realloc(str, strlen(str) + 1);
-		str\[strlen(str) - 1\] = (i % 128) + '0';
-		str\[strlen(str)\] = '\\0';
+		str[strlen(str) - 1] = (i % 128) + '0';
+		str[strlen(str)] = '\\0';
 	}
 	return str;
 }
@@ -117,7 +121,7 @@ import { fromPromise } from 'rxjs/observable/fromPromise';
 import { Subject } from 'rxjs/Subject';
 import { filter, take, mergeMap } from 'rxjs/operators';
 
-import \* as Module from './../wasm/evaluator.js';
+import * as Module from './../wasm/evaluator.js';
 import '!!file-loader?name=wasm/evaluator.wasm!./../wasm/evaluator.wasm';
 import { resolve } from 'url';
 
@@ -158,7 +162,7 @@ export class WasmService {
         return fromPromise(
           new Promise<number>((resolve, reject) => {
             setTimeout(() => {
-              const result = this.module.\_fibo(input);
+              const result = this.module._fibo(input);
               resolve(result);
             });
           })
@@ -174,7 +178,7 @@ export class WasmService {
         return fromPromise(
           new Promise<number>((resolve, reject) => {
             setTimeout(() => {
-              const result = this.module.\_play\_with\_memory();
+              const result = this.module._play_with_memory();
               resolve(result);
             });
           })
@@ -197,15 +201,15 @@ import { AppComponent } from './app.component';
 import { WasmService } from './services/wasm.service';
 
 @NgModule({
-  declarations: \[
+  declarations: [
     AppComponent
-  \],
-  imports: \[
+  ],
+  imports: [
     BrowserModule,
     FormsModule
-  \],
-  providers: \[WasmService\],
-  bootstrap: \[AppComponent\]
+  ],
+  providers: [WasmService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
 
@@ -220,7 +224,7 @@ import { WasmService } from './services/wasm.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: \['./app.component.scss'\]
+  styleUrls: ['./app.component.scss']
 })
 
 export class AppComponent implements OnInit {
@@ -247,7 +251,8 @@ On aurait tendance à penser que toute cette couche ajoutée qui nous permet d'i
 
  
 
-\[caption id="attachment\_1595" align="aligncenter" width="1103"\][![](/assets/images/fibonacci-table-2.png)](/assets/images/fibonacci-table-2.png) Résultats pour fibonacci\[/caption\]
+[![](/assets/images/fibonacci-table-2.png)](/assets/images/fibonacci-table-2.png)  
+**Résultats pour fibonacci**
 
  
 
@@ -259,7 +264,8 @@ En revanche, si vos programmes demandent un temps d'exécution assez conséquent
 
  
 
-\[caption id="attachment\_1593" align="aligncenter" width="1111"\][![](/assets/images/play-with-memory-table.png)](/assets/images/play-with-memory-table.png) Résultats pour playWithMemory\[/caption\]
+[![](/assets/images/play-with-memory-table.png)](/assets/images/play-with-memory-table.png)  
+**Résultats pour playWithMemory**
 
 ## Conclusion
 
@@ -268,3 +274,9 @@ WebAssembly n'en est aujourd'hui qu'à ses débuts, les tests effectués dans le
  
 
 _Notes:_ _vous pouvez cloner le projet de benchmark réalisé [ici](https://github.com/3IE/article-webassembly) pour avoir une meilleure idée des performances entre WebAssembly et TypeScript ou simplement démarrer sur un petit projet clefs en main._
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **leo.stephan**

@@ -21,3 +21,9 @@ Les icones responsives peuvent grandement améliorer l’expérience utilisateur
  
 
 Article rédigé par : Roxane Ben Sedrine
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **sabrina.bouylaghmane**

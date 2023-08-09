@@ -35,3 +35,9 @@ En attendant, pour les autres, des coques sont commercialisées pour être compa
 Ce concept devrait s’étendre à l’ensemble des produits High-Tech (appareil photos, caméscopes, enceintes Bluetooth...)
 
 Dans les semaines à venir nous risquons de découvrir de nombreuses versions du chargement nomade et les constructeurs devraient s’aligner en équipant les appareils de la norme Qi.
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **marion.panis**

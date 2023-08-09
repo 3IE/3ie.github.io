@@ -43,3 +43,9 @@ Afin de lire ces médias, 3IE a également développé un lecteur fonctionnant s
 **Le vendeur : véritable metteur en scène de son rayon**
 
 Une control box, conçue par l’équipe Innovation & Technologies de SLMS, est le cerveau communicant du magasin, véritable moteur d’interactions. Comme le souligne Joris Gaudion, « _elle fait du vendeur le metteur en scène de son rayon. Il dessine celui-ci sur sa tablette, paramètre les éclairages, décide des produits qu’il veut mettre en valeur et y associe les contenus multimédias. A lui de faire de son espace de vente un chef d’œuvre, à la fois séduisant, informatif et déclencheur d’achats_ ».
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **marion.panis**

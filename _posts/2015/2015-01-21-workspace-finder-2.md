@@ -38,3 +38,9 @@ Ainsi avec un objet connecté mis dans la main de l’utilisateur, iBeacon perme
 Vous souhaitez le meilleur pour vos collaborateurs? Ces innovations permettent d’évoluer dans des espaces de travail optimisés afin de favoriser l’échange d’idées et brainstormer au mieux!
 
 Disponible sur IOS, Iphone et Ipad.
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **sabrina.bouylaghmane**

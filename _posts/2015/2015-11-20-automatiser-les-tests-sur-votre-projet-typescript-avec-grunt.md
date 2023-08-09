@@ -34,17 +34,20 @@ Pour éviter que votre GIT soit souillé par le refactoring des différents devs
 
 Dans le fichier _tslint.json,_ passez la propriété _indent_ à _tabs_ pour que tslint le vérifie:
 
-"indent": \[ true, "tabs" \]
+```js
+"indent": [ true, "tabs" ]
+```
 
-```js  
+ 
 
 Une deuxième modification intéressante dans tslint est l'option _quotemark_ pour forcer une cohérence dans la saisie des chaines de caractères. Comme on est dans un univers proche du JS, on gardera les _string_ en _single quote_, ce qui permet de manipuler facilement du code html avec des _double quotes_. Passez la propriété _quotemark_ à “single”
 
-"quotemark": \[
+```js
+"quotemark": [
 	true,
 	"single",
 	"avoid-escape"
-\]
+]
 ```
 
  
@@ -52,10 +55,10 @@ Une deuxième modification intéressante dans tslint est l'option _quotemark_ po
 Vous pouvez aussi augmenter le nombre de caractères maximum autorisé sur une ligne. De base la limite est à 140 mais vous pouvez le passer à 220 car ça se lit sans problème sur un grand écran.
 
 ```js
-"max-line-length": \[
+"max-line-length": [
 	true,
 	220
-\]
+]
 ```
 
  
@@ -68,9 +71,11 @@ VSCode supporte depuis la version v0.10 les extensions, vous pouvez donc intégr
 
 Pour garantir une bonne indentation, demandez à VSCode de le faire pour vous. Pour cela, modifiez vos préférences (Preferences->User settings) et passez la propriété "editor.insertSpaces” à false :
 
+```js
 "editor.insertSpaces": false
+```
 
-```js  
+ 
 
 ### Intégration de tslint dans grunt
 
@@ -80,6 +85,7 @@ Nous n'allons pas couvrir les bases de Grunt dans cet article, je vous invite do
 
 Ajoutez dans votre 'package.json' la dépendance vers 'tslint'. Ajoutez aussi la dépendances ['load-grunt-tasks'](https://github.com/sindresorhus/load-grunt-tasks), cela permet de charger automatiquement les taches grunt prédéfinies. Vous pouvez alors remplacer
 
+```js
 grunt.loadNpmTasks('grunt-contrib-clean');
 grunt.loadNpmTasks("grunt-ts");
 grunt.loadNpmTasks('grunt-http-server');
@@ -87,18 +93,19 @@ grunt.loadNpmTasks('grunt-http-server');
 
 par cette ligne
 
- require('load-grunt-tasks')(grunt);
-
 ```js
+ require('load-grunt-tasks')(grunt);
+```
 
 #### Modification du Gruntfile
 
 Créez une tache 'testing' dans votre grunt. C'est à travers elle que l'on exécutera le 'tslint' et ensuite les tests unitaires.
 
-grunt.registerTask('testing', \[
+```js
+grunt.registerTask('testing', [
 	'clean',
 	'tslint'
-\]);
+]);
 ```
 
 Dans votre bloc de 'grunt.initConfig', ajoutez la configuration pour votre tache 'tslint'.
@@ -110,29 +117,32 @@ tslint: {
 	},
 	files: {
 		//all your .ts files
-		\[
+		[
 			'app/**/*.ts',
-			'app\_engine/**/*.ts',
+			'app_engine/**/*.ts',
 			'models/**/*.ts',
 			'test/**/*.ts',
-		\]
+		]
 	}
 }
 ```
 
-L'attribut 'files' contient la liste de tous les fichiers _ts_ à vérifier, c'est à dire tous les fichiers _\*.ts_ contenu dans les dossiers app, app\_engine, models, et test (dossier qui contiendra tous les tests unitaires).
+L'attribut 'files' contient la liste de tous les fichiers _ts_ à vérifier, c'est à dire tous les fichiers _*.ts_ contenu dans les dossiers app, app_engine, models, et test (dossier qui contiendra tous les tests unitaires).
 
 Comme vous pouvez le voir, c'est un peu verbeux et on l'impression de se répéter. Heureusement Grunt permet d'utiliser les même règles de _[brace expansion](https://www.gnu.org/software/bash/manual/html_node/Brace-Expansion.html)_ que Bash, c'est à dire utiliser des accolades pour générer des combinaisons de chaine de caractères.
 
 On peut donc écrire la règle suivante qui sera équivalente
 
-tsFiles: \['{app,app\_engine,models,test}/**/*.ts'\]
+```js
+tsFiles: ['{app,app_engine,models,test}/**/*.ts']
+```
 
-```js Pour garder le code Grunt propre, nous allons utiliser une variable globale pour stocker nos tableaux de fichiers. Ce code est à placer au début de votre Grunt, au dessus de votre 'grunt.initConfig'.
+Pour garder le code Grunt propre, nous allons utiliser une variable globale pour stocker nos tableaux de fichiers. Ce code est à placer au début de votre Grunt, au dessus de votre 'grunt.initConfig'.
 
+```js
 var globalCfg = {
 	src: {
-		tsFiles: \['{app,app\_engine,models,test}/**/*.ts'\]
+		tsFiles: ['{app,app_engine,models,test}/**/*.ts']
 	}
 };
 ```
@@ -174,20 +184,21 @@ Pour fonctionner, Karma a besoin d'un fichier de configuration. Vous pouvez réc
 
 Pensez à mettre à jour vos définitions tsd pour Jasmine avec la commande suivante :
 
-$ tsd install jasmine -s
-
 ```sh
+$ tsd install jasmine -s
+```
 
 ### Modification du Gruntfile
 
 Dans le fichier Gruntfile.js, modifiez la tache grunt 'testing' pour que les tests unitaires s'effectuent après _tslint_ et après la compilation des fichiers _ts_.
 
-grunt.registerTask('testing', \[
+```js
+grunt.registerTask('testing', [
 	'clean',
 	'tslint',
 	'ts',
 	'karma:continuous',
-\]);
+]);
 ```
 
 Il ne nous reste plus qu'a créer la tâche _karma_. On crée une target 'continuous' dans laquelle Karma est configuré pour lancer chaque test dans PhantomJS; l'option _singleRun_ fait que Karma ferme PhantomJS à la fin de chaque test. Ajoutez ce code à coté de la tache _tslint_ précédemment créée:
@@ -198,7 +209,7 @@ karma: {
 	continuous: {
 		configFile: 'karma.conf.js',
 		singleRun: true,
-		browsers: \['PhantomJS'\]
+		browsers: ['PhantomJS']
 	}
 }
 ```
@@ -214,7 +225,7 @@ module.exports = function (grunt) {
 
 	var globalCfg = {
 		src: {
-			tsFiles: \['{app,app\_engine,models,test}/**/*.ts'\]
+			tsFiles: ['{app,app_engine,models,test}/**/*.ts']
 		}
 	};
 		
@@ -245,14 +256,14 @@ module.exports = function (grunt) {
 			continuous: {
 				configFile: 'karma.conf.js',
 				singleRun: true,
-				browsers: \['PhantomJS'\]
+				browsers: ['PhantomJS']
 			},
 		},
 		clean: {
-			public: \[
-				'{app,app\_engine,models}/**/*.{js,js.map}',
+			public: [
+				'{app,app_engine,models}/**/*.{js,js.map}',
 				'reference.{js,js.map}'
-			\]
+			]
 		},
 		'http-server': {
 			'dev': {
@@ -263,15 +274,21 @@ module.exports = function (grunt) {
 		}
 	});
 
-	grunt.registerTask('testing', \[
+	grunt.registerTask('testing', [
 		'clean',
 		'tslint',
 		'ts',
 		'karma:continuous',
-	\]);
-	grunt.registerTask('web', \['http-server:dev'\]);
+	]);
+	grunt.registerTask('web', ['http-server:dev']);
 };
 
 ```
 
 Vous pouvez télécharger le projet complet sur le git du [TypescriptAngularStarter v0.2.3](https://github.com/3IE/TypescriptAngularStarter/tree/v0.2.3)
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **benoit.verdier**

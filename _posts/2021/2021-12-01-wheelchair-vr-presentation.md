@@ -51,3 +51,9 @@ _Le patron donne l'objectif de la seconde scène_.
 ### **Conclusion**
 
 Wheelchair-VR est un projet qui tire profit de la VR pour sensibiliser les joueurs sur des problèmes importants d’accessibilité. Il fut très formateur, et m’a permis de découvrir le développement de jeu en VR avec Unity. Le résultat final est améliorable sur plusieurs aspects, autant techniques (fonctionnement du fauteuil) que ludiques (conception des niveaux et mécaniques de jeu). Nous avons eu de nombreuses idées durant son développement que nous n’avons pas eu le temps d’explorer. Il aurait notamment pu être intéressant de garder des contrôles arcade, et de réaliser des niveaux courts qui mettent en avant un problème d’accessibilité précis.
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **antoine.aubin**

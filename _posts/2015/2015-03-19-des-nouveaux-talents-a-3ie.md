@@ -10,3 +10,9 @@ categories:
 **Adrien, Robin, Antoine, Harold, François, Pierre Antoine, Erwan, Paul, Damien** _Ing 1_
 
 et **Roxane** _Stagiaire pôle graphisme_
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **sabrina.bouylaghmane**

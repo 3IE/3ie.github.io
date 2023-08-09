@@ -43,10 +43,17 @@ Les planches tendances sont utilisées depuis longtemps par différents métiers
 
  
 
-\[caption id="attachment\_1428" align="aligncenter" width="676"\][![Mood board réalisé par 3iE](/assets/images/article-moodboard-1024x435.jpg)](/assets/images/article-moodboard.jpg) Mood board réalisé par 3iE\[/caption\]
+[![Mood board réalisé par 3iE](/assets/images/article-moodboard-1024x435.jpg)](/assets/images/article-moodboard.jpg)  
+**Mood board réalisé par 3iE**
 
 ## **Quels outils utiliser?**
 
 - **Pinterest :** la solution parfaite à mes yeux pour faciliter sa recherche d'inspirations. Il suffit de créer un nouveau tableau, public ou secret et rassembler ses recherches. Je vous conseille d'utiliser le module complémentaire très utile "Pin It" de Pinterest.
 - **Template, Gabarit :** créer un template, gabarit standard qui pourra être utilisé pour agencer proprement ses trouvailles en fonction de chaque projet.
 - **Divers outils, logiciels :** [Gomoodboard](http://www.gomoodboard.com/), [Sampleboard](http://www.sampleboard.com/), [ImageShack](http://imageshack.us/ "ImageShack"), [Musepeak](http://www.musepeak.com/ "Musepeak") (outil collaboratif).
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **mathilde.lork**

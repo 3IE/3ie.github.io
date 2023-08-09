@@ -25,3 +25,9 @@ Pendant ce temps, des conférences de 20 minutes s'enchaînent dans deux salles 
 ### Un événement centré autour des startups
 
 Car c'est bien de cela dont il s'agit. Un événement consacré au monde du numérique et où une majeure partie des sociétés présentes sont des startups. Le nombre de sociétés qui se créent dans le monde du numérique est impressionnant. Tellement de startups qu'on en viendrait à douter de la situation économique de pays comme la France. En effet, quand on voit tant de création de sociétés concentrée au même endroit, il devient évident que si certains secteurs d'activité connaissent aujourd'hui une chute de leur activité, d'autres, au contraire, sont en pleine explosion et en plein développement. Et le parallèle avec la situation économique de la France n'est pas anodin. En effet, la proportion de startup françaises présentes au Web Summit était vraiment importante. La France devient ces derniers temps un pays attractif pour la création de société et il faut espérer que cela continue !
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **cedric.eugeni**

@@ -14,3 +14,9 @@ tags:
 **3iE** (labo d’Innovation Informatique de l’EPITA) est fier d'avoir réalisé l'identité visuelle du "Forum Stages & Emplois" qui se tient en ce moment à l'EPITA.
 
 _Forum Stages & Emplois les 12 et 13 octobre 2016 // 13h30 - 18h 14-16 rue Pasteur 94720 Le Kremlin-Bicêtre_
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **juliette.chansard**

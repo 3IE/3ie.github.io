@@ -67,3 +67,9 @@ Pour enfin voir votre hologramme, rien de plus simple. Placez votre tablette ou 
 https://vimeo.com/127461514
 
 En tout cas, nous à 3ie ce principe nous a emballé et nous avons réalisé une petite vidéo de l’hologramme que nous avons produit :)
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **marion.panis**

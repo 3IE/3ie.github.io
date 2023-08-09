@@ -62,7 +62,8 @@ On vous recommande de filmer la séance de shadowing et d’enregistrer l’inte
 
 De retour au labo, nous avons commencé par définir les **principaux parcours utilisateurs**, pour lesquels nous avons spécifié les tâches accomplies. C'est ce qu'on appelle également la **User Journey** c’est à dire les étapes/interactions par lesquelles passe l’utilisateur pour arriver à son objectif. A ces parcours, nous avons mis en avant les points de satisfaction ainsi que **les points de blocage et les bugs** qui perturbent l’expérience utilisateur. Ces derniers sont des éléments clés : ils vont nous aiguiller pour la suite.
 
-\[caption id="attachment\_1522" align="aligncenter" width="676"\][![](/assets/images/img-userflow-blog-1024x766.jpg)](/assets/images/img-userflow-blog.jpg) Parcours utilisateur\[/caption\]
+[![](/assets/images/img-userflow-blog-1024x766.jpg)](/assets/images/img-userflow-blog.jpg)  
+**Parcours utilisateur**
 
 Il est donc important de représenter les parcours de manière simple et parlante car ils vont nous servir durant toute la durée du projet.
 
@@ -85,3 +86,9 @@ Grâce au process de Design Thinking, notre projet a pu étape par étape arrive
 Ainsi nous avons avancé assez vite dans la bonne direction et de manière sûre. Et cela a facilité la collaboration entre les équipes et créé une réelle cohésion d’équipe. Par la suite, les dev ont commencé le développement de la plateforme à l’aide d’un prototype fiable et solide.
 
 _Lina KHERRAT - Designer UI-UX_
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **lina.kherrat**

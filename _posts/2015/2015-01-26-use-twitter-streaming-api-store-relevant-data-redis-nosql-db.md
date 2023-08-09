@@ -98,7 +98,7 @@ endpoint.trackTerms(Lists.newArrayList("#nscurious"));
 Authentication auth = new OAuth1("YourAPIKey", "YouAPISecret", "YourAccessToken", "YourAccessTokenSecret");
 
 Client client = new ClientBuilder()
-        .hosts(Constants.STREAM\_HOST)
+        .hosts(Constants.STREAM_HOST)
         .endpoint(endpoint)
         .authentication(auth)
         .processor(new StringDelimitedProcessor(queue))
@@ -155,3 +155,9 @@ Run your program and post a tweet containing the hashtag #NSCurious, then open
 It's done. This code must not be sent to production cause there's no error handling or whatever that should be done before deploying a product on a production environment. But it's a good start to introduce Redis using a concrete example. For the anecdote, I ran such a program on a trending hashtag (#MTVStars) and I got 504 tweets into my db in less than 2 seconds. So use a rare tweet while developing, and test your server capacity after.
 
 If you have any questions on this tutorial or on advanced Redis usage, please leave a comment on this post.
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **herve.droit**

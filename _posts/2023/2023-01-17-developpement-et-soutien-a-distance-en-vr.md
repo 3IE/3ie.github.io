@@ -137,3 +137,9 @@ Le prototype de l’application fonctionne techniquement, un utilisateur peut co
 Ce qu’on a pu en conclure est que la VR est un bon outil pour de la formation, dans le cas où les exercices sont adaptés pour de la VR (ne pas essayer de reproduire la réalité à tout prix). Cela ouvre une nouvelle possibilités pour une expérience où l’on découvre la programmation, des concepts informatiques, où même découvrir les lieux de l’école, les salles machines, etc… en l’adaptant à la VR (par exemple drag and drop des textes à trou pour de la programmation).
 
 La VR peut être aussi un bon outil pour les étudiants en période de Piscine mais pour les divertir, permettre un lieu d’échange, regrouper les régions et la métropole.
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **owen.duffourg**

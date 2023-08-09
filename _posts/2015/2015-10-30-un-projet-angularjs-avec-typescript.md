@@ -37,12 +37,12 @@ Afin d'avoir une base pour commencer notre projet voici la structure de la solut
 │ ├───img (images de l'application)
 │ ├───less (Répertoire contenant les fichiers less)
 │ └───views (Répertoire contenant les fichiers html)
-│		└───directive\_templates (Répertoire contenant les fichiers html des directives)
-├───app\_engine (Répertoire permettant d'héberger la couche de logique métier et d'accès aux données)
+│		└───directive_templates (Répertoire contenant les fichiers html des directives)
+├───app_engine (Répertoire permettant d'héberger la couche de logique métier et d'accès aux données)
 │      └───common
 │ 		 ├───business (Répertoire contenant la couche de logique métier)
 │ 		 └───data (Répertoire contenant la couche d'accès aux données, par exemple les requêtes vers les API)
-├───bower\_components
+├───bower_components
 ├───models (Répertoire contenant les fichiers des objets)
 ```
 
@@ -50,14 +50,17 @@ Afin d'avoir une base pour commencer notre projet voici la structure de la solut
 
 Pour initaliser la solution nous allons télécharger la bibliothèque angularJS
 
+```sh
 c:\\myproject> bower install angular angular-bootstrap angular-ui-router angular-ui-validate bootstrap less --save
+```
 
-```sh L'option --save permet d'enregistrer les dépendances dans le fichier bower.json
+L'option --save permet d'enregistrer les dépendances dans le fichier bower.json
 
 ##### tsd
 
-La première étape de configuration d'un projet Angular en Typescript est de récupérer les fichiers de définition, ayant pour extension \*.d.ts. Dès que vous souhaitez utiliser une bibliothèque externe n'étant pas écrite en Typescript, il vous faudra récupérer ces fichiers afin de permettre l'autocomplétion. Ces fichiers sont disponibles grâce au projet [tsd manager](http://definitelytyped.org/tsd/). Pour l'utiliser il faut l'installer grâce à NPM.
+La première étape de configuration d'un projet Angular en Typescript est de récupérer les fichiers de définition, ayant pour extension *.d.ts. Dès que vous souhaitez utiliser une bibliothèque externe n'étant pas écrite en Typescript, il vous faudra récupérer ces fichiers afin de permettre l'autocomplétion. Ces fichiers sont disponibles grâce au projet [tsd manager](http://definitelytyped.org/tsd/). Pour l'utiliser il faut l'installer grâce à NPM.
 
+```batch
 C:\\myproject> npm install tsd -g
 ```
 
@@ -78,7 +81,7 @@ De base nous installons 2 fichiers de définition :
 - angular
 - angular-ui-router
 
-N'oubliez pas de rajouter l'option --save pour que les fichiers \*.d.ts soit inscrit dans le fichier typings\\tsd.d.ts
+N'oubliez pas de rajouter l'option --save pour que les fichiers *.d.ts soit inscrit dans le fichier typings\\tsd.d.ts
 
 ```batch
 C:\\myproject> tsd install angular angular-ui-router --save
@@ -109,10 +112,13 @@ Afin de pouvoir compiler nos fichiers typescript nous devons également installe
 
 Afin que ces dépendances soient sauvegardées sur le projet (package.json), n'oubliez pas de rajouter --save sur la commande
 
+```batch
 C:\\myproject> npm install grunt grunt-develop grunt-ts load-grunt-tasks typescript grunt-http-server --save
+```
 
-```batch Nous allons maintenant modifier le Gruntfile pour réaliser la compilation des fichiers TS. A cette étape le Gruntfile ne servira que pour la compilation. Nous verrons lors d'un prochain article comment l'enrichir pour générer les fichiers CSS, faire les tests et effectuer un déploiement du site.
+Nous allons maintenant modifier le Gruntfile pour réaliser la compilation des fichiers TS. A cette étape le Gruntfile ne servira que pour la compilation. Nous verrons lors d'un prochain article comment l'enrichir pour générer les fichiers CSS, faire les tests et effectuer un déploiement du site.
 
+```js
 module.exports = function (grunt) {
 
   require('load-grunt-tasks')(grunt);
@@ -121,7 +127,7 @@ module.exports = function (grunt) {
 
     ts: {
       default: {
-        src: \["\**/*.ts", "!node\_modules/**/*.ts", "!bower\_components/**/*.ts", "app\_engine/**/*.ts"\],
+        src: ["**/*.ts", "!node_modules/**/*.ts", "!bower_components/**/*.ts", "app_engine/**/*.ts"],
         options: {
           target: 'es5',
           module: 'commonjs',
@@ -132,7 +138,7 @@ module.exports = function (grunt) {
     }, 
     clean: { 
       // remove old javascript files 
-      public: \["app/*.js", "app/**/*.js", "app\_engine/**/*.js"\]
+      public: ["app/*.js", "app/**/*.js", "app_engine/**/*.js"]
     },
     'http-server':{
       'dev':{
@@ -149,8 +155,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-http-server');
 
   // Default task(s).
-  grunt.registerTask('web', \['http-server:dev'\]);
-  grunt.registerTask('default', \['clean','ts'\]);
+  grunt.registerTask('web', ['http-server:dev']);
+  grunt.registerTask('default', ['clean','ts']);
   
 };
 ```
@@ -161,9 +167,10 @@ Ensuite, ouvrez ce répertoire avec un éditeur de code (par exemple [VSCode]
 
 La première étape est de configurer son environnement pour ne voir uniquement que les fichiers TS. En effet nous n'aurons plus besoin de manipuler les fichiers JS puisqu'ils vont être générés automatiquement. Pour faire cela dans VsCode : File > Preferences > Workspace Settings
 
-Rajoutez les extension js et js.map dans la liste des extensions à exclure. Afin d'être restrictif nous allons appliquer cette modification uniquement sur les répertoires app et app\_engine.
+Rajoutez les extension js et js.map dans la liste des extensions à exclure. Afin d'être restrictif nous allons appliquer cette modification uniquement sur les répertoires app et app_engine.
 
-\[caption id="attachment\_922" align="aligncenter" width="676"\][![settingsVsCode](/assets/images/settingsVsCode-1024x404.png)](/assets/images/settingsVsCode.png) Visual Studio Code settings\[/caption\]
+[![settingsVsCode](/assets/images/settingsVsCode-1024x404.png)](/assets/images/settingsVsCode.png)  
+**Visual Studio Code settings**
 
 Maintenant que l'environnement est prêt nous allons pouvoir entamer le développement du projet.
 
@@ -171,14 +178,17 @@ Maintenant que l'environnement est prêt nous allons pouvoir entamer le dévelop
 
 Avant toute chose nous devons ajouter un fichier reference.ts à la racine du site. Ce fichier nous permettra de referencer l'ensemble des fichiers TS pour faciliter l'auto-complétion (il ne devra donc contenir aucun code). Rajoutez la ligne suivante (qui permet de référencer les fichiers de définition que nous avons intégré avec tsd manager):
 
+```js
 /// <reference path="./typings/tsd.d.ts"/>
+```
 
-```js La 1ere étape du développement consiste à déclarer notre application Angular. Pour cela créez un fichier app.startup.ts pour initialiser les différentes routes et configurer l'application (Vous pouvez vous inspirer du fichier présent dans le [starter](https://github.com/3IE/TypescriptAngularStarter/blob/fd622603c3bf224b8bedc26a7cfa84c204eeb0ce/app/app.startup.ts)).
+La 1ere étape du développement consiste à déclarer notre application Angular. Pour cela créez un fichier app.startup.ts pour initialiser les différentes routes et configurer l'application (Vous pouvez vous inspirer du fichier présent dans le [starter](https://github.com/3IE/TypescriptAngularStarter/blob/fd622603c3bf224b8bedc26a7cfa84c204eeb0ce/app/app.startup.ts)).
 
 ##### **Création d'un controller**
 
 Pour créer un controller, il y a deux étapes. la première est de recenser les variables que l'on veut exposer à la vue pour les ajouter à une interface. Ce travail permet de typer l'utilisation du $scope et d'éviter les déclarations de variables n'importe où dans le code. Pour cela on étend ng.IScope et on définit nos variables. La déclaration du namespace est laissée à votre discrétion bien entendu.
 
+```js
 namespace app {
 	'use strict';
 
@@ -229,7 +239,7 @@ namespace app{
 		}
 	}
 	
-	angular.module('starterKit').controller("NavBarController", \["$scope", NavBarController\]);
+	angular.module('starterKit').controller("NavBarController", ["$scope", NavBarController]);
 }
 ```
 
@@ -267,23 +277,23 @@ namespace app {
 	'use strict';
 
 	interface IProfileControllerScope extends ng.IScope {
-		schools: models.School\[\];
+		schools: models.School[];
 	}
 
 	class ProfileController {
 
 		constructor(private $scope: IProfileControllerScope) {
-			this.$scope.schools = \[new models.School("school 1"), new models.School("school 2")\];
+			this.$scope.schools = [new models.School("school 1"), new models.School("school 2")];
 		}
 	}
 
-	angular.module('starterKit').controller("ProfileController", \["$scope", ProfileController\]);
+	angular.module('starterKit').controller("ProfileController", ["$scope", ProfileController]);
 }
 ```
 
 ##### Déclaration d'un service
 
-Dans notre cas nous nous servons des services pour séparer les couches au niveau de notre app\_engine (par exemple pour faire les appels vers les API). Afin de garder une réactivité sur l'appel de nos services, nous utilisons également les _promises_.
+Dans notre cas nous nous servons des services pour séparer les couches au niveau de notre app_engine (par exemple pour faire les appels vers les API). Afin de garder une réactivité sur l'appel de nos services, nous utilisons également les _promises_.
 
 Dans cette classe d'accès aux données nous allons utiliser ng.IHttpService pour accéder aux API et ng.IQService pour les _promises_.
 
@@ -294,14 +304,14 @@ namespace engine.common.data {
 	'use strict';
 
 	export class User {
-		/*\*
-		 \*
+		/**
+		 *
 		 */
 		constructor(private $http: ng.IHttpService, private $q: ng.IQService) {
 
 		}
 
-		getUsers(): ng.IPromise<app.models.User\[\]> {
+		getUsers(): ng.IPromise<app.models.User[]> {
 			var deferred = this.$q.defer();
 
 			this.$http({
@@ -317,7 +327,7 @@ namespace engine.common.data {
 		}
 	}
 
-	angular.module('common.data').service("data.user", \["$http", "$q", User\]);
+	angular.module('common.data').service("data.user", ["$http", "$q", User]);
 }
 ```
 
@@ -363,7 +373,7 @@ module app.directive {
 		}
 	}
 
-	angular.module('starterKit').directive("ngEnter", \[NgEnter.Factory()\]);
+	angular.module('starterKit').directive("ngEnter", [NgEnter.Factory()]);
 }
 
 ```
@@ -372,11 +382,13 @@ module app.directive {
 
 Etant donné que nous avons créé un gruntfile au début du projet nous allons pouvoir automatiser cette partie. Si vous êtes sous VS Code vous pouvez lancer une tache grunt avec la commande : crl + maj + p Sélectionnez launch task, puis le nom de la tache à lancer (dans notre cas Default).
 
-\[caption id="attachment\_924" align="aligncenter" width="676"\][![Lancement d'une task](/assets/images/taskRunner-1024x395.png)](/assets/images/taskRunner.png) Lancement d'une task\[/caption\]
+[![Lancement d'une task](/assets/images/taskRunner-1024x395.png)](/assets/images/taskRunner.png)  
+**Lancement d'une task**
 
 Si on souhaite gagner un peu de temps et lancer directement une tache de compilation nous pouvons configurer le task runner. Si le fichier tasks.json n'est pas encore créé vous pouvez faire une première fois ctrl + maj + b et VS Code va vous proposer de rajouter ce fichier.
 
-\[caption id="attachment\_925" align="aligncenter" width="676"\][![Configuration de la tache de build](/assets/images/configTaskRunner-1024x196.png)](/assets/images/configTaskRunner.png) Configuration de la tache de build\[/caption\]
+[![Configuration de la tache de build](/assets/images/configTaskRunner-1024x196.png)](/assets/images/configTaskRunner.png)  
+**Configuration de la tache de build**
 
 Il faut ensuite compléter le fichier avec le nom de la tache que l'on souhaite exécuter (dans notre cas default).
 
@@ -385,10 +397,10 @@ Il faut ensuite compléter le fichier avec le nom de la tache que l'on souhaite 
     "version": "0.1.0",
     "command": "grunt",
     "isShellCommand": true,
-    "tasks": \[{
+    "tasks": [{
         "isBuildCommand": true,
         "taskName": "default"
-    }\]
+    }]
 }
 ```
 
@@ -419,3 +431,9 @@ Pour tester le site, vous pouvez soit configurez le serveur web pour pointer su
 Nous avons pu voir ici l'utilisation de TypeScript dans un projet AngularJS. Vous pouvez télécharger le projet exemple sur notre [github](https://github.com/3IE/TypescriptAngularStarter).
 
 Dans le prochain article nous verrons comment intégrer toutes les étapes du gruntfile afin de pouvoir [déployer notre site](https://blog.3ie.fr/optimisez-les-releases-de-vos-projets-typescriptangular-avec-grunt/) et [exécuter un suite de tests unitaires](https://blog.3ie.fr/automatiser-les-tests-sur-votre-projet-typescript-avec-grunt/).
+<br>
+<br>
+
+---------------------------------------
+<br>
+Auteur: **arnaud.lemettre**
